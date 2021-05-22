@@ -12,10 +12,9 @@ import model.animal.wild.Tiger;
 import java.util.ArrayList;
 
 public class ControllerAnimal {
-    //Array list of all animal
     ArrayList<Tiger> tigers = new ArrayList<>();
     ArrayList<Bear> bears = new ArrayList<>();
-    ArrayList<Lion> lions = new ArrayList<>()
+    ArrayList<Lion> lions = new ArrayList<>();
     ArrayList<Dog> dogs = new ArrayList<>();
     ArrayList<Cat> cats = new ArrayList<>();
     ArrayList<Chicken> chickens = new ArrayList<>();
