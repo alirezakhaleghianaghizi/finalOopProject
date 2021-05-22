@@ -1,4 +1,10 @@
 package model.factory.first;
 
-public class MilkSeprator {
+import model.factory.Factory;
+
+public class MilkSeprator extends Factory {
+
+    public MilkSeprator( double x, double y) {
+        super("MilkSeprator", x, y, 5, 250);
+    }
 }

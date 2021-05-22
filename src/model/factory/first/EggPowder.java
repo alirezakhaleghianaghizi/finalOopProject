@@ -1,4 +1,10 @@
 package model.factory.first;
 
-public class EggPowder {
+import model.factory.Factory;
+
+public class EggPowder extends Factory {
+
+    public EggPowder(String name, double x, double y) {
+        super("EggPowder", x, y,4,150);
+    }
 }
