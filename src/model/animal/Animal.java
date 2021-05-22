@@ -1,9 +1,49 @@
 package model.animal;
+import model.Model;
+import model.animal.asisstant.Cat;
+import model.animal.defender.Dog;
+import model.animal.producer.Bufallo;
+import model.animal.producer.Chicken;
+import model.animal.producer.Turkey;
+import model.animal.wild.Bear;
+import model.animal.wild.Lion;
+import model.animal.wild.Tiger;
 
-public class Animal {
+import java.util.ArrayList;
+import java.util.Random;
+public class Animal extends Model {
 //Vahid
-    //aaaaaaaaaaaaaaaaaa
 
 
+    public double footStep;
+    Random random = new Random();
+    int livies ;
+    public void moving (){
+        int randSituation = random.nextInt(4);
+        switch (randSituation){
+            case 0:
+                this.x+=footStep;
+                break;
+            case 1:
+                this.x-=footStep;
+                break;
+            case 2:
+                this.y+=footStep;
+                break;
+            case 3:
+                this.y-=footStep;
+                break;
+        }
+    }
 
+    public void die(){
+        this.livies=0;
+        //remove that
+    }
+
+    public Animal(String name, double x, double y, double footStep, int livies) {
+        super(name, x, y);
+        this.footStep = footStep;
+        this.livies = livies;
+    }
 }

@@ -1,4 +1,6 @@
 package model.animal.asisstant;
 
-public class Cat {
+import model.animal.Animal;
+
+public class Cat extends Animal {
 }

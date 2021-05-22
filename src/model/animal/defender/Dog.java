@@ -1,4 +1,6 @@
 package model.animal.defender;
 
-public class Dog {
+import model.animal.Animal;
+
+public class Dog extends Animal {
 }

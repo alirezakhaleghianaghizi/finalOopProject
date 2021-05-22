@@ -1,4 +1,6 @@
 package model.animal.wild;
 
-public class Tiger {
+import model.animal.Animal;
+
+public class Tiger extends Animal {
 }
