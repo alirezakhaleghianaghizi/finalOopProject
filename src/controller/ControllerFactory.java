@@ -1,5 +1,5 @@
 package controller;
 
 public class ControllerFactory {
-    //Array list of all factroy
+    //Array list of all factroys
 }
