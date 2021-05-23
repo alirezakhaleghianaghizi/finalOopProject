@@ -3,6 +3,6 @@ package model.goods;
 public class Egg extends Goods{
 
     public Egg( double x, double y) {
-        super("Egg", x, y, 15);
+        super(GoodsEnum.EGG.toString(), x, y,GoodsEnum.EGG.cost, GoodsEnum.EGG.capacity,GoodsEnum.EGG.timeOfRemaining);
     }
 }
