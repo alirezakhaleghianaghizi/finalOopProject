@@ -3,7 +3,9 @@ package model.animal.wild;
 import model.animal.Animal;
 
 public class Bear extends Animal {
-    public Bear(String name, double x, double y, double footStep, int livies) {
-        super(name, x, y, footStep, livies);
+    int cautch;
+    public Bear() {
+        super("Bear", 3, 3, 1, 100,400);
+        this.cautch=4;
     }
 }

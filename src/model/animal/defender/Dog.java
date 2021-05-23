@@ -3,7 +3,8 @@ package model.animal.defender;
 import model.animal.Animal;
 
 public class Dog extends Animal {
-    public Dog(String name, double x, double y, double footStep, int livies) {
-        super(name, x, y, footStep, livies);
+
+    public Dog() {
+        super("Dog", 3, 3, 1, 100,100);
     }
 }

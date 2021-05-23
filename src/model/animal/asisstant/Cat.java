@@ -3,7 +3,7 @@ package model.animal.asisstant;
 import model.animal.Animal;
 
 public class Cat extends Animal {
-    public Cat(String name, double x, double y, double footStep, int livies) {
-        super(name, x, y, footStep, livies);
+    public Cat() {
+        super("Dog", 3, 3, 1, 100,150);
     }
 }
