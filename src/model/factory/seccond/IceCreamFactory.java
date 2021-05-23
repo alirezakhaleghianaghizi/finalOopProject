@@ -2,8 +2,8 @@ package model.factory.seccond;
 
 import model.factory.Factory;
 
-public class IceCream extends Factory {
-    public IceCream(  double x, double y) {
+public class IceCreamFactory extends Factory {
+    public IceCreamFactory(double x, double y) {
         super("IceCream", x, y,6,400);
     }
 
