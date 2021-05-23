@@ -11,5 +11,5 @@ public class Well extends Gadget{
     public void foodmaking(){
 
     }
-    
+
 }

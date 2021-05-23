@@ -9,7 +9,7 @@ public class Chicken extends Animal {
     }
 
     public void layEgg(){
-        Egg egg = new Egg();
+        Egg egg = new Egg(this.x,this.y);
 
     }
     public void eat(){
