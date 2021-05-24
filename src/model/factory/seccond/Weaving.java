@@ -1,10 +1,11 @@
 package model.factory.seccond;
 
 import model.factory.Factory;
+import model.factory.FactoryMoney;
 
 public class Weaving extends Factory {
     public Weaving( double x, double y) {
-        super("Weaving", x, y, 7,550);
-        //i have add a branch
+        super(FactoryMoney.WEAVING.toString(), x, y, 7);
+
     }
 }

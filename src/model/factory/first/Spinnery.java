@@ -1,9 +1,10 @@
 package model.factory.first;
 
 import model.factory.Factory;
+import model.factory.FactoryMoney;
 
 public class Spinnery extends Factory {
     public Spinnery( double x, double y) {
-        super("Spinnery", x, y, 6,400);
+        super(FactoryMoney.SPINNERY.toString(), x, y, 6);
     }
 }
