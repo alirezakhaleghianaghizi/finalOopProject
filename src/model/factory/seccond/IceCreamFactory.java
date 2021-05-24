@@ -1,10 +1,11 @@
 package model.factory.seccond;
 
 import model.factory.Factory;
+import model.factory.FactoryMoney;
 
 public class IceCreamFactory extends Factory {
     public IceCreamFactory(double x, double y) {
-        super("IceCream", x, y,6,400);
+        super(FactoryMoney.ICECREAMFACTORY.toString(), x, y,6);
     }
 
 

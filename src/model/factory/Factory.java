@@ -5,12 +5,40 @@ import view.Timing;
 
 public abstract class Factory extends Model {
     public int timeOfProducingGood;
-    public int moneyCreatingCreating;
-    public Timing dateOf
-    public Factory(String name, double x, double y,int timeOfProducingGood,int moneyCreatingCreating) {
+    public Timing dateOfGettingWork;
+    public int level;
+    public boolean isWorking;
+    int numberOfGoodsCatch;
+    public Factory(String name, double x, double y,int timeOfProducingGood) {
         super(name, x, y);
-        this.moneyCreatingCreating=moneyCreatingCreating;
         this.timeOfProducingGood=timeOfProducingGood;
-
+        int level=1;
+        this.isWorking=false;
+        this.numberOfGoodsCatch=0;
     }
+    public boolean isItWorking(){
+        if(this.isWorking)return true;
+        return false;
+    }
+    public boolean work(int numberOfGoods){
+        if(this.isItWorking())return false;
+        if(numberOfGoods>this.level) return false;
+        this.numberOfGoodsCatch=numberOfGoods;
+        this.isWorking=true;
+        this.dateOfGettingWork=new Timing();
+        return true;
+    }
+    public boolean emptyingTheFactory(){
+        this.numberOfGoodsCatch=0;
+        this.isWorking=false;
+        this.dateOfGettingWork=null;
+        return true;
+    }
+
+    public boolean isItFinished(){
+        if(!this.isWorking)return false;
+        else if(this.dateOfGettingWork.getDate()+this.timeOfProducingGood/this.level*this.numberOfGoodsCatch<Timing.getCurrentTime()) return false;
+        return this.emptyingTheFactory();
+    }
+    
 }
