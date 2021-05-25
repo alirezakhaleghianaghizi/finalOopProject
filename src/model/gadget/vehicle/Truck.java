@@ -1,13 +1,14 @@
 package model.gadget.vehicle;
 
 import model.gadget.Gadget;
+import model.gadget.GadgetEnum;
 
 public class Truck extends Gadget {
     int truckSpeed;
 
-    public Truck() {
-        //x,y where ??
-        super("Truck", x, y, 15);
+    public Truck(double x , double y) {
+
+        super(GadgetEnum.TRUCK.toString(), x, y, GadgetEnum.TRUCK.getCapacity());
         this.truckSpeed = 5;
     }
 

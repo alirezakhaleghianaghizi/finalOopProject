@@ -1,8 +1,7 @@
 package model.gadget;
 
 public class Warehouse extends Gadget {
-    public Warehouse() {
-        // x, y
-        super("Warehouse", x, y, 30);
+    public Warehouse(double x , double y ) {
+        super(GadgetEnum.WAREHOUSE.toString(), x, y, GadgetEnum.WAREHOUSE.capacity);
     }
 }
