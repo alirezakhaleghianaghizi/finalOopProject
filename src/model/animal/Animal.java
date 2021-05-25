@@ -12,8 +12,6 @@ import model.animal.wild.Tiger;
 import java.util.ArrayList;
 import java.util.Random;
 public class Animal extends Model {
-//Vahid
-
 
     public double footStep;
     Random random = new Random();
