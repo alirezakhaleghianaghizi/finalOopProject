@@ -1,10 +1,11 @@
 package model.animal.defender;
 
 import model.animal.Animal;
+import model.animal.AnimalEnum;
 
 public class Dog extends Animal {
 
     public Dog() {
-        super("Dog", 3, 3, 1, 100,100);
+        super(AnimalEnum.DOG.toString(), 3, 3, AnimalEnum.DOG.getFootStep(), AnimalEnum.DOG.getLivies(), AnimalEnum.DOG.getCost());
     }
 }
