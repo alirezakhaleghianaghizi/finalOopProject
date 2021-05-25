@@ -1,5 +1,6 @@
 package controller;
 
+import model.animal.Animal;
 import model.animal.asisstant.Cat;
 import model.animal.defender.Dog;
 import model.animal.producer.Bufallo;
@@ -21,4 +22,13 @@ public class ControllerAnimal {
     ArrayList<Bufallo> bufallos= new ArrayList<>();
     ArrayList<Turkey> turkeys  = new ArrayList<>();
 
+}
+public boolean eat (Animal animal,ArrayList grass){
+    if(animal.name.equalsIgnoreCase("Dog")||animal.name.equalsIgnoreCase("CAT")
+            ||animal.name.equalsIgnoreCase("TIGER")||animal.name.equalsIgnoreCase("LION")||
+            animal.name.equalsIgnoreCase("BEAR"))
+    return false ;
+    else if(){
+
+}
 }
