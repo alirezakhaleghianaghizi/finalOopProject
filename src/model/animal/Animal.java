@@ -39,15 +39,11 @@ public class Animal extends Model {
         }
     }
 
-    public void die(){
-        this.livies=0;
-        //remove that
-    }
-
     public Animal(String name, double x, double y, double footStep, int livies,int cost) {
         super(name, x, y);
         this.footStep = footStep;
         this.livies = livies;
         this.cost=cost;
     }
+
 }

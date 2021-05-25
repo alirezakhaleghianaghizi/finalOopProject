@@ -8,8 +8,9 @@ public class Well extends Gadget{
         super(GadgetEnum.WELL.toString(), x, y, GadgetEnum.WELL.capacity);
         this.timePeride=3;
     }
-    public void foodmaking(){
+    public void foodMaking(){
 
     }
+
 
 }
