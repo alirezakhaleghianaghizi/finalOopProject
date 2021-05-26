@@ -10,7 +10,11 @@ import model.goods.*;
 import java.util.ArrayList;
 
 public class ControllerGoods {
+<<<<<<< HEAD
     public class ControllerGood{
+=======
+
+>>>>>>> devalireza
         ArrayList<Cloth> Clothes;
         ArrayList<Cookie> cookies;
         ArrayList<Egg> eggs;
@@ -23,7 +27,23 @@ public class ControllerGoods {
         ArrayList<Silk> silks;
         ArrayList<Water> Waters;
 
+<<<<<<< HEAD
 
     }
+=======
+        public ControllerGoods() {
+            this.Clothes = new ArrayList<>();
+            this.cookies = new ArrayList<>();
+            this.eggs = new ArrayList<>();
+            this.feathers = new ArrayList<>();
+            this.flours = new ArrayList<>();
+            this.grasses = new ArrayList<>();
+            this.iceCreams = new ArrayList<>();
+            this.milks = new ArrayList<>();
+            this.sepratedMilks = new ArrayList<>();
+            this.silks = new ArrayList<>();
+            this.Waters = new ArrayList<>();
+        }
+>>>>>>> devalireza
 
 }
