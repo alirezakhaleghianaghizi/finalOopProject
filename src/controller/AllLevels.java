@@ -1,26 +1,31 @@
 package controller;
 
 import fileOperator.LevelFileOperating;
-import model.animal.wild.Bear;
-import model.animal.wild.Lion;
-import model.animal.wild.Tiger;
 import model.level.Level;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class AllLevels {
-ArrayList<Level> levels;
-int numberOfLevels;
-    public AllLevels() {
-        this.levels = new ArrayList<>();
-        numberOfLevels=0;
+    public int numberOfLevels;
+    ArrayList<Level> levels;
+    LevelFileOperating FILE=new LevelFileOperating();
+    public AllLevels(AllLevels levels) {
+        if(this==null){
+            this.levels = levels.levels;
+             numberOfLevels=levels.numberOfLevels;
+        }
+    }
+    public AllLevels(){
+        if(this==null){
+            this.numberOfLevels=0;
+            this.levels=new ArrayList<>();
+        }
     }
 
-    public static void main(String[] args) {
+    /*
+    public void settingLevels() {
         AllLevels allLevels=new AllLevels();
-        System.out.println("ok" +
+       System.out.println("ok" +
                 "");
 
             Level[] levels=new Level[10];
@@ -87,9 +92,47 @@ int numberOfLevels;
                 allLevels.levels.add(levels[j]);
                 allLevels.numberOfLevels++;
             }
-        System.out.println("ok");
-            LEVELOPERATOR.jasonWriter(allLevels);
-
+        System.out.println("ok");try{  LEVELOPERATOR.jasonWriter(allLevels);}
+        catch (Exception e){
+            System.out.println("ok");
         }
-    }
+        allLevels=allLevels.FILE.reloadLevels(allLevels);
+        System.out.println(allLevels.numberOfLevels);
+        int l=1;
+        for (Level level : allLevels.levels) {
+            System.out.println("LEVEL "+l+" :");
+            l++;
+            System.out.println("startCoins "+level.startCoins);  System.out.println("");
+            System.out.print("task1 "+level.task1);System.out.println("\ttask1Number "+level.task1Number);  System.out.println("");
+            System.out.print("TASK2 "+level.task2);System.out.println("\ttask2Number "+level.task2Number);  System.out.println("");
+            System.out.print("task3 "+level.task3);System.out.println("\ttask3Number "+level.task3Number);  System.out.println("");
+           int j=0;
+            for (int i = 0; i < 200; i++) {
+                if(level.TimeOfBearComes.containsKey(i)){
+                    j++;  System.out.println("");
+                    System.out.println(j+"bear comes at second "+i);
+                }
+            }
+             j=0;
+            for (int i = 0; i < 200; i++) {
+                if(level.TimeOfLionComes.containsKey(i)){
+                    j++;  System.out.println("");
+                    System.out.println(j+"Lion comes at second "+i);
+                }
+            }
+             j=0;
+            for (int i = 0; i < 200; i++) {
+                if(level.TimeOfTigerComes.containsKey(i)){
+                    j++;  System.out.println("");
+                    System.out.println(j+"Tiger comes at second "+i);
+                }
+            }
+
+            System.out.println("");
+            System.out.println("MAX TIME "+level.maxTime);  System.out.println("");
+            System.out.println("presentCoin "+level.presentCoin);
+        }
+        }*/
+
+}
 

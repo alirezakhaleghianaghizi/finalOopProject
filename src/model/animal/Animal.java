@@ -14,10 +14,11 @@ import java.util.Random;
 public class Animal extends Model {
 
     public double footStep;
-    Random random = new Random();
+
    public int livies ;
     public int cost;
     public void moving (){
+        Random random = new Random();
         int randSituation = random.nextInt(4);
         switch (randSituation){
             case 0:

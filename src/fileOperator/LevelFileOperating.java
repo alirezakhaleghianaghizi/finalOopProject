@@ -50,4 +50,18 @@ public class LevelFileOperating {
         allLevels=gson.fromJson(output, AllLevels.class);
         return allLevels;
     }
+    public AllLevels reloadLevels (AllLevels allLevels){
+        try{
+            if(allLevels.numberOfLevels==0){
+                return this.readFile(allLevels);
+            }
+            else{
+                return allLevels;
+            }
+        }
+        catch (Exception e){
+            System.out.println("File Mission Damaged");
+        }
+        return new AllLevels();
+    }
 }
