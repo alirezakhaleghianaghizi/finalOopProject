@@ -10,7 +10,7 @@ import model.goods.*;
 import java.util.ArrayList;
 
 public class ControllerGoods {
-    public class ControllerFactory {
+
         ArrayList<Cloth> Clothes;
         ArrayList<Cookie> cookies;
         ArrayList<Egg> eggs;
@@ -23,7 +23,7 @@ public class ControllerGoods {
         ArrayList<Silk> silks;
         ArrayList<Water> Waters;
 
-        public ControllerFactory() {
+        public ControllerGoods() {
             this.Clothes = new ArrayList<>();
             this.cookies = new ArrayList<>();
             this.eggs = new ArrayList<>();
@@ -36,5 +36,5 @@ public class ControllerGoods {
             this.silks = new ArrayList<>();
             this.Waters = new ArrayList<>();
         }
-    }
+
 }
