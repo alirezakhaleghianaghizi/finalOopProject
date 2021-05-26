@@ -19,7 +19,7 @@ public  abstract class WildAnimal extends Animal {
 
     }
     public boolean isCatch(){
-
+return false;
     }
 
 

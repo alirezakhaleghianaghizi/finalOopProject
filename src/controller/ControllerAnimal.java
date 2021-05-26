@@ -22,7 +22,7 @@ public class ControllerAnimal {
     ArrayList<Bufallo> bufallos= new ArrayList<>();
     ArrayList<Turkey> turkeys  = new ArrayList<>();
 
-}
+}/*
 public boolean eat (Animal animal,ArrayList grass){
     if(animal.name.equalsIgnoreCase("Dog")||animal.name.equalsIgnoreCase("CAT")
             ||animal.name.equalsIgnoreCase("TIGER")||animal.name.equalsIgnoreCase("LION")||
@@ -31,4 +31,4 @@ public boolean eat (Animal animal,ArrayList grass){
     else if(){
 
 }
-}
+}*/

@@ -9,6 +9,6 @@ public  class Gadget extends Model {
         this.capacity = capacity;
     }
     public boolean isFull(){
-
+return false;
     }
 }
