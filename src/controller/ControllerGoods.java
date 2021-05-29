@@ -24,8 +24,6 @@ public class ControllerGoods {
         ArrayList<Water> Waters;
 
 
-
-
         public ControllerGoods() {
             this.Clothes = new ArrayList<>();
             this.cookies = new ArrayList<>();
@@ -39,6 +37,8 @@ public class ControllerGoods {
             this.silks = new ArrayList<>();
             this.Waters = new ArrayList<>();
         }
-
+    public boolean plant(){
+            if()
+    }
 
 }
