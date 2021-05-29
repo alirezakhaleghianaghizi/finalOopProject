@@ -1,13 +1,26 @@
 package controller;
 import model.gadget.GadgetEnum;
 import model.gadget.Well;
+import model.gadget.Warehouse;
 import model.gadget.vehicle.Truck;
 import model.goods.Goods;
 import view.Timing;
 import java.util.ArrayList;
 
 public class ControllerGadget {
-    Truck truck = new Truck(0,0);
+
+    Truck truck ;
+    Well well ;
+    Warehouse warehouse;
+
+    public ControllerGadget() {
+        this.truck = new Truck(0,0);
+        this.well = new Well(0,0);
+        this.warehouse = new Warehouse(0,0);
+    }
+
+
+
     ArrayList<Goods> truckgoods = new ArrayList<>();
 
     public boolean truckLoad(Goods good){
@@ -19,6 +32,7 @@ public class ControllerGadget {
             return true;
         }
     }
+
     public void truckUnload(Goods good){
         this.truckgoods.remove(good);
         this.truck.avaiableCap+= good.capacity;

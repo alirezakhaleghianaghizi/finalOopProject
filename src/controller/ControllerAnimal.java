@@ -11,6 +11,9 @@ import model.animal.producer.Turkey;
 import model.animal.wild.Bear;
 import model.animal.wild.Lion;
 import model.animal.wild.Tiger;
+import model.goods.BearDoll;
+import model.goods.LionDoll;
+import model.goods.TigerDoll;
 
 import java.util.ArrayList;
 
@@ -56,5 +59,41 @@ public boolean eat (Animal animal,ArrayList grass){
         }
         return false;
     }
+
+    public boolean cage(double x, double y,ControllerGoods goods){
+
+        for (Tiger tiger : tigers) {
+            if(tiger.x==x&&tiger.y==y){
+             tiger.cage+=1;
+             if(tiger.cage==4){
+                 goods.tigerDolls.add(new TigerDoll(x,y));
+                 tigers.remove(tiger);
+             }
+                return true;
+            }
+        }
+        for (Lion lion : lions) {
+            if(lion.x==x&&lion.y==y){
+                lion.cage+=1;
+                if(lion.cage==3){
+                    goods.lionDolls.add(new LionDoll(x,y));
+                    tigers.remove(lion);
+                }
+                return true;
+            }
+        }
+        for (Bear bear : bears) {
+            if(bear.x==x&&bear.y==y){
+                bear.cage+=1;
+                if(bear.cage==3){
+                    goods.bearDolls.add(new BearDoll(x,y));
+                    tigers.remove(bear);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
