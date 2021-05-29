@@ -1,5 +1,7 @@
 package menus;
 
+import model.Person;
+
 import java.util.HashMap;
 
 public class Signin extends Menu{
@@ -8,5 +10,41 @@ public class Signin extends Menu{
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, new StartMenu(this));
         this.setSubmenus(submenus);
+    }
+
+    @Override
+    public void show() {
+        System.out.println("");
+    }
+
+    @Override
+    public void execute() {
+        if(logInFromFile()){
+            this.submenus.get(1).show();
+            this.submenus.get(1).execute();
+        }
+        else {
+            this.parentMenu.show();
+            this.parentMenu.execute();
+        }
+    }
+
+    public boolean logInFromFile(){
+        String userName;
+        String password;
+        System.out.println("Enter Your User Name To signin");
+        userName=scanner.next();
+        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
+        if(this.manager.personsController.userNamePersonMap.containsKey(userName)){
+            System.err.println("this User name + (  "+userName+" ) is token" );
+            return false;
+        }
+        password=scanner.next();
+        this.manager.personsController.userNamePersonMap.put(userName,new Person(userName,password,new HashMap<>(),new HashMap<>(),0,0,0));
+        this.manager.personsController.CurrentUser= this.manager.personsController.userNamePersonMap.get(userName);
+        System.out.println("your userName is \" "+userName+"\" \n your password is \" "+password+"\"");
+        this.manager.personsController.isAnyOneInTheGame=true;
+        this.manager.personsController.reloadUsers.jasonWriter(this.manager.personsController);
+        return true;
     }
 }

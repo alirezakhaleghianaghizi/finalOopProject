@@ -37,8 +37,8 @@ public class ControllerGoods {
             this.silks = new ArrayList<>();
             this.Waters = new ArrayList<>();
         }
-    public boolean plant(){
+   /* public boolean plant(){
             if()
-    }
+    }*/
 
 }

@@ -5,10 +5,10 @@ import model.level.Level;
 import java.util.HashMap;
 
 public class Person {
-    String userName;
-    String password;
-    int level ;
-    HashMap<Integer, Level> completedLevel;
+    public String userName;
+    public String password;
+    public int level ;
+    public HashMap<Integer, Level> completedLevel;
     public HashMap<Integer,Integer> personCoinEachLevel;
     public int coins ;
     public int totalCoins ;
