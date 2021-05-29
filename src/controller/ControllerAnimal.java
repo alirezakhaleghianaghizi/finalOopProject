@@ -1,6 +1,8 @@
 package controller;
 
+import model.Person;
 import model.animal.Animal;
+import model.animal.AnimalEnum;
 import model.animal.asisstant.Cat;
 import model.animal.defender.Dog;
 import model.animal.producer.Bufallo;
@@ -22,7 +24,7 @@ public class ControllerAnimal {
     ArrayList<Bufallo> bufallos= new ArrayList<>();
     ArrayList<Turkey> turkeys  = new ArrayList<>();
 
-}/*
+/*
 public boolean eat (Animal animal,ArrayList grass){
     if(animal.name.equalsIgnoreCase("Dog")||animal.name.equalsIgnoreCase("CAT")
             ||animal.name.equalsIgnoreCase("TIGER")||animal.name.equalsIgnoreCase("LION")||
@@ -30,6 +32,29 @@ public boolean eat (Animal animal,ArrayList grass){
     return false ;
     else if(){
 
-}/*
-
+}*/
+    public boolean buyAnimal(String name, Person person){
+        switch (name){
+            case "chicken" :
+                if(person.totalCoins>= AnimalEnum.CHICKEN.getCost()){
+                    person.totalCoins-=AnimalEnum.CHICKEN.getCost();
+                    return true;
+                }
+                return false;
+            case "bufallo":
+                if(person.totalCoins>= AnimalEnum.BUFALLO.getCost()){
+                    person.totalCoins-=AnimalEnum.BUFALLO.getCost();
+                    return true;
+                }
+                return false;
+            case "turkey":
+                if(person.totalCoins>= AnimalEnum.TURKEY.getCost()){
+                    person.totalCoins-=AnimalEnum.TURKEY.getCost();
+                    return true;
+                }
+                return false;
+        }
+        return false;
+    }
 }
+

@@ -1,4 +1,6 @@
 package controller;
+import model.gadget.GadgetEnum;
+import model.gadget.Well;
 import model.gadget.vehicle.Truck;
 import model.goods.Goods;
 import view.Timing;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 public class ControllerGadget {
     Truck truck = new Truck(0,0);
     ArrayList<Goods> truckgoods = new ArrayList<>();
+
     public boolean truckLoad(Goods good){
         if(this.truck.isFull())
         {return false;}
@@ -21,12 +24,14 @@ public class ControllerGadget {
         this.truck.avaiableCap+= good.capacity;
 
     }
+
     public boolean truckGo(){
     if(this.truck.go) return false;
     this.truck.goTime = new Timing();
     this.truck.go=true;
     return true;
     }
+
     public boolean truckCome(){
         if(this.truck.goTime.getDate()+10<=Timing.getCurrentTime()){
         truck.go=false;
@@ -35,5 +40,14 @@ public class ControllerGadget {
         }
         return false;
     }
-    
+
+    public boolean Well(Well well){
+        if(GadgetEnum.WELL.getCapacity()>well.capacity){
+            well.capacity=5;
+            return true;
+        }
+            return false;
+    }
+
+
 }
