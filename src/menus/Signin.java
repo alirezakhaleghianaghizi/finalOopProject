@@ -32,15 +32,21 @@ public class Signin extends Menu{
     public boolean logInFromFile(){
         String userName;
         String password;
+        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
+        if(this.manager.personsController.isAnyOneInTheGame){
+            System.out.println("You have Already logged in");
+            System.out.println("your userName is \" "+this.manager.personsController.CurrentUser.userName+"\" \n your password is \" "+this.manager.personsController.CurrentUser.password+"\"");
+            return true;
+
+        }
         System.out.println("Enter Your User Name To signin");
         userName=scanner.next();
-        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
         if(this.manager.personsController.userNamePersonMap.containsKey(userName)){
             System.err.println("this User name + (  "+userName+" ) is token" );
             return false;
         }
         password=scanner.next();
-        this.manager.personsController.userNamePersonMap.put(userName,new Person(userName,password,new HashMap<>(),new HashMap<>(),0,0,0));
+        this.manager.personsController.userNamePersonMap.put(userName,new Person(userName,password,new HashMap<>(),new HashMap<>(),0));
         this.manager.personsController.CurrentUser= this.manager.personsController.userNamePersonMap.get(userName);
         System.out.println("your userName is \" "+userName+"\" \n your password is \" "+password+"\"");
         this.manager.personsController.isAnyOneInTheGame=true;
