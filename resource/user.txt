@@ -1,0 +1,24 @@
+{
+  "CurrentUser": {
+    "userName": "ali",
+    "password": "password",
+    "level": 0,
+    "completedLevel": {},
+    "personCoinEachLevel": {},
+    "coins": 0,
+    "totalCoins": 0
+  },
+  "isAnyOneInTheGame": true,
+  "userNamePersonMap": {
+    "ali": {
+      "userName": "ali",
+      "password": "password",
+      "level": 0,
+      "completedLevel": {},
+      "personCoinEachLevel": {},
+      "coins": 0,
+      "totalCoins": 0
+    }
+  },
+  "reloadUsers": {}
+}
