@@ -30,5 +30,6 @@ public boolean eat (Animal animal,ArrayList grass){
     return false ;
     else if(){
 
+}/*
+
 }
-}*/

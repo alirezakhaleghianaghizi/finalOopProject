@@ -22,12 +22,14 @@ public class AllLevels {
         }
     }
 
-    /*
-    public void settingLevels() {
+
+    public static void main(String[] args) {
+
+
         AllLevels allLevels=new AllLevels();
        System.out.println("ok" +
                 "");
-
+/*
             Level[] levels=new Level[10];
              HashMap<Integer, Tiger> TimeOfTigerComes=new HashMap<>();
              HashMap<Integer, Lion> TimeOfLionComes=new HashMap<>();
@@ -95,7 +97,7 @@ public class AllLevels {
         System.out.println("ok");try{  LEVELOPERATOR.jasonWriter(allLevels);}
         catch (Exception e){
             System.out.println("ok");
-        }
+        }*/
         allLevels=allLevels.FILE.reloadLevels(allLevels);
         System.out.println(allLevels.numberOfLevels);
         int l=1;
@@ -132,7 +134,7 @@ public class AllLevels {
             System.out.println("MAX TIME "+level.maxTime);  System.out.println("");
             System.out.println("presentCoin "+level.presentCoin);
         }
-        }*/
+        }
 
 }
 
