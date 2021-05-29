@@ -58,6 +58,7 @@ public class ControllerGoods {
         for (MilkSeprator milkSepratorFactory : factory.milkSepratorFactories) {
             if(milkSepratorFactory.x==x&&milkSepratorFactory.y==y){return false;}
         }
+<<<<<<< HEAD
         for (Spinnery spinneryFactory : factory.spinneryFactories) {
             if(spinneryFactory.x==x&&spinneryFactory.y==y){return false;}
         }
@@ -71,6 +72,11 @@ public class ControllerGoods {
         grasses.add(new Grass(x,y));
         return true;
     }
+=======
+   /* public boolean plant(){
+            if()
+    }*/
+>>>>>>> devalireza
 
 
 

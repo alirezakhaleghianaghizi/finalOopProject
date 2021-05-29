@@ -44,11 +44,12 @@ public class FileUsersNamePassword {
             persons.CurrentUser=null;
             persons.isAnyOneInTheGame=false;
             persons.userNamePersonMap=new HashMap<>();
-            e.printStackTrace();
+            System.out.println(e);
         }
         GsonBuilder builder=new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
         persons=gson.fromJson(output, PersonsController.class);
+        if(persons==null) persons=new PersonsController();
         return persons;
     }
 

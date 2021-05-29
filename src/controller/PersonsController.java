@@ -14,5 +14,7 @@ public class PersonsController {
         this.userNamePersonMap=new HashMap<>();
         CurrentUser = null;
         this.isAnyOneInTheGame = false;
+        this.reloadUsers=new FileUsersNamePassword();
+        this.userNamePersonMap=new HashMap<>();
     }
 }

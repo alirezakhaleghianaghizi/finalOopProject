@@ -16,6 +16,7 @@ public abstract class Menu {
         this.name = name;
         this.parentMenu = parentMenu;
         this.manager=new MainController();
+        this.submenus=new HashMap<>();
     }
 
     public Menu(String name) {
@@ -40,8 +41,15 @@ public abstract class Menu {
 
     public void execute() {
         Menu nextMenu;
+        int nextMenuNum;
+        try{
+            nextMenuNum= Integer.parseInt(scanner.nextLine());
+        }catch(NumberFormatException e){
+            nextMenuNum= Integer.parseInt(scanner.nextLine());
+        }
+
         while (true) {
-            int nextMenuNum = Integer.parseInt(scanner.nextLine());
+
             if (nextMenuNum == submenus.size() + 1) {
                 if (this.parentMenu == null) {
                     System.exit(1);
