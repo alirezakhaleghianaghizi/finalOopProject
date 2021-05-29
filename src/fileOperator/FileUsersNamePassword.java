@@ -9,9 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class fileUsersNamePassword {
+public class FileUsersNamePassword {
     public void  jasonWriter(PersonsController perons){
         GsonBuilder builder=new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
@@ -42,7 +43,7 @@ public class fileUsersNamePassword {
         } catch (FileNotFoundException e) {
             persons.CurrentUser=null;
             persons.isAnyOneInTheGame=false;
-            persons.users=new ArrayList<>();
+            persons.userNamePersonMap=new HashMap<>();
             e.printStackTrace();
         }
         GsonBuilder builder=new GsonBuilder().setPrettyPrinting();
