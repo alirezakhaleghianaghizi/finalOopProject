@@ -22,8 +22,14 @@ public class Login extends Menu {
     public boolean logInFromFile(){
         String userName;
         String password;
+        System.out.println("Enter Your User Name");
         userName=scanner.next();
-        password=scanner.next();
-return false;
+        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
+        if(this.manager.personsController.userNamePersonMap.containsKey(userName)){
+            password=scanner.next();
+            while(this.manager.personsController.userNamePersonMap.get(userName).())
+        }
+         System.err.println("the User Name ( "+userName+" ) dose not exist ." );
+        return false;
     }
 }

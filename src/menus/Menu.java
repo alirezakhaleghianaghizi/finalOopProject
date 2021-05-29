@@ -1,5 +1,8 @@
 package menus;
 
+import controller.MainController;
+import controller.PersonsController;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,10 +11,11 @@ public abstract class Menu {
     protected Menu parentMenu;
     protected HashMap<Integer, Menu> submenus;
     public static Scanner scanner;
-
+    public MainController manager;
     public Menu(String name, Menu parentMenu) {
         this.name = name;
         this.parentMenu = parentMenu;
+        this.manager=new MainController();
     }
 
     public Menu(String name) {
