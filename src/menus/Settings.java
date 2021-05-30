@@ -6,12 +6,11 @@ public class Settings extends Menu{
     }
     @Override
     public void show() {
-        System.out.println("I'm sub-menu 1-1");
+        System.err.println("SETTING MENU IS AVAILABLE IN NEXT VERSION");
     }
 
     @Override
     public void execute() {
-        System.out.println("execute in sub-menu 1-1");
         this.parentMenu.show();
         this.parentMenu.execute();
     }

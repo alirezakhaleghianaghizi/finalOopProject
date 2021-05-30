@@ -1,7 +1,7 @@
 {
   "CurrentUser": {
-    "userName": "ali",
-    "password": "password",
+    "userName": "aa",
+    "password": "as",
     "level": 0,
     "completedLevel": {},
     "personCoinEachLevel": {},
@@ -10,9 +10,27 @@
   },
   "isAnyOneInTheGame": true,
   "userNamePersonMap": {
-    "ali": {
-      "userName": "ali",
-      "password": "password",
+    "aa": {
+      "userName": "aa",
+      "password": "as",
+      "level": 0,
+      "completedLevel": {},
+      "personCoinEachLevel": {},
+      "coins": 0,
+      "totalCoins": 0
+    },
+    "asd": {
+      "userName": "asd",
+      "password": "sa",
+      "level": 0,
+      "completedLevel": {},
+      "personCoinEachLevel": {},
+      "coins": 0,
+      "totalCoins": 0
+    },
+    "alireza ": {
+      "userName": "alireza ",
+      "password": "nopassword",
       "level": 0,
       "completedLevel": {},
       "personCoinEachLevel": {},
