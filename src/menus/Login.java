@@ -13,6 +13,10 @@ public class Login extends Menu {
     @Override
     public void show() {
         System.out.println("");
+        System.out.print(Color.GREEN_BOLD_BRIGHT);
+        System.out.println("LOG IN");
+        System.out.print(Color.RESET);
+        System.out.println("");
     }
 
     @Override
@@ -31,27 +35,33 @@ public class Login extends Menu {
         String password;
         this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
         if(this.manager.personsController.isAnyOneInTheGame){
-            System.out.println("You have Already logged in");
-            System.out.println("your userName is \" "+this.manager.personsController.CurrentUser.userName+"\" \n your password is \" "+this.manager.personsController.CurrentUser.password+"\"");
+            System.out.println("");
+            System.err.println("You have Already logged in");
+            System.err.println("your userName is \" "+this.manager.personsController.getCurrentUser().userName+"\" \n your password is \" "+this.manager.personsController.getCurrentUser().password+"\"");
+            System.out.println("");
             return true;
-
         }
+        System.out.print(Color.CYAN_BOLD_BRIGHT);
         System.out.println("Enter Your User Name To login");
-        userName=scanner.next();
-        if(this.manager.personsController.userNamePersonMap.containsKey(userName)){
-            password=scanner.next();
-            while(!this.manager.personsController.userNamePersonMap.get(userName).password.equalsIgnoreCase(password)&&password.equalsIgnoreCase("main")){
-                password=scanner.next();
+        userName=scanner.nextLine();
+        if(this.manager.personsController.getUserNamePersonMap().containsKey(userName)){
+            System.out.println("Enter your password");
+            password=scanner.nextLine();
+            while(!this.manager.personsController.getUserNamePersonMap().get(userName).password.equalsIgnoreCase(password)&&!password.equalsIgnoreCase("main")){
+                if(!password.equalsIgnoreCase(this.manager.personsController.getUserNamePersonMap().get(userName).password)) System.err.println("the password is wrong");
+                System.out.println("Enter your password");
+                password=scanner.nextLine();
+                System.out.print(Color.RESET);
             }
             if(password.equalsIgnoreCase("main")){
                 return false;
             }
-            this.manager.personsController.CurrentUser=this.manager.personsController.userNamePersonMap.get(userName);
+            System.out.print(Color.RESET);
+            this.manager.personsController.setCurrentUser(this.manager.personsController.getUserNamePersonMap().get(userName));
             this.manager.personsController.isAnyOneInTheGame=true;
             System.out.println("your userName is \" "+userName+"\" \n your password is \" "+password+"\"");
             this.manager.personsController.reloadUsers.jasonWriter(this.manager.personsController);
             return true;
-
         }
          System.err.println("the User Name ( "+userName+" ) dose not exist ." );
         return false;

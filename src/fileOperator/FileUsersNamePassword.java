@@ -41,9 +41,9 @@ public class FileUsersNamePassword {
                 output+=scanner.nextLine();
             }
         } catch (FileNotFoundException e) {
-            persons.CurrentUser=null;
+            persons.setCurrentUser(null);
             persons.isAnyOneInTheGame=false;
-            persons.userNamePersonMap=new HashMap<>();
+            persons.setUserNamePersonMap(new HashMap<>());
             System.out.println(e);
         }
         GsonBuilder builder=new GsonBuilder().setPrettyPrinting();

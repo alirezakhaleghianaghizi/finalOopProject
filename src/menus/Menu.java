@@ -17,6 +17,7 @@ public abstract class Menu {
         this.parentMenu = parentMenu;
         this.manager=new MainController();
         this.submenus=new HashMap<>();
+        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
     }
 
     public Menu(String name) {
@@ -28,15 +29,29 @@ public abstract class Menu {
     }
 
     public void show() {
+        System.out.println("");
+        System.out.print(Color.GREEN_BOLD_BRIGHT);
         System.out.println(this.name + ": ");
+        System.out.print(Color.RESET);
+        System.out.println("");
         for (Integer integer : submenus.keySet()) {
-            System.out.println(integer + ". " + submenus.get(integer).getName());
+            System.out.print(Color.CYAN_BOLD_BRIGHT);
+            System.out.print(integer + ". " );
+            System.out.print(Color.RESET);
+            System.out.println( submenus.get(integer).getName());
         }
         if (this.parentMenu == null) {
-            System.out.println((submenus.size() + 1) + ". exit");
+            System.out.print(Color.CYAN_BOLD_BRIGHT);
+            System.out.print((submenus.size() + 1));
+            System.out.print(Color.RESET);
+            System.out.println( ". exit");
         } else {
-            System.out.println((submenus.size() + 1) + ". back");
+            System.out.print(Color.CYAN_BOLD_BRIGHT);
+            System.out.print((submenus.size() + 1) );
+            System.out.print(Color.RESET);
+            System.out.println( ". back");
         }
+        System.out.println("");
     }
 
     public void execute() {

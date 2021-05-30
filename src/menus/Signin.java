@@ -15,6 +15,10 @@ public class Signin extends Menu{
     @Override
     public void show() {
         System.out.println("");
+        System.out.print(Color.GREEN_BOLD_BRIGHT);
+        System.out.println("SIGN IN");
+        System.out.print(Color.RESET);
+        System.out.println("");
     }
 
     @Override
@@ -35,19 +39,23 @@ public class Signin extends Menu{
         this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
         if(this.manager.personsController.isAnyOneInTheGame){
             System.out.println("You have Already logged in");
-            System.out.println("your userName is \" "+this.manager.personsController.CurrentUser.userName+"\" \n your password is \" "+this.manager.personsController.CurrentUser.password+"\"");
+            System.out.println("your userName is \" "+this.manager.personsController.getCurrentUser().userName+"\" \n your password is \" "+this.manager.personsController.getCurrentUser().password+"\"");
             return true;
-
         }
+        System.out.print(Color.CYAN_BOLD_BRIGHT);
         System.out.println("Enter Your User Name To signin");
-        userName=scanner.next();
-        if(this.manager.personsController.userNamePersonMap.containsKey(userName)){
+        userName=scanner.nextLine();
+        if(this.manager.personsController.getUserNamePersonMap().containsKey(userName)){
             System.err.println("this User name + (  "+userName+" ) is token" );
             return false;
         }
-        password=scanner.next();
-        this.manager.personsController.userNamePersonMap.put(userName,new Person(userName,password,new HashMap<>(),new HashMap<>(),0));
-        this.manager.personsController.CurrentUser= this.manager.personsController.userNamePersonMap.get(userName);
+        System.out.println("ENTER YOUR USERNAME");
+        password=scanner.nextLine();
+        System.out.print(Color.RESET);
+        HashMap<String,Person> personHashMap=this.manager.personsController.getUserNamePersonMap();
+        personHashMap.put(userName,new Person(userName,password,new HashMap<>(),new HashMap<>(),0));
+        this.manager.personsController.setUserNamePersonMap(personHashMap);
+        this.manager.personsController.setCurrentUser(this.manager.personsController.getUserNamePersonMap().get(userName));
         System.out.println("your userName is \" "+userName+"\" \n your password is \" "+password+"\"");
         this.manager.personsController.isAnyOneInTheGame=true;
         this.manager.personsController.reloadUsers.jasonWriter(this.manager.personsController);
