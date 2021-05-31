@@ -9,22 +9,21 @@ import java.util.ArrayList;
 
 public class ControllerGadget {
 
-    Truck truck ;
-    Well well ;
-    Warehouse warehouse;
-
+    public Truck truck ;
+    public Well well ;
+    public Warehouse warehouse;
+    ArrayList<Goods> truckgoods ;
     public ControllerGadget() {
         this.truck = new Truck(0,0);
         this.well = new Well(0,0);
         this.warehouse = new Warehouse(0,0);
+        this.truckgoods=new ArrayList<>();
     }
 
 
 
-    ArrayList<Goods> truckgoods = new ArrayList<>();
-
     public boolean truckLoad(Goods good){
-        if(this.truck.isFull())
+        if(this.truck.isFull(good))
         {return false;}
         else {
             this.truckgoods.add(good);
@@ -56,9 +55,12 @@ public class ControllerGadget {
     }
 
     public boolean Well(Well well){
-        if(GadgetEnum.WELL.getCapacity()>well.capacity){
-            well.capacity=5;
-            return true;
+        if(!well.isfull){
+            if(well.fulling.getDate()+well.timePeride<=Timing.getCurrentTime()){
+                well.capacity=5;
+                well.isfull=true;
+                return true;
+            }
         }
             return false;
     }

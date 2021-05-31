@@ -1,5 +1,6 @@
 package controller;
 
+import menus.Color;
 import model.animal.wild.Tiger;
 import model.factory.Factory;
 import model.factory.first.EggPowder;
@@ -8,6 +9,7 @@ import model.factory.first.Spinnery;
 import model.factory.seccond.CookieBakery;
 import model.factory.seccond.IceCreamFactory;
 import model.factory.seccond.Weaving;
+import model.gadget.Warehouse;
 import model.goods.*;
 
 import java.util.ArrayList;
@@ -28,8 +30,9 @@ public class ControllerGoods {
         ArrayList<LionDoll> lionDolls ;
         ArrayList<TigerDoll> tigerDolls;
         ArrayList<BearDoll> bearDolls;
+        public  ArrayList<Goods> productGoods ;
 
-        public ControllerGoods() {
+    public ControllerGoods() {
             this.Clothes = new ArrayList<>();
             this.cookies = new ArrayList<>();
             this.eggs = new ArrayList<>();
@@ -44,7 +47,9 @@ public class ControllerGoods {
             this.lionDolls = new ArrayList<>();
             this.tigerDolls= new ArrayList<>();
             this.bearDolls= new ArrayList<>();
+            this.productGoods = new ArrayList<>();
         }
+
     public boolean plant(double x , double y,ControllerFactory factory,ControllerGadget gadget){
         for (CookieBakery cookieBakeryFactory : factory.cookieBakeryFactories) {
             if(cookieBakeryFactory.x==x&&cookieBakeryFactory.y==y){return false;}
@@ -70,7 +75,24 @@ public class ControllerGoods {
         if(gadget.warehouse.x==x&&gadget.warehouse.y==y){return false;}
         if(gadget.well.capacity<GoodsEnum.GRASS.getCapacity()){return false;}
         grasses.add(new Grass(x,y));
+        gadget.well.capacity--;
         return true;
+    }
+
+    public boolean pickUp( double x , double y,ControllerGadget gadget){
+        for (Goods e : productGoods) {
+            if(e.x==x&&e.y==y){
+                if(gadget.warehouse.haveSpace(e)){
+                    gadget.warehouse.existence.add(e);
+                    return true;
+                }else {
+                    System.err.println("WareHouse does not have enough space ");
+                    return false;
+                }
+            }
+        }
+        System.err.println("there is no Goods ");
+        return false;
     }
 
     public void showGrass(){

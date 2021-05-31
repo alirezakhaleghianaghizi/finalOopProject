@@ -1,17 +1,19 @@
 package controller;
 
+import model.goods.Goods;
 import view.Timing;
 
 import java.util.ArrayList;
 
 public class MainController {
-    ControllerGoods goods;
-    ControllerFactory factories;
-    ControllerAnimal animals;
+
+    public ControllerGoods goods;
+    public ControllerFactory factories;
+    public ControllerAnimal animals;
     public AllLevels allLevels;
-    ControllerGadget gadgets;
-   public PersonsController personsController;
-   Timing timing;
+    public ControllerGadget gadgets;
+    public PersonsController personsController;
+    Timing timing;
 
     public MainController() {
         this.goods = new ControllerGoods();
@@ -23,6 +25,7 @@ public class MainController {
         timing = new Timing();
     }
 
+
     public void turn(int n) {
         for (int i = 1; i <= n; i++) {
             timing.goForward();
@@ -33,6 +36,10 @@ public class MainController {
         System.out.println("The time passed :" + timing.getCurrentTime());
         goods.showGrass();
         animals.showAnimal();
+        // show tasks :
+        
     }
+
+
 
 }
