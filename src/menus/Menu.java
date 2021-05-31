@@ -57,26 +57,25 @@ public abstract class Menu {
     public void execute() {
         Menu nextMenu;
         int nextMenuNum;
-        try{
-            nextMenuNum= Integer.parseInt(scanner.nextLine());
-        }catch(NumberFormatException e){
-            nextMenuNum= Integer.parseInt(scanner.nextLine());
-        }
 
         while (true) {
-
-            if (nextMenuNum == submenus.size() + 1) {
-                if (this.parentMenu == null) {
-                    System.exit(1);
-                } else {
-                    nextMenu = parentMenu;
+            try{
+                nextMenuNum= Integer.parseInt(scanner.nextLine());
+                if (nextMenuNum == submenus.size() + 1) {
+                    if (this.parentMenu == null) {
+                        System.exit(1);
+                    } else {
+                        nextMenu = parentMenu;
+                        break;
+                    }
+                } else if (nextMenuNum < submenus.size() + 1 && nextMenuNum > 0) {
+                    nextMenu = submenus.get(nextMenuNum);
                     break;
+                } else {
+                    System.err.println("Invalid input!");
                 }
-            } else if (nextMenuNum < submenus.size() + 1 && nextMenuNum > 0) {
-                nextMenu = submenus.get(nextMenuNum);
-                break;
-            } else {
-                System.err.println("Invalid input!");
+            }catch(NumberFormatException e){
+                System.err.println("please");
             }
         }
         nextMenu.show();

@@ -14,8 +14,10 @@ public class Start extends Menu{
         System.out.print(Color.CYAN_BOLD_BRIGHT);
         System.out.println("Enter The Level You Want To Play");
         int level;
-        while ((level=Integer.parseInt(scanner.nextLine()))>=this.manager.personsController.getCurrentUser().level+2){
-            System.err.println("PLEAS ENTER THE LEVEL WITCH IS OPENED FOR YOU");
+        this.manager.allLevels=this.manager.allLevels.FILE.reloadLevels(this.manager.allLevels);
+        while ((level=Integer.parseInt(scanner.nextLine()))>=this.manager.personsController.getCurrentUser().level+2||level>manager.allLevels.numberOfLevels){
+            if(manager.allLevels.numberOfLevels<level) System.err.println("PLEASE ENTER AN AVAILABLE LEVEL IN THE GAME. ");
+            if(this.manager.personsController.getCurrentUser().level+2<=level) System.err.println("PLEAS ENTER THE LEVEL WITCH IS OPENED FOR YOU");
         }
         System.out.print(Color.RESET);
         System.out.println("");
