@@ -95,5 +95,50 @@ public boolean eat (Animal animal,ArrayList grass){
         return false;
     }
 
+    public void showAnimal() {
+        // name life cage loc
+        if (turkeys.size() > 0) {
+            for (Turkey turkey : turkeys) {
+                System.out.println(turkey.name + " " + turkey.livies + " [" + turkey.x + "," + turkey.y + "]");
+            }
+        }
+        if (chickens.size() > 0) {
+            for (Chicken chicken : chickens) {
+                System.out.println(chicken.name + " " + chicken.livies + " [" + chicken.x + "," + chicken.y + "]");
+            }
+        }
+        if (bufallos.size() > 0) {
+            for (Bufallo bufallo : bufallos) {
+                System.out.println(bufallo.name + " " + bufallo.livies + " [" + bufallo.x + "," + bufallo.y + "]");
+            }
+        }
+        if(tigers.size()>0){
+            for (Tiger tiger : tigers) {
+                System.out.println(tiger.name + " "+"cage needed :"+tiger.cage + " [" + tiger.x + "," + tiger.y + "]");
+            }
+        }
+        if(lions.size()>0){
+            for (Lion lion : lions) {
+                System.out.println(lion.name + " "+"cage needed :"+lion.cage + " [" + lion.x + "," + lion.y + "]");
+            }
+        }
+        if(bears.size()>0){
+            for (Bear bear : bears) {
+                System.out.println(bear.name + " "+"cage needed :"+bear.cage + " [" + bear.x + "," + bear.y + "]");
+            }
+        }
+        if(dogs.size()>0){
+            for (Dog dog : dogs) {
+                System.out.println(dog.name + " [" + dog.x + "," + dog.y + "]");
+            }
+        }
+        if(cats.size()>0){
+            for (Cat cat : cats) {
+                System.out.println(cat.name + " [" + cat.x + "," + cat.y + "]");
+            }
+        }
+
+
+    }
 }
 

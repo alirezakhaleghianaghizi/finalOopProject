@@ -1,5 +1,7 @@
 package controller;
 
+import view.Timing;
+
 import java.util.ArrayList;
 
 public class MainController {
@@ -9,6 +11,7 @@ public class MainController {
     public AllLevels allLevels;
     ControllerGadget gadgets;
    public PersonsController personsController;
+   Timing timing;
 
     public MainController() {
         this.goods = new ControllerGoods();
@@ -17,5 +20,19 @@ public class MainController {
         this.allLevels = new AllLevels();
         this.gadgets = new ControllerGadget();
         this.personsController = new PersonsController();
+        timing = new Timing();
     }
+
+    public void turn(int n) {
+        for (int i = 1; i <= n; i++) {
+            timing.goForward();
+        }
+    }
+
+    public void showAfterTurn() {
+        System.out.println("The time passed :" + timing.getCurrentTime());
+        goods.showGrass();
+        animals.showAnimal();
+    }
+
 }
