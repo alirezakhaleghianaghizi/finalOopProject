@@ -1,7 +1,7 @@
 package model.factory;
 
 public enum FactoryMoney {
-     EGGPOWDER(150),
+    EGGPOWDER(150),
     MILKSEPERATOR(250),
     SPINNERY(400),
     COOKIEBAKERY(250),
