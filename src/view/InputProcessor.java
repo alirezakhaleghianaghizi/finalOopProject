@@ -1,6 +1,7 @@
 package view;
 
 import controller.MainController;
+import menus.Color;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -16,6 +17,9 @@ public class InputProcessor {
 
     public void run(Scanner scanner){
         Matcher matcher;
+        System.out.print(Color.BLUE_BOLD);
+        System.out.println("Enter your command ");
+        System.out.print(Color.RESET);
         while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")){
             if((matcher=InputAlgorithms.BUY.inputMatcher(input)).find()) this.buy(matcher.group(1));
             else if((matcher=InputAlgorithms.PICKUP.inputMatcher(input)).find()) this.pickUp(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
@@ -29,6 +33,9 @@ public class InputProcessor {
             else if(InputAlgorithms.TRUCKGO.inputMatcher(input).find())this.truckGo();
             else if((matcher=InputAlgorithms.INQUIRY.inputMatcher(input)).find())this.inquiry();
             else System.err.println("invalid input");
+            System.out.print(Color.BLUE_BOLD);
+            System.out.println("Enter your command ");
+            System.out.print(Color.RESET);
         }
     }
 

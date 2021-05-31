@@ -19,6 +19,8 @@ public class Start extends Menu{
         }
         System.out.print(Color.RESET);
         System.out.println("");
+        this.manager.allLevels=this.manager.allLevels.FILE.reloadLevels(this.manager.allLevels);
+        System.out.println(this.manager.allLevels.numberOfLevels);
         this.inputProcessor.run(scanner);
     }
 

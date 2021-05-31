@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class AllLevels {
     public int numberOfLevels;
-    ArrayList<Level> levels;
-    LevelFileOperating FILE=new LevelFileOperating();
+    public ArrayList<Level> levels;
+    public LevelFileOperating FILE=new LevelFileOperating();
     public AllLevels(AllLevels levels) {
         if(this==null){
             this.levels = levels.levels;

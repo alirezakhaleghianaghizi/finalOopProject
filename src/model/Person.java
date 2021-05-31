@@ -10,6 +10,7 @@ public class Person {
     public int level ;
     public HashMap<Integer, Level> completedLevel;
     public HashMap<Integer,Integer> personCoinEachLevel;
+    public Level currentLevel;
     public int coins ;
     public int totalCoins ;
 
