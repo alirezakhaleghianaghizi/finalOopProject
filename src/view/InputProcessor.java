@@ -21,7 +21,7 @@ public class InputProcessor {
         System.out.println("Enter your command ");
         System.out.print(Color.RESET);
         while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")){
-            if((matcher=InputAlgorithms.BUY.inputMatcher(input)).find()) this.buy(matcher.group(1));
+            if((matcher=InputAlgorithms.BUY.inputMatcher(input)).find()) this.processBuy(matcher.group(1));
             else if((matcher=InputAlgorithms.PICKUP.inputMatcher(input)).find()) this.pickUp(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
             else if(InputAlgorithms.WELL.inputMatcher(input).find()) this.well();
             else if((matcher=InputAlgorithms.PLANT.inputMatcher(input)).find()) this.plant(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
@@ -41,42 +41,91 @@ public class InputProcessor {
 
     //TODO
 
-    public boolean buy(String animalName){
-        System.out.println("buy "+animalName);
-        //buy in manager
-        return true;
+    public boolean processBuy(String animalName){
+       if( mainController.animals.buyAnimal(animalName,mainController.personsController.getCurrentUser())) {
+           System.out.println(animalName+" Have bought");
+           return true;
+       }else {
+           System.err.println("not have enough coins");
+       }
+        return false;
     }
 
     public boolean pickUp(double x,double y){
-        System.out.println("pick up x : "+x+"\n y : "+y);
         if(x>6|x<0|y<0|y>6){
             System.out.println("the spot you choose is not in the surface");
             return false;
+        }else {
+            mainController.goods.pickUp(x,y, mainController.gadgets);
+            System.out.println("to the WareHouse ...");
+            return true;
         }
-        // pick in manager
-        return true;
     }
 
     public boolean plant(double x,double y){
-        System.out.println("plant x : "+x+"\n y : "+y);
         if(x>6|x<0|y<0|y>6){
             System.out.println("the spot you choose is not in the surface");
             return false;
         }
-        // plant in manager
-        return true;
+        if(mainController.goods.plant(x,y, mainController.factories, mainController.gadgets)){
+            System.out.println("plant x : "+x+"\n y : "+y);
+            return true;
+        }else {
+            System.err.println("the loc is on somethig ");
+            return false;
+        }
     }
 
     public boolean well(){
-        System.out.println("well working");
-        // well in manager
-        return true;
+        if(mainController.gadgets.Well(mainController.gadgets.well)){
+            System.out.println("well working");
+            return true;
+        }else {
+            System.err.println("The well is full ");
+            return false;
+        }
     }
 
     public boolean work(String workShopName){
-        System.out.println("workshop working"+workShopName);
-        //work in manager
-        return true;
+        switch (workShopName){
+            case "EggPowder":
+               if(mainController.factories.workEggPowder(mainController.factories.eggPowderFactories.get(0), mainController.gadgets)) {
+                   System.out.println(workShopName + " working ...");
+                   return true;
+               }
+                break;
+            case "CookieFactory":
+                if(mainController.factories.workCookieBakery(mainController.factories.cookieBakeryFactories.get(0), mainController.gadgets)){
+                    System.out.println(workShopName+" working ...");
+                    return true;
+                }
+                break;
+            case "MilkSeprator":
+                if(mainController.factories.workMilkSeprator(mainController.factories.milkSepratorFactories.get(0), mainController.gadgets)){
+                    System.out.println(workShopName+" working ...");
+                    return true;
+                }
+                break;
+            case "IceCreamFactory":
+               if(mainController.factories.workIceCreamFactory(mainController.factories.iceCreamFactories.get(0), mainController.gadgets)){
+                   System.out.println(workShopName+" working ...");
+                   return true;
+               }
+                break;
+            case "Spinnery":
+                if(mainController.factories.workSpinnery(mainController.factories.spinneryFactories.get(0), mainController.gadgets)){
+                    System.out.println(workShopName+" working ...");
+                    return true;
+                }
+                break;
+            case "Weaving":
+                if(mainController.factories.workWeaving(mainController.factories.WeavingFactories.get(0), mainController.gadgets)){
+                    System.out.println(workShopName+" working ...");
+                    return true;
+                }
+                break;
+        }
+        return false;
     }
 
     public boolean cage(double x,double y){
