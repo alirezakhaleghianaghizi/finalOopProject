@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ControllerGoods {
 
-        ArrayList<Cloth> Clothes;
+        ArrayList<Cloth> clothes;
         ArrayList<Cookie> cookies;
         ArrayList<Egg> eggs;
         ArrayList<Feather> feathers;
@@ -33,7 +33,7 @@ public class ControllerGoods {
         public  ArrayList<Goods> productGoods ;
 
     public ControllerGoods() {
-            this.Clothes = new ArrayList<>();
+            this.clothes = new ArrayList<>();
             this.cookies = new ArrayList<>();
             this.eggs = new ArrayList<>();
             this.feathers = new ArrayList<>();
@@ -84,6 +84,7 @@ public class ControllerGoods {
             if(e.x==x&&e.y==y){
                 if(gadget.warehouse.haveSpace(e)){
                     gadget.warehouse.existence.add(e);
+                    gadget.warehouse.seprateGoods(e);
                     return true;
                 }else {
                     System.err.println("WareHouse does not have enough space ");

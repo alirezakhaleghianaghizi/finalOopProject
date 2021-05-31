@@ -39,7 +39,7 @@ public class InputProcessor {
         }
     }
 
-    //TODO
+
 
     public boolean processBuy(String animalName){
        if( mainController.animals.buyAnimal(animalName,mainController.personsController.getCurrentUser())) {
@@ -128,6 +128,8 @@ public class InputProcessor {
         return false;
     }
 
+    //TODO for tomorrow
+
     public boolean cage(double x,double y){
         System.out.println("cage x : "+x+"\n y : "+y);
         if(x>6|x<0|y<0|y>6){
@@ -163,6 +165,7 @@ public class InputProcessor {
     }
 
     public boolean turn(int n){
+        mainController.turn(n);
         System.out.println("time of turning : "+n);
         //turn time in manager
         return true;
