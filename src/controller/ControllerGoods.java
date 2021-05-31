@@ -73,8 +73,23 @@ public class ControllerGoods {
         return true;
     }
 
-
-
-
+    public void showGrass(){
+        int [] [] grassNum = new int[6][6];
+        for (int i=0;i<6;i++){
+            for (int j=0;j<6;j++){
+                for (Grass grass : grasses) {
+                    if(grass.x==i+1&&grass.y==j+1){
+                        grassNum[i][j]++;
+                    }
+                }
+            }
+        }
+        for (int i=0;i<6;i++){
+            for (int j=0;j<6;j++){
+                System.out.println(grassNum[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
 
 }
