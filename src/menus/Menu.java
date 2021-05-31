@@ -75,7 +75,7 @@ public abstract class Menu {
                     System.err.println("Invalid input!");
                 }
             }catch(NumberFormatException e){
-                System.err.println("please");
+                System.err.println("please enter correct format of number to choose ");
             }
         }
         nextMenu.show();

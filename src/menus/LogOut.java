@@ -19,7 +19,12 @@ public class LogOut extends Menu{
         this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
         System.err.println("ARE YOU SURE YOU WANT TO LOG OUT THE ACCOUNT . (Y/N)");
         String answer=scanner.nextLine();
-        if(answer.equalsIgnoreCase("Y")){
+        while(!answer.equalsIgnoreCase("y")&&!answer.equalsIgnoreCase("n")){
+            System.err.println("ARE YOU SURE YOU WANT TO LOG OUT THE ACCOUNT . (Y/N)");
+             answer=scanner.nextLine();
+        }
+
+            if(answer.equalsIgnoreCase("Y")){
             this.manager.personsController.isAnyOneInTheGame=false;
             HashMap<String,Person> personHashMap=this.manager.personsController.getUserNamePersonMap();
             this.manager.personsController.setCurrentUser(null);
@@ -31,10 +36,11 @@ public class LogOut extends Menu{
             this.submenus.get(1).show();
             this.submenus.get(1).execute();
         }
-        else{
-            this.parentMenu.show();
-            this.parentMenu.execute();
-        }
+            else if(answer.equalsIgnoreCase("n")){
+                this.parentMenu.show();
+                this.parentMenu.execute();
+            }
+
     }
 
 }

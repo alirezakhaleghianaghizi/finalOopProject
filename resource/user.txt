@@ -1,7 +1,7 @@
 {
   "CurrentUser": {
-    "userName": "vahid",
-    "password": "4545",
+    "userName": "ASASSA",
+    "password": "ASASAS",
     "level": 0,
     "completedLevel": {},
     "personCoinEachLevel": {},
@@ -31,6 +31,15 @@
     "vahid": {
       "userName": "vahid",
       "password": "4545",
+      "level": 0,
+      "completedLevel": {},
+      "personCoinEachLevel": {},
+      "coins": 0,
+      "totalCoins": 0
+    },
+    "ASASSA": {
+      "userName": "ASASSA",
+      "password": "ASASAS",
       "level": 0,
       "completedLevel": {},
       "personCoinEachLevel": {},

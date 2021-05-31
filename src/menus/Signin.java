@@ -49,7 +49,7 @@ public class Signin extends Menu{
             System.err.println("this User name + (  "+userName+" ) is token" );
             return false;
         }
-        System.out.println("ENTER YOUR USERNAME");
+        System.out.println("ENTER YOUR PASSWORD");
         password=scanner.nextLine();
         System.out.print(Color.RESET);
         HashMap<String,Person> personHashMap=this.manager.personsController.getUserNamePersonMap();
