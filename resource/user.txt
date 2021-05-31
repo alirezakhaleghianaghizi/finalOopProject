@@ -1,7 +1,7 @@
 {
   "CurrentUser": {
-    "userName": "ASASSA",
-    "password": "ASASAS",
+    "userName": "vahid",
+    "password": "4545",
     "level": 0,
     "completedLevel": {},
     "personCoinEachLevel": {},
