@@ -3,6 +3,7 @@ package menus;
 import controller.MainController;
 import controller.PersonsController;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,11 +13,13 @@ public abstract class Menu {
     protected HashMap<Integer, Menu> submenus;
     public static Scanner scanner;
     public MainController manager;
+    public Logger logger;
     public Menu(String name, Menu parentMenu) {
         this.name = name;
         this.parentMenu = parentMenu;
         this.manager=new MainController();
         this.submenus=new HashMap<>();
+        this.logger=new Logger();
         this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
     }
 
@@ -73,9 +76,14 @@ public abstract class Menu {
                     break;
                 } else {
                     System.err.println("Invalid input!");
+                    logger.lastChange=new Date();
+                    this.logger.commands.add("Error,"+logger.lastChange.toString()+",Invalid input in menu bar");
                 }
             }catch(NumberFormatException e){
                 System.err.println("please enter correct format of number to choose ");
+                logger.lastChange=new Date();
+                this.logger.commands.add("Error,"+logger.lastChange.toString()+",Number format exception in menu bar. ");
+
             }
         }
         nextMenu.show();

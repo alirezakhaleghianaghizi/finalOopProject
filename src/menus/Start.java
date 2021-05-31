@@ -2,6 +2,8 @@ package menus;
 
 import view.InputProcessor;
 
+import java.util.Date;
+
 public class Start extends Menu{
     InputProcessor inputProcessor;
     public Start(Menu parentMenu) {
@@ -13,15 +15,38 @@ public class Start extends Menu{
         System.out.println("");
         System.out.print(Color.CYAN_BOLD_BRIGHT);
         System.out.println("Enter The Level You Want To Play");
-        int level;
+        int level=-1;
+        boolean isInputCorrect=false;
+        logger.lastChange=new Date();
+        this.logger.commands.add("INFO,"+logger.lastChange.toString()+",STARTED THE GAME. ");
         this.manager.allLevels=this.manager.allLevels.FILE.reloadLevels(this.manager.allLevels);
-        while ((level=Integer.parseInt(scanner.nextLine()))>=this.manager.personsController.getCurrentUser().level+2||level>manager.allLevels.numberOfLevels){
-            if(manager.allLevels.numberOfLevels<level) System.err.println("PLEASE ENTER AN AVAILABLE LEVEL IN THE GAME. ");
-            if(this.manager.personsController.getCurrentUser().level+2<=level) System.err.println("PLEAS ENTER THE LEVEL WITCH IS OPENED FOR YOU");
-        }
+        while(!isInputCorrect){
+            try{
+                while ((level=Integer.parseInt(scanner.nextLine()))>=this.manager.personsController.getCurrentUser().level+2||level>manager.allLevels.numberOfLevels){
+                if(manager.allLevels.numberOfLevels<level) {
+                    System.err.println("PLEASE ENTER AN AVAILABLE LEVEL IN THE GAME. ");
+                    logger.lastChange=new Date();
+                    this.logger.commands.add("ERROR,"+logger.lastChange.toString()+",NOT AVAILABLE LEVEL. ");
+                }
+                if(this.manager.personsController.getCurrentUser().level+2<=level) {
+                    System.err.println("PLEAS ENTER THE LEVEL WITCH IS OPENED FOR YOU");
+                    logger.lastChange=new Date();
+                    this.logger.commands.add("ERROR,"+logger.lastChange.toString()+",LEVEL NOT OPENED. ");
+                }
+                }
+                isInputCorrect=true;
+            }
+            catch (NumberFormatException e){
+                    logger.lastChange=new Date();
+                    this.logger.commands.add("ERROR,"+logger.lastChange.toString()+",NOT CORRECT format INPUT . ");
+                System.err.println("numberFormatException");
+            }
+
+            }
+        this.logger.jasonWriter(this.logger);
         System.out.print(Color.RESET);
         System.out.println("");
-        this.manager.allLevels=this.manager.allLevels.FILE.reloadLevels(this.manager.allLevels);
+        this.manager.personsController.getCurrentUser().currentLevel=this.manager.allLevels.levels.get(level);
         System.out.println(this.manager.allLevels.numberOfLevels);
         this.inputProcessor.run(scanner);
     }

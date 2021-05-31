@@ -2,6 +2,7 @@ package menus;
 
 import model.Person;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class Signin extends Menu{
@@ -38,6 +39,8 @@ public class Signin extends Menu{
         String password;
         this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
         if(this.manager.personsController.isAnyOneInTheGame){
+            logger.lastChange=new Date();
+            this.logger.commands.add("ERROR,"+logger.lastChange.toString()+",LOGGED IN ALREADY. ");
             System.out.println("You have Already logged in");
             System.out.println("your userName is \" "+this.manager.personsController.getCurrentUser().userName+"\" \n your password is \" "+this.manager.personsController.getCurrentUser().password+"\"");
             return true;
@@ -46,6 +49,8 @@ public class Signin extends Menu{
         System.out.println("Enter Your User Name To signin");
         userName=scanner.nextLine();
         if(this.manager.personsController.getUserNamePersonMap().containsKey(userName)){
+            logger.lastChange=new Date();
+            this.logger.commands.add("ERROR,"+logger.lastChange.toString()+",USERNAME TAKEN. ");
             System.err.println("this User name + (  "+userName+" ) is token" );
             return false;
         }

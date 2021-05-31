@@ -6,7 +6,7 @@ import model.Person;
 import java.util.ArrayList;
 import java.util.HashMap;
 public class PersonsController {
-    private Person CurrentUser;
+    public Person CurrentUser;
     public boolean isAnyOneInTheGame;
     private HashMap<String,Person> userNamePersonMap;
     public FileUsersNamePassword reloadUsers;
