@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Warehouse extends Gadget {
     public ArrayList<Goods> existence;
-    int currentCapacity;
+    public int currentCapacity;
     public ArrayList <Goods> eggInWareHouse ;
     public ArrayList <Goods> cookieInWareHouse ;
     public ArrayList <Goods> clothInWareHouse ;

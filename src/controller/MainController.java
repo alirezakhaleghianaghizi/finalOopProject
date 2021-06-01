@@ -94,6 +94,7 @@ public class MainController {
         }
     }
 
+
     //Search methods :
     public ArrayList returnArrByGoodName(String GoodName){
         switch (GoodName){
@@ -127,5 +128,13 @@ public class MainController {
         return null;
     }
 
+    public Goods returnGoodByName(String name){
+        for (Goods productGood : goods.productGoods) {
+            if(productGood.name.equalsIgnoreCase(name)){
+                return productGood;
+            }
+        }
+        return null;
+    }
 
 }

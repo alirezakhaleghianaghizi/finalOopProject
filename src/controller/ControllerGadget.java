@@ -23,7 +23,7 @@ public class ControllerGadget {
 
 
     public boolean truckLoad(Goods good){
-        if(this.truck.isFull(good))
+        if(this.truck.isFull(good)||truckGo())
         {return false;}
         else {
             this.truckgoods.add(good);
@@ -32,10 +32,13 @@ public class ControllerGadget {
         }
     }
 
-    public void truckUnload(Goods good){
-        this.truckgoods.remove(good);
-        this.truck.avaiableCap+= good.capacity;
-
+    public boolean truckUnload(Goods good){
+        if(!truckGo() ){
+            this.truckgoods.remove(good);
+            this.truck.avaiableCap += good.capacity;
+            return true;
+        }
+        return false;
     }
 
     public boolean truckGo(){
