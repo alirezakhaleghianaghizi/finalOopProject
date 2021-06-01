@@ -50,6 +50,7 @@ public class Start extends Menu{
         this.manager.personsController.getCurrentUser().currentLevel=this.manager.allLevels.levels.get(level-1);
         System.out.println(this.manager.allLevels.numberOfLevels);
         this.manager.personsController.getCurrentUser().totalCoins=this.manager.personsController.CurrentUser.coins+this.manager.personsController.getCurrentUser().currentLevel.startCoins;
+        this.manager.logger=this.logger;
         this.inputProcessor.run(scanner);
     }
 

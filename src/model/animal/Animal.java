@@ -34,7 +34,7 @@ public class Animal extends Model {
         switch (randSituation){
             case 0:
                 if(this.x+footStep>=0&&this.x+footStep<=6) {
-                    this.timeMovingPeriode=footStep/animal.footStep;
+                    //this.timeMovingPeriode=footStep/animal.footStep;
                     this.x += footStep;
                 }
                 break;

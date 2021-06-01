@@ -22,23 +22,27 @@ public class ControllerGadget {
     }
 
 
-    public boolean truckLoad(Goods good) {
-        if (this.truck.isFull(good) || truckGo()) {
-            return false;
+    public int  truckLoad(Goods good) {
+        if (this.truck.isFull(good)){
+            return -1;
+        }
+        else  if(this.truck.go) {
+            return 0;
         } else {
             this.truckgoods.add(good);
             this.truck.avaiableCap -= good.capacity;
-            return true;
+            return 1;
         }
     }
 
-    public boolean truckUnload(Goods good) {
-        if (!truckGo()) {
+    public int truckUnload(Goods good) {
+        if (this.truck.go) return -1;
+        else if(!this.truckgoods.contains(good))return 0;
+        else{
             this.truckgoods.remove(good);
             this.truck.avaiableCap += good.capacity;
-            return true;
+            return 1;
         }
-        return false;
     }
 
     public boolean truckGo() {

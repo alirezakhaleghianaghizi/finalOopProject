@@ -4,7 +4,7 @@ import view.Timing;
 
 public class Well extends Gadget{
      public int timePeride;
-    public int capacity;
+    public int availableCapacity;
     public Timing fulling;
     public boolean isfull ;
 
@@ -13,6 +13,7 @@ public class Well extends Gadget{
         this.capacity=GadgetEnum.WELL.capacity;
         this.timePeride=3;
         this.isfull=false;
+        availableCapacity=0;
     }
     public void setTimePeride(){
         this.timePeride=3/5*(5-this.capacity);

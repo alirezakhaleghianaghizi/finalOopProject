@@ -1,5 +1,6 @@
 package controller;
 
+import menus.Logger;
 import model.animal.AnimalEnum;
 import model.animal.defender.Dog;
 import model.animal.producer.Chicken;
@@ -19,6 +20,7 @@ public class MainController {
     public ControllerGadget gadgets;
     public PersonsController personsController;
     Timing timing;
+    public Logger logger ;
 
     public MainController() {
         this.goods = new ControllerGoods();
@@ -28,6 +30,7 @@ public class MainController {
         this.gadgets = new ControllerGadget();
         this.personsController = new PersonsController();
         timing = new Timing();
+        this.logger=new Logger();
     }
 
 

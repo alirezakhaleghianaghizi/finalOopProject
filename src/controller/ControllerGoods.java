@@ -1,6 +1,7 @@
 package controller;
 
 import menus.Color;
+import menus.Logger;
 import model.animal.wild.Tiger;
 import model.factory.Factory;
 import model.factory.first.EggPowder;
@@ -13,6 +14,7 @@ import model.gadget.Warehouse;
 import model.goods.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ControllerGoods {
 
@@ -50,48 +52,51 @@ public class ControllerGoods {
             this.productGoods = new ArrayList<>();
         }
 
-    public boolean plant(double x , double y,ControllerFactory factory,ControllerGadget gadget){
+    public int plant(double x , double y,ControllerFactory factory,ControllerGadget gadget){
         for (CookieBakery cookieBakeryFactory : factory.cookieBakeryFactories) {
-            if(cookieBakeryFactory.x==x&&cookieBakeryFactory.y==y){return false;}
+            if(cookieBakeryFactory.x==x&&cookieBakeryFactory.y==y){return 1;}
         }
         for (EggPowder eggPowderFactory : factory.eggPowderFactories) {
-            if(eggPowderFactory.x==x&&eggPowderFactory.y==y){return false;}
+            if(eggPowderFactory.x==x&&eggPowderFactory.y==y){return 1;}
         }
         for (IceCreamFactory iceCreamFactory : factory.iceCreamFactories) {
-            if(iceCreamFactory.x==x&&iceCreamFactory.y==y){return false;}
+            if(iceCreamFactory.x==x&&iceCreamFactory.y==y){return 1;}
         }
         for (MilkSeprator milkSepratorFactory : factory.milkSepratorFactories) {
-            if(milkSepratorFactory.x==x&&milkSepratorFactory.y==y){return false;}
+            if(milkSepratorFactory.x==x&&milkSepratorFactory.y==y){return 1;}
         }
 
         for (Spinnery spinneryFactory : factory.spinneryFactories) {
-            if(spinneryFactory.x==x&&spinneryFactory.y==y){return false;}
+            if(spinneryFactory.x==x&&spinneryFactory.y==y){return 1;}
         }
         for (Weaving weavingFactory : factory.WeavingFactories) {
-            if(weavingFactory.x==x&&weavingFactory.y==y){return false;}
+            if(weavingFactory.x==x&&weavingFactory.y==y){return 1;}
         }
-        if(gadget.well.x==x&&gadget.well.y==y){return false;}
-        if(gadget.truck.x==x&&gadget.truck.y==y){return false;}
-        if(gadget.warehouse.x==x&&gadget.warehouse.y==y){return false;}
-        if(gadget.well.capacity<GoodsEnum.GRASS.getCapacity()){return false;}
+        if(gadget.well.x==x&&gadget.well.y==y){return 0;}
+        if(gadget.truck.x==x&&gadget.truck.y==y){return 0;}
+        if(gadget.warehouse.x==x&&gadget.warehouse.y==y){return 0;}
+        if(gadget.well.capacity<GoodsEnum.GRASS.getCapacity()){return -1;}
         grasses.add(new Grass(x,y));
         gadget.well.capacity--;
-        return true;
+        return 2;
     }
 
-    public boolean pickUp( double x , double y,ControllerGadget gadget){
+    public boolean pickUp(double x , double y, ControllerGadget gadget, Logger logger){
         for (Goods e : productGoods) {
             if(e.x==x&&e.y==y){
                 if(gadget.warehouse.haveSpace(e)){
                     gadget.warehouse.existence.add(e);
                     gadget.warehouse.seprateGoods(e);
+                    logger.commands.add("INFO,"+logger.lastChange.toString()+",PICKUP "+e.name+" TO WAREHOUSE.");
                     return true;
                 }else {
+                    logger.commands.add("ERROR,"+logger.lastChange.toString()+",NOT ENOUGH SPACE IN WAREHOUSE TO PICKUP "+e.name+" .");
                     System.err.println("WareHouse does not have enough space ");
                     return false;
                 }
             }
         }
+        logger.commands.add("ERROR ,"+logger.lastChange.toString()+",NO GOODS TO PICKUP.");
         System.err.println("there is no Goods ");
         return false;
     }

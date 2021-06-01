@@ -1,5 +1,6 @@
 package controller;
 
+import menus.Logger;
 import model.Person;
 import model.animal.Animal;
 import model.animal.AnimalEnum;
@@ -16,6 +17,7 @@ import model.goods.LionDoll;
 import model.goods.TigerDoll;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ControllerAnimal {
     ArrayList<Tiger> tigers = new ArrayList<>();
@@ -36,75 +38,92 @@ public boolean eat (Animal animal,ArrayList grass){
     else if(){
 
 }*/
-    public boolean buyAnimal(String name, Person person){
+    public int buyAnimal(String name, Person person){
         switch (name){
             case "chicken" :
                 if(person.totalCoins>= AnimalEnum.CHICKEN.getCost()){
                     person.totalCoins-=AnimalEnum.CHICKEN.getCost();
                     chickens.add(new Chicken());
-                    return true;
+                    return 1;
                 }
+                return 0;
             case "bufallo":
                 if(person.totalCoins>= AnimalEnum.BUFALLO.getCost()){
                     person.totalCoins-=AnimalEnum.BUFALLO.getCost();
                     bufallos.add(new Bufallo());
-                    return true;
+                    return 1;
                 }
+                return 0;
             case "turkey":
                 if(person.totalCoins>= AnimalEnum.TURKEY.getCost()){
                     person.totalCoins-=AnimalEnum.TURKEY.getCost();
                     turkeys.add(new Turkey());
-                    return true;
+                    return 1;
                 }
+                return 0;
             case "cat":
                 if(person.totalCoins>= AnimalEnum.CAT.getCost()){
                     person.totalCoins-=AnimalEnum.CAT.getCost();
                     cats.add(new Cat());
-                    return true;
+                    return 1;
                 }
+                return 0;
             case "dog":
                 if(person.totalCoins>= AnimalEnum.DOG.getCost()){
                     person.totalCoins-=AnimalEnum.DOG.getCost();
                    dogs.add(new Dog());
-                    return true;
+                    return 1;
                 }
+                return 0;
         }
-        return false;
+        return -1;
     }
 
-    public boolean cage(double x, double y,ControllerGoods goods){
+    public int  cage(double x, double y, ControllerGoods goods, Logger logger){
 
         for (Tiger tiger : tigers) {
             if(tiger.x==x&&tiger.y==y){
              tiger.cage+=1;
+             logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the tiger");
              if(tiger.cage==4){
                  goods.tigerDolls.add(new TigerDoll(x,y));
                  tigers.remove(tiger);
+                 logger.lastChange=new Date();
+                 logger.commands.add("INFO ,"+logger.lastChange.toString()+",tiger caged and send to the warehouse");
+                 return 1;
              }
-                return true;
+                return 0;
             }
         }
         for (Lion lion : lions) {
             if(lion.x==x&&lion.y==y){
                 lion.cage+=1;
+                logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the lion");
                 if(lion.cage==3){
                     goods.lionDolls.add(new LionDoll(x,y));
                     tigers.remove(lion);
+                    logger.lastChange=new Date();
+                    logger.commands.add("INFO ,"+logger.lastChange.toString()+",lion caged and send to the warehouse");
+                    return 1;
                 }
-                return true;
+                return 0;
             }
         }
         for (Bear bear : bears) {
             if(bear.x==x&&bear.y==y){
                 bear.cage+=1;
+                logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the bear");
                 if(bear.cage==3){
                     goods.bearDolls.add(new BearDoll(x,y));
                     tigers.remove(bear);
+                    logger.lastChange=new Date();
+                    logger.commands.add("INFO ,"+logger.lastChange.toString()+",bear caged and send to the warehouse");
+                    return 1;
                 }
-                return true;
+                return 0;
             }
         }
-        return false;
+        return -1;
     }
 
     public void showAnimal() {

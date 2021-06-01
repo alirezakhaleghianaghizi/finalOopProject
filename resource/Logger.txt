@@ -1,8 +1,0 @@
-{
-  "dateStartOperatingLogger": "Jun 1, 2021, 9:26:17 AM",
-  "userName": "vahid",
-  "lastChange": "Jun 1, 2021, 9:26:21 AM",
-  "commands": [
-    "INFO,Tue Jun 01 09:26:21 IRDT 2021,STARTED THE GAME. "
-  ]
-}
