@@ -29,6 +29,7 @@ public class MainController {
     public void turn(int n) {
         for (int i = 1; i <= n; i++) {
             timing.goForward();
+
         }
     }
 
