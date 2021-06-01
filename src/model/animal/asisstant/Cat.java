@@ -7,4 +7,7 @@ public class Cat extends Animal {
     public Cat() {
         super(AnimalEnum.CAT.toString(), 3, 3, AnimalEnum.CAT.getFootStep(), AnimalEnum.CAT.getLivies(), AnimalEnum.CAT.getCost());
     }
+    public void catMove(){
+
+    }
 }
