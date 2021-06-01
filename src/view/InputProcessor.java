@@ -56,7 +56,7 @@ public class InputProcessor {
             System.out.println("the spot you choose is not in the surface");
             return false;
         }else {
-            mainController.goods.pickUp(x,y, mainController.gadgets);
+            if( mainController.goods.pickUp(x,y, mainController.gadgets))
             System.out.println("to the WareHouse ...");
             return true;
         }
@@ -68,16 +68,16 @@ public class InputProcessor {
             return false;
         }
         if(mainController.goods.plant(x,y, mainController.factories, mainController.gadgets)){
-            System.out.println("plant x : "+x+"\n y : "+y);
+            System.out.println("Plant [x:"+x+",y:"+y+"]");
             return true;
         }else {
-            System.err.println("the loc is on somethig ");
+            System.err.println("well is empty ");
             return false;
         }
     }
 
     public boolean well(){
-        if(mainController.gadgets.Well(mainController.gadgets.well)){
+        if(mainController.gadgets.well()){
             System.out.println("well working");
             return true;
         }else {
