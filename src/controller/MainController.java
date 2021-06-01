@@ -3,14 +3,15 @@ package controller;
 import menus.Logger;
 import model.animal.AnimalEnum;
 import model.animal.defender.Dog;
+import model.animal.producer.Bufallo;
 import model.animal.producer.Chicken;
-import model.goods.Egg;
-import model.goods.Goods;
-import model.goods.GoodsEnum;
+import model.animal.producer.Turkey;
+import model.goods.*;
 import model.level.Level;
 import view.Timing;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainController {
 
@@ -104,8 +105,8 @@ public class MainController {
 
     //Search methods :
     public ArrayList returnArrByGoodName(String GoodName){
-        switch (GoodName){
-            case "EGG":return gadgets.warehouse.eggInWareHouse;
+        switch (GoodName.toUpperCase(Locale.ROOT)){
+            case "EGG" : return gadgets.warehouse.eggInWareHouse;
             case "COOKIE":return gadgets.warehouse.cookieInWareHouse;
             case "SILK":return gadgets.warehouse.silkInWareHouse;
             case "MILK":return gadgets.warehouse.milkInWareHouse;
@@ -135,10 +136,10 @@ public class MainController {
         return null;
     }
 
-    public Goods returnGoodByName(String name){
-        for (Goods productGood : goods.productGoods) {
-            if(productGood.name.equalsIgnoreCase(name)){
-                return productGood;
+    public Goods returnGoodInWarehouseByName(String name){
+        for (Goods goods1 : gadgets.warehouse.existence) {
+            if(goods1.name.equalsIgnoreCase(name)){
+                return goods1;
             }
         }
         return null;
@@ -153,6 +154,14 @@ public class MainController {
         return null;
     }
 
+    public Goods returnInTruckGoodsByName(String name){
+        for (Goods truckgood : gadgets.truckgoods) {
+            if(truckgood.name.equalsIgnoreCase(name))
+                return truckgood;
+        }
+        return null;
+    }
+
     //check time passing after turn :
     public boolean wellFulling(){
         if(gadgets.well.fulling==null)return false;
@@ -163,6 +172,36 @@ public class MainController {
             return false;
     }
 
+    public boolean producing(){
+        for (Chicken chicken : animals.chickens) {
+            if(chicken.produce()){
+                if(chicken.produce.getDate()+chicken.produceTime>=Timing.getCurrentTime()){
+                    goods.productGoods.add(new Egg(chicken.x, chicken.y));
+                    return true;
+                }
+            }
+        }
+        for (Turkey turkey : animals.turkeys) {
+            if (turkey.produce()) {
+                if (turkey.produce.getDate() + turkey.produceTime >= Timing.getCurrentTime()) {
+                    goods.productGoods.add(new Feather(turkey.x, turkey.y));
+                    return true;
+                }
+            }
+        }
+        for (Bufallo bufallo : animals.bufallos) {
+            if(bufallo.produce()){
+                if(bufallo.produce.getDate()+bufallo.produceTime>=Timing.getCurrentTime()){
+                    goods.productGoods.add(new Milk(bufallo.x, bufallo.y));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    //TODO
     public boolean movingAnimal(){
         for (Chicken chicken : animals.chickens) {
             chicken.moving(chicken);
@@ -171,18 +210,43 @@ public class MainController {
         return false;
     }
 
-    public boolean producing(){
+    public boolean decreaseLive(){
+        for (Bufallo bufallo : animals.bufallos) {
+           if(bufallo.decreaseLive()){
+               if(bufallo.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
+                   bufallo.livies-=10;
+                   if(bufallo.isDie()){
+                       animals.bufallos.remove(bufallo);
+                   }
+                   return true;
+               }
+           }
+        }
         for (Chicken chicken : animals.chickens) {
-            chicken.produce();
-            //TODO >= to be fixed
-            if(chicken.produce.getDate()+chicken.produceTime>=Timing.getCurrentTime()){
-                if(chicken.produce()){
-                    goods.productGoods.add(new Egg(chicken.x, chicken.y));
+            if(chicken.decreaseLive()){
+                if(chicken.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
+                    chicken.livies-=10;
+                    if(chicken.isDie()){
+                        animals.chickens.remove(chicken);
+                    }
+                    return true;
                 }
-                return true;
+            }
+        }
+        for (Turkey turkey : animals.turkeys) {
+            if(turkey.decreaseLive()){
+                if(turkey.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
+                    turkey.livies-=10;
+                    if(turkey.isDie()){
+                        animals.turkeys.remove(turkey);
+                    }
+                    return true;
+
+                }
             }
         }
         return false;
     }
+
 
 }

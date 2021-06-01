@@ -6,12 +6,13 @@ import model.goods.Goods;
 import model.goods.GoodsEnum;
 import view.Timing;
 
+import java.util.ArrayList;
+
 public class Truck extends Gadget {
     int truckSpeed;
     public int avaiableCap;
     public boolean go;
     public Timing goTime ;
-
     public Truck(double x , double y) {
 
         super(GadgetEnum.TRUCK.toString(), x, y, GadgetEnum.TRUCK.getCapacity());
@@ -22,8 +23,9 @@ public class Truck extends Gadget {
 
     public boolean isFull(Goods goods){
         if(avaiableCap<goods.capacity)
-        return false;
         return true;
+        return false;
+
     }
 
 

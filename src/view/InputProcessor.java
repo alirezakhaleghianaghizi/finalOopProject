@@ -32,7 +32,7 @@ public class InputProcessor {
             else if((matcher=InputAlgorithms.CAGE.inputMatcher(input)).find()) this.cage(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
             else if((matcher=InputAlgorithms.TURN.inputMatcher(input)).find()) this.turn(Integer.parseInt(matcher.group(1)));
             else if((matcher=InputAlgorithms.TRUCKLOAD.inputMatcher(input)).find()) this.truckLoad(matcher.group(1));
-            else if((matcher=InputAlgorithms.TRUCKUNLOAD.inputMatcher(input)).find())this.truckUnload(matcher.group(1));
+            else if((matcher=InputAlgorithms.TRUCKUNLOAD.inputMatcher(input)).find())this.processTruckUnload(matcher.group(1));
             else if(InputAlgorithms.TRUCKGO.inputMatcher(input).find())this.truckGo();
             else if((matcher=InputAlgorithms.INQUIRY.inputMatcher(input)).find())this.inquiry();
             else {
@@ -122,7 +122,7 @@ public class InputProcessor {
             return true;
         }else {
             this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",well is full.");
-            System.err.println("The well is full ");
+            System.err.println("The well is still full ");
             return false;
         }
     }
@@ -194,12 +194,12 @@ public class InputProcessor {
     }
 
     public boolean truckLoad(String itemName){
-        if(mainController.returnGoodByName(itemName)==null){
-            System.err.println("there is no item name"+itemName);
+        if(mainController.returnGoodInWarehouseByName(itemName)==null){
+            System.err.println("there is no "+itemName);
             this.mainController.logger.commands.add("ERROR ,"+this.mainController.logger.lastChange.toString()+",null item name"+itemName);
             return false;
         }
-       int situation=mainController.gadgets.truckLoad(mainController.returnGoodByName(itemName));
+       int situation=mainController.gadgets.truckLoad(mainController.returnGoodInWarehouseByName(itemName),mainController);
         if(situation==-1){
             System.err.println("truck has no enough space");
             this.mainController.logger.commands.add("ERROR ,"+this.mainController.logger.lastChange.toString()+",not enough space in truck to load"+itemName);
@@ -218,15 +218,16 @@ public class InputProcessor {
         return true;
     }
 
-    public boolean truckUnload(String itemName) {
-        if(mainController.returnGoodByName(itemName)==null){
-            System.err.println("there is no item name"+itemName);
+    public boolean processTruckUnload(String itemName) {
+        if(mainController.returnInTruckGoodsByName(itemName)==null){
+            System.err.println("there is "+itemName);
             this.mainController.logger.commands.add("ERROR ,"+this.mainController.logger.lastChange.toString()+",null item name"+itemName);
             return false;
         }
-        int situation=mainController.gadgets.truckUnload(mainController.returnGoodByName(itemName));
+        int situation=mainController.gadgets.truckUnload(mainController.returnInTruckGoodsByName(itemName));
         if (situation==1) {
-            System.out.println("truck un load" + itemName);
+            System.out.println("truck unload " + itemName);
+
             this.mainController.logger.commands.add("INFO ,"+this.mainController.logger.lastChange.toString()+",truck un load" + itemName);
             return true;
         }

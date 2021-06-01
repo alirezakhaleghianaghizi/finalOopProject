@@ -75,10 +75,14 @@ public class ControllerGoods {
         if(gadget.well.x==x&&gadget.well.y==y){return 0;}
         if(gadget.truck.x==x&&gadget.truck.y==y){return 0;}
         if(gadget.warehouse.x==x&&gadget.warehouse.y==y){return 0;}
-        if(gadget.well.capacity<GoodsEnum.GRASS.getCapacity()){return -1;}
-        grasses.add(new Grass(x,y));
-        gadget.well.capacity--;
-        return 2;
+        if(gadget.well.capacity<GoodsEnum.GRASS.getCapacity()){
+            gadget.well.isfull=false;
+            return -1;
+        }
+            gadget.well.capacity--;
+            grasses.add(new Grass(x,y));
+            return 2;
+
     }
 
     public boolean pickUp(double x , double y, ControllerGadget gadget, Logger logger){

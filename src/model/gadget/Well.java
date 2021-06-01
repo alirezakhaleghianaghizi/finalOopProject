@@ -12,12 +12,7 @@ public class Well extends Gadget{
         super(GadgetEnum.WELL.toString(), x, y, GadgetEnum.WELL.capacity);
         this.capacity=GadgetEnum.WELL.capacity;
         this.timePeride=3;
-        this.isfull=false;
+        this.isfull=true;
         availableCapacity=0;
     }
-    public void setTimePeride(){
-        this.timePeride=3/5*(5-this.capacity);
-    }
-
-
 }

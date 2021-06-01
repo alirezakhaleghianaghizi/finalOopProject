@@ -22,7 +22,7 @@ public class ControllerGadget {
     }
 
 
-    public int  truckLoad(Goods good) {
+    public int  truckLoad(Goods good,MainController mainController) {
         if (this.truck.isFull(good)){
             return -1;
         }
@@ -31,6 +31,8 @@ public class ControllerGadget {
         } else {
             this.truckgoods.add(good);
             this.truck.avaiableCap -= good.capacity;
+            warehouse.existence.remove(good);
+            mainController.returnArrByGoodName(good.name).remove(good);
             return 1;
         }
     }
@@ -40,6 +42,8 @@ public class ControllerGadget {
         else if(!this.truckgoods.contains(good))return 0;
         else{
             this.truckgoods.remove(good);
+            warehouse.existence.add(good);
+            warehouse.seprateGoods(good);
             this.truck.avaiableCap += good.capacity;
             return 1;
         }
@@ -64,11 +68,13 @@ public class ControllerGadget {
     public boolean well() {
         if (!this.well.isfull) {
             this.well.fulling = new Timing();
-            well.setTimePeride();
             return true;
         }
         return false;
     }
+
+    //search methods :
+
 }
 
 
