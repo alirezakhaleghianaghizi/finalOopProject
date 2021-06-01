@@ -41,21 +41,33 @@ public boolean eat (Animal animal,ArrayList grass){
             case "chicken" :
                 if(person.totalCoins>= AnimalEnum.CHICKEN.getCost()){
                     person.totalCoins-=AnimalEnum.CHICKEN.getCost();
+                    chickens.add(new Chicken());
                     return true;
                 }
-                return false;
             case "bufallo":
                 if(person.totalCoins>= AnimalEnum.BUFALLO.getCost()){
                     person.totalCoins-=AnimalEnum.BUFALLO.getCost();
+                    bufallos.add(new Bufallo());
                     return true;
                 }
-                return false;
             case "turkey":
                 if(person.totalCoins>= AnimalEnum.TURKEY.getCost()){
                     person.totalCoins-=AnimalEnum.TURKEY.getCost();
+                    turkeys.add(new Turkey());
                     return true;
                 }
-                return false;
+            case "cat":
+                if(person.totalCoins>= AnimalEnum.CAT.getCost()){
+                    person.totalCoins-=AnimalEnum.CAT.getCost();
+                    cats.add(new Cat());
+                    return true;
+                }
+            case "dog":
+                if(person.totalCoins>= AnimalEnum.DOG.getCost()){
+                    person.totalCoins-=AnimalEnum.DOG.getCost();
+                   dogs.add(new Dog());
+                    return true;
+                }
         }
         return false;
     }

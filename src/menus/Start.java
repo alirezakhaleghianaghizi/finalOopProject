@@ -16,9 +16,8 @@ public class Start extends Menu{
         System.out.print(Color.CYAN_BOLD_BRIGHT);
         System.out.println("Enter The Level You Want To Play");
         int level=-1;
+        this.logger.userName=this.manager.personsController.CurrentUser.userName;
         boolean isInputCorrect=false;
-        logger.lastChange=new Date();
-        this.logger.commands.add("INFO,"+logger.lastChange.toString()+",STARTED THE GAME. ");
         this.manager.allLevels=this.manager.allLevels.FILE.reloadLevels(this.manager.allLevels);
         while(!isInputCorrect){
             try{
@@ -43,11 +42,14 @@ public class Start extends Menu{
             }
 
             }
+        logger.lastChange=new Date();
+        this.logger.commands.add("INFO,"+logger.lastChange.toString()+",STARTED THE GAME. ");
         this.logger.jasonWriter(this.logger);
         System.out.print(Color.RESET);
         System.out.println("");
-        this.manager.personsController.getCurrentUser().currentLevel=this.manager.allLevels.levels.get(level);
+        this.manager.personsController.getCurrentUser().currentLevel=this.manager.allLevels.levels.get(level-1);
         System.out.println(this.manager.allLevels.numberOfLevels);
+        this.manager.personsController.getCurrentUser().totalCoins=this.manager.personsController.CurrentUser.coins+this.manager.personsController.getCurrentUser().currentLevel.startCoins;
         this.inputProcessor.run(scanner);
     }
 

@@ -11,6 +11,7 @@ public abstract class Goods extends Model {
     boolean isCatch;
     boolean isAvailable;
     boolean isSoled;
+
     public Goods(String name, double x, double y,int cost,int capacity,int timeOfRemaining) {
         super(name, x, y);
         this.cost=cost;
