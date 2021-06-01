@@ -60,6 +60,7 @@ public class ControllerGadget {
     public boolean well() {
         if (!this.well.isfull) {
             this.well.fulling = new Timing();
+            well.setTimePeride();
             return true;
         }
         return false;

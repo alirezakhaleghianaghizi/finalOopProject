@@ -1,6 +1,8 @@
 package controller;
 
 import model.animal.AnimalEnum;
+import model.animal.defender.Dog;
+import model.animal.producer.Chicken;
 import model.goods.Goods;
 import model.goods.GoodsEnum;
 import model.level.Level;
@@ -34,6 +36,7 @@ public class MainController {
             timing.goForward();
             
         }
+        wellFulling();
         showAfterTurn();
     }
 
@@ -136,6 +139,28 @@ public class MainController {
             }
         }
         return null;
+    }
+
+    //check time passing after turn :
+    public boolean wellFulling(){
+        if(gadgets.well.fulling==null)return false;
+        if(gadgets.well.fulling.getDate()+gadgets.well.timePeride<=Timing.getCurrentTime()){
+            gadgets.well.capacity=5;
+            return true;
+        }
+            return false;
+    }
+
+    public boolean movingAnimal(){
+        for (Chicken chicken : animals.chickens) {
+            chicken.moving(chicken);
+            return true;
+        }
+        return false;
+    }
+
+    public void producing(){
+
     }
 
 }
