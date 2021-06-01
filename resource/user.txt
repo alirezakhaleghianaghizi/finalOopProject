@@ -37,15 +37,6 @@
       "coins": 0,
       "totalCoins": 0
     },
-    "ASASSA": {
-      "userName": "ASASSA",
-      "password": "ASASAS",
-      "level": 0,
-      "completedLevel": {},
-      "personCoinEachLevel": {},
-      "coins": 0,
-      "totalCoins": 0
-    },
     "alireza ": {
       "userName": "alireza ",
       "password": "nopassword",

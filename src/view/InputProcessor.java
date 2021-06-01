@@ -77,7 +77,7 @@ public class InputProcessor {
     }
 
     public boolean well(){
-        if(mainController.gadgets.Well(mainController.gadgets.well)){
+        if(mainController.gadgets.well()){
             System.out.println("well working");
             return true;
         }else {

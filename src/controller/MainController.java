@@ -32,6 +32,7 @@ public class MainController {
     public void turn(int n) {
         for (int i = 1; i <= n; i++) {
             timing.goForward();
+            
         }
         showAfterTurn();
     }
@@ -48,49 +49,49 @@ public class MainController {
         for (GoodsEnum value : GoodsEnum.values()) {
             String good = value.toString();
             if(good.equalsIgnoreCase(level.task1)){
-                System.out.println("task 1 :"+returnArrByGoodName(good).size()+"/"+level.task1Number);
+                System.out.println("1 : "+level.task1+" : "+returnArrByGoodName(good).size()+"/"+level.task1Number);
             }
         }
         for (AnimalEnum value : AnimalEnum.values()) {
             String animal = value.toString();
             if(animal.equalsIgnoreCase(level.task1)){
-                System.out.println("task 1 :"+returnArrByAnimalName(animal).size()+"/"+level.task1Number);
+                System.out.println("1 : "+level.task1+" : "+returnArrByAnimalName(animal).size()+"/"+level.task1Number);
             }
         }
         if(level.task1.equalsIgnoreCase("coin")){
-            System.out.println(personsController.getCurrentUser().totalCoins+"/"+level.task1Number);
+            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task1Number);
         }
 
         for (GoodsEnum value : GoodsEnum.values()) {
             String good = value.toString();
             if(good.equalsIgnoreCase(level.task2)){
-                System.out.println("task 2 :"+returnArrByGoodName(good).size()+"/"+level.task2Number);
+                System.out.println("2 : "+level.task2+" : "+returnArrByGoodName(good).size()+"/"+level.task2Number);
             }
         }
         for (AnimalEnum value : AnimalEnum.values()) {
             String animal = value.toString();
             if(animal.equalsIgnoreCase(level.task2)){
-                System.out.println("task 2 :"+returnArrByAnimalName(animal).size()+"/"+level.task2Number);
+                System.out.println("2 : "+level.task2+" : "+returnArrByAnimalName(animal).size()+"/"+level.task2Number);
             }
         }
         if(level.task2.equalsIgnoreCase("coin")){
-            System.out.println(personsController.getCurrentUser().totalCoins+"/"+level.task2Number);
+            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task2Number);
         }
 
         for (GoodsEnum value : GoodsEnum.values()) {
             String good = value.toString();
             if(good.equalsIgnoreCase(level.task3)){
-                System.out.println("task 3 :"+returnArrByGoodName(good).size()+"/"+level.task3Number);
+                System.out.println("3 : "+level.task3+" : "+returnArrByGoodName(good).size()+"/"+level.task3Number);
             }
         }
         for (AnimalEnum value : AnimalEnum.values()) {
             String animal = value.toString();
             if(animal.equalsIgnoreCase(level.task3)){
-                System.out.println("task 3 :"+returnArrByAnimalName(animal).size()+"/"+level.task3Number);
+                System.out.println("3 : "+level.task3+" : "+returnArrByAnimalName(animal).size()+"/"+level.task3Number);
             }
         }
         if(level.task3.equalsIgnoreCase("coin")){
-            System.out.println(personsController.getCurrentUser().totalCoins+"/"+level.task3Number);
+            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task3Number);
         }
     }
 
