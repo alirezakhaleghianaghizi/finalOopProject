@@ -39,7 +39,7 @@ public class InputProcessor {
         }
     }
 
-    //TODO
+
 
     public boolean processBuy(String animalName){
        if( mainController.animals.buyAnimal(animalName,mainController.personsController.getCurrentUser())) {
@@ -128,41 +128,54 @@ public class InputProcessor {
         return false;
     }
 
+    //TODO for tomorrow
+
     public boolean cage(double x,double y){
         System.out.println("cage x : "+x+"\n y : "+y);
         if(x>6|x<0|y<0|y>6){
             System.out.println("the spot you choose is not in the surface");
             return false;
         }
-        // cage in manager
-        return true;
+        if(mainController.animals.cage(x,y, mainController.goods)){
+            return true;
+        }
+        System.err.println("there is no wild animal there");
+        return false ;
     }
 
     public boolean truckLoad(String itemName){
         System.out.println("truck load"+itemName);
-        //truck load in manager
+       mainController.gadgets.truckLoad(mainController.returnGoodByName(itemName));
         return true;
     }
 
-    public boolean truckUnload(String itemName){
-        System.out.println("truck un load"+itemName);
-        //truck un load in manager
-        return true;
+    public boolean truckUnload(String itemName) {
+        if (mainController.gadgets.truckUnload(mainController.returnGoodByName(itemName))) {
+            System.out.println("truck un load" + itemName);
+            return true;
+        } else {
+            System.err.println("truck have gone ");
+            return false;
+        }
     }
 
     public boolean truckGo(){
-        System.out.println("truck go");
-        //truck go in manager
+
+        if(mainController.gadgets.truckGo()){
+            System.out.println("truck go");
+            return true;
+        }
+        System.err.println("truck is one the way");
         return true;
     }
 
     public boolean inquiry(){
-        System.out.println("inquiry");
-        //inquiry in manager
+       mainController.showAfterTurn();
         return true;
     }
 
     public boolean turn(int n){
+        mainController.turn(n);
         System.out.println("time of turning : "+n);
         //turn time in manager
         return true;
