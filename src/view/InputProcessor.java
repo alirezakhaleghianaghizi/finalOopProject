@@ -2,6 +2,7 @@ package view;
 
 import controller.MainController;
 import menus.Color;
+import model.goods.Goods;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class InputProcessor {
         while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")){
             this.mainController.logger.lastChange=new Date();
             if((matcher=InputAlgorithms.BUY.inputMatcher(input)).find()) this.processBuy(matcher.group(1));
-            else if((matcher=InputAlgorithms.PICKUP.inputMatcher(input)).find()) this.pickUp(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
+            else if((matcher=InputAlgorithms.PICKUP.inputMatcher(input)).find()) this.processPickUp(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
             else if(InputAlgorithms.WELL.inputMatcher(input).find()) this.well();
             else if((matcher=InputAlgorithms.PLANT.inputMatcher(input)).find()) this.plant(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
             else if((matcher=InputAlgorithms.WORK.inputMatcher(input)).find()) this.work(matcher.group(1));
@@ -70,15 +71,18 @@ public class InputProcessor {
         return false;
     }
 
-    public boolean pickUp(double x,double y){
+    public boolean processPickUp(double x, double y){
         if(x>6|x<0|y<0|y>6){
             this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",OUT OF SURFACE SPOT IN PICKUP+.");
             System.err.println("the spot you choose is not in the surface");
             return false;
         }else {
-            if( mainController.goods.pickUp(x,y, mainController.gadgets,this.mainController.logger))
-            System.out.println("to the WareHouse ...");
-            return true;
+            if (mainController.goods.pickUp(x, y, mainController.gadgets, this.mainController.logger)) {
+                System.out.println("to the WareHouse ...");
+                // mainController.goods.productGoods.remove();
+                return true;
+            }
+            return false;
         }
     }
 

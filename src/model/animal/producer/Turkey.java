@@ -10,4 +10,13 @@ public class Turkey extends producerAnimal implements producerAnimals  {
         this.produceTime = 3;
     }
 
+    @Override
+    public boolean produce() {
+        return false;
+    }
+
+    @Override
+    public boolean decreaseLive() {
+        return false;
+    }
 }

@@ -87,6 +87,7 @@ public class ControllerGoods {
                 if(gadget.warehouse.haveSpace(e)){
                     gadget.warehouse.existence.add(e);
                     gadget.warehouse.seprateGoods(e);
+                    productGoods.remove(e);
                     logger.commands.add("INFO,"+logger.lastChange.toString()+",PICKUP "+e.name+" TO WAREHOUSE.");
                     return true;
                 }else {

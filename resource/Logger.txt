@@ -1,0 +1,11 @@
+{
+  "dateStartOperatingLogger": "Jun 1, 2021, 7:53:47 PM",
+  "userName": "vahid",
+  "lastChange": "Jun 1, 2021, 7:54:12 PM",
+  "commands": [
+    "INFO,Tue Jun 01 19:53:52 IRDT 2021,STARTED THE GAME. ",
+    "INFO,Tue Jun 01 19:53:56 IRDT 2021,BUY chicken .",
+    "INFO,Tue Jun 01 19:54:05 IRDT 2021,PICKUP EGG TO WAREHOUSE.",
+    "ERROR ,Tue Jun 01 19:54:12 IRDT 2021,NO GOODS TO PICKUP."
+  ]
+}

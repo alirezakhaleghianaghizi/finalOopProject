@@ -4,6 +4,7 @@ import menus.Logger;
 import model.animal.AnimalEnum;
 import model.animal.defender.Dog;
 import model.animal.producer.Chicken;
+import model.goods.Egg;
 import model.goods.Goods;
 import model.goods.GoodsEnum;
 import model.level.Level;
@@ -40,6 +41,7 @@ public class MainController {
             
         }
         wellFulling();
+        producing();
         showAfterTurn();
     }
 
@@ -50,7 +52,6 @@ public class MainController {
         showTask(personsController.getCurrentUser().currentLevel);
     }
 
-    // TODO testing
     public void showTask(Level level){
         for (GoodsEnum value : GoodsEnum.values()) {
             String good = value.toString();
@@ -101,7 +102,6 @@ public class MainController {
         }
     }
 
-
     //Search methods :
     public ArrayList returnArrByGoodName(String GoodName){
         switch (GoodName){
@@ -144,6 +144,15 @@ public class MainController {
         return null;
     }
 
+    public Goods returnProductByLocation(double x , double y){
+        for (Goods productGood : goods.productGoods) {
+            if(productGood.x==x&&productGood.y==y){
+                return productGood;
+            }
+        }
+        return null;
+    }
+
     //check time passing after turn :
     public boolean wellFulling(){
         if(gadgets.well.fulling==null)return false;
@@ -162,8 +171,18 @@ public class MainController {
         return false;
     }
 
-    public void producing(){
-
+    public boolean producing(){
+        for (Chicken chicken : animals.chickens) {
+            chicken.produce();
+            //TODO >= to be fixed
+            if(chicken.produce.getDate()+chicken.produceTime>=Timing.getCurrentTime()){
+                if(chicken.produce()){
+                    goods.productGoods.add(new Egg(chicken.x, chicken.y));
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
 }

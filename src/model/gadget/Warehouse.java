@@ -39,6 +39,10 @@ public class Warehouse extends Gadget {
     }
 
     public boolean haveSpace(Goods goods) {
+        this.currentCapacity=GadgetEnum.WAREHOUSE.capacity;
+        for (Goods goods1 : existence) {
+            this.currentCapacity-= goods.capacity;
+        }
         if (currentCapacity > goods.capacity)
             return true;
             return false;
@@ -67,6 +71,8 @@ public class Warehouse extends Gadget {
                 tigerDollInWareHouse.add(goods);
             }else if(goods.name.equals(GoodsEnum.CLOTH.name())){
                 clothInWareHouse.add(goods);
+            }else if(goods.name.equals(GoodsEnum.EGG.name())){
+                eggInWareHouse.add(goods);
             }
         }
 }
