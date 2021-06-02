@@ -12,7 +12,7 @@ public abstract class Factory extends Model {
     public Factory(String name, double x, double y,int timeOfProducingGood) {
         super(name, x, y);
         this.timeOfProducingGood=timeOfProducingGood;
-        int level=1;
+        this.level=1;
         this.isWorking=false;
         this.numberOfGoodsCatch=0;
     }
