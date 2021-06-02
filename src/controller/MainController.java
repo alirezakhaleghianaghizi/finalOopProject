@@ -37,16 +37,33 @@ public class MainController {
 
 
     public void turn(int n) {
+        this.setTimeOfProducing();
         for (int i = 1; i <= n; i++) {
             timing.goForward();
-            
         }
         wellFulling();
         producing();
+        decreaseLive();
         showAfterTurn();
+
     }
 
+    public void setTimeOfProducing(){
+        for (Chicken chicken : this.animals.chickens) {
+            chicken.produce();
+            chicken.decreaseLive();
+        }
+        for (Bufallo bufallo : this.animals.bufallos) {
+            bufallo.produce();
+            bufallo.decreaseLive();
+        }
+        for (Turkey turkey : this.animals.turkeys) {
+            turkey.produce();
+            turkey.decreaseLive();
+        }
+    }
     public void showAfterTurn() {
+        this.showGood();
         System.out.println("The time passed :" + timing.getCurrentTime());
         goods.showGrass();
         animals.showAnimal();
@@ -100,6 +117,13 @@ public class MainController {
         }
         if(level.task3.equalsIgnoreCase("coin")){
             System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task3Number);
+        }
+    }
+
+    public void showGood(){
+        if(this.goods.productGoods!=null)
+        for (Goods productGood : this.goods.productGoods) {
+            System.out.println(productGood.name+"\t x :"+productGood.x+"\t y: "+ productGood.y);
         }
     }
 
@@ -172,32 +196,31 @@ public class MainController {
             return false;
     }
 
-    public boolean producing(){
+    public void producing(){
         for (Chicken chicken : animals.chickens) {
-            if(chicken.produce()){
-                if(chicken.produce.getDate()+chicken.produceTime>=Timing.getCurrentTime()){
+            if(chicken.produce!=null){
+                if(chicken.produce.getDate()+chicken.produceTime<=Timing.getCurrentTime()){
                     goods.productGoods.add(new Egg(chicken.x, chicken.y));
-                    return true;
+                    chicken.produce=null;
                 }
             }
         }
         for (Turkey turkey : animals.turkeys) {
-            if (turkey.produce()) {
-                if (turkey.produce.getDate() + turkey.produceTime >= Timing.getCurrentTime()) {
+            if (turkey.produce!=null) {
+                if (turkey.produce.getDate() + turkey.produceTime <= Timing.getCurrentTime()) {
                     goods.productGoods.add(new Feather(turkey.x, turkey.y));
-                    return true;
+                    turkey.produce=null;
                 }
             }
         }
         for (Bufallo bufallo : animals.bufallos) {
-            if(bufallo.produce()){
-                if(bufallo.produce.getDate()+bufallo.produceTime>=Timing.getCurrentTime()){
+            if (bufallo.produce != null) {
+                if (bufallo.produce.getDate() + bufallo.produceTime <= Timing.getCurrentTime()) {
                     goods.productGoods.add(new Milk(bufallo.x, bufallo.y));
-                    return true;
+                    bufallo.produce = null;
                 }
             }
         }
-        return false;
     }
 
 
@@ -210,42 +233,37 @@ public class MainController {
         return false;
     }
 
-    public boolean decreaseLive(){
+    public void decreaseLive(){
         for (Bufallo bufallo : animals.bufallos) {
-           if(bufallo.decreaseLive()){
+           if(bufallo.decreaseLive!=null){
                if(bufallo.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                   bufallo.livies-=10;
+                   bufallo.livies-=10*(Timing.getCurrentTime()-bufallo.decreaseLive.getDate());
                    if(bufallo.isDie()){
                        animals.bufallos.remove(bufallo);
                    }
-                   return true;
                }
            }
         }
         for (Chicken chicken : animals.chickens) {
-            if(chicken.decreaseLive()){
+            if(chicken.decreaseLive!=null){
                 if(chicken.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                    chicken.livies-=10;
+                    chicken.livies-=10*(Timing.getCurrentTime()-chicken.decreaseLive.getDate());
                     if(chicken.isDie()){
                         animals.chickens.remove(chicken);
                     }
-                    return true;
                 }
             }
         }
         for (Turkey turkey : animals.turkeys) {
-            if(turkey.decreaseLive()){
+            if(turkey.decreaseLive!=null){
                 if(turkey.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                    turkey.livies-=10;
+                    turkey.livies-=10*(Timing.getCurrentTime()-turkey.decreaseLive.getDate());
                     if(turkey.isDie()){
                         animals.turkeys.remove(turkey);
                     }
-                    return true;
-
                 }
             }
         }
-        return false;
     }
 
 

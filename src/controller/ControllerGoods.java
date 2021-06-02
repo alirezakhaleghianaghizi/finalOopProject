@@ -53,24 +53,24 @@ public class ControllerGoods {
         }
 
     public int plant(double x , double y,ControllerFactory factory,ControllerGadget gadget){
-        for (CookieBakery cookieBakeryFactory : factory.cookieBakeryFactories) {
-            if(cookieBakeryFactory.x==x&&cookieBakeryFactory.y==y){return 1;}
+        if ( factory.cookieBakeryFactories!=null) {
+            if(factory.cookieBakeryFactories.x==x&&factory.cookieBakeryFactories.y==y){return 1;}
         }
-        for (EggPowder eggPowderFactory : factory.eggPowderFactories) {
-            if(eggPowderFactory.x==x&&eggPowderFactory.y==y){return 1;}
+        if (factory.eggPowderFactories!=null) {
+            if(factory.eggPowderFactories.x==x&&factory.eggPowderFactories.y==y){return 1;}
         }
-        for (IceCreamFactory iceCreamFactory : factory.iceCreamFactories) {
-            if(iceCreamFactory.x==x&&iceCreamFactory.y==y){return 1;}
+        if (factory.iceCreamFactories!=null) {
+            if(factory.iceCreamFactories.x==x&&factory.iceCreamFactories.y==y){return 1;}
         }
-        for (MilkSeprator milkSepratorFactory : factory.milkSepratorFactories) {
-            if(milkSepratorFactory.x==x&&milkSepratorFactory.y==y){return 1;}
+        if (factory.milkSepratorFactories!=null) {
+            if(factory.milkSepratorFactories.x==x&&factory.milkSepratorFactories.y==y){return 1;}
         }
 
-        for (Spinnery spinneryFactory : factory.spinneryFactories) {
-            if(spinneryFactory.x==x&&spinneryFactory.y==y){return 1;}
+        if (factory.spinneryFactories!=null) {
+            if(factory.spinneryFactories.x==x&&factory.spinneryFactories.y==y){return 1;}
         }
-        for (Weaving weavingFactory : factory.WeavingFactories) {
-            if(weavingFactory.x==x&&weavingFactory.y==y){return 1;}
+        if (factory.WeavingFactories!=null) {
+            if(factory.WeavingFactories.x==x&&factory.WeavingFactories.y==y){return 1;}
         }
         if(gadget.well.x==x&&gadget.well.y==y){return 0;}
         if(gadget.truck.x==x&&gadget.truck.y==y){return 0;}

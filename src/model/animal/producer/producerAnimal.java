@@ -23,7 +23,7 @@ public  abstract class producerAnimal extends Animal {
     }
     public boolean produce() {
         this.haveEaten();
-        if(this.isFull){
+        if(this.isFull&&this.produce==null){
             produce = new Timing();
             return true;
         }

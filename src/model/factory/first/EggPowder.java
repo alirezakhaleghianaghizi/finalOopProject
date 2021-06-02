@@ -5,7 +5,7 @@ import model.factory.FactoryMoney;
 
 public class EggPowder extends Factory {
 
-    public EggPowder(String name, double x, double y) {
+    public EggPowder(double x,double y) {
         super(FactoryMoney.EGGPOWDER.toString(), x, y,4);
     }
 

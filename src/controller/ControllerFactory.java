@@ -12,21 +12,14 @@ import model.goods.*;
 import java.util.ArrayList;
 
 public class ControllerFactory {
-    public ArrayList<EggPowder> eggPowderFactories;
-    public ArrayList<MilkSeprator> milkSepratorFactories;
-    public ArrayList<Spinnery> spinneryFactories;
-    public  ArrayList<CookieBakery> cookieBakeryFactories;
-    public ArrayList<IceCreamFactory> iceCreamFactories;
-    public  ArrayList<Weaving> WeavingFactories;
+    public EggPowder eggPowderFactories;
+    public MilkSeprator milkSepratorFactories;
+    public Spinnery spinneryFactories;
+    public  CookieBakery cookieBakeryFactories;
+    public IceCreamFactory iceCreamFactories;
+    public  Weaving WeavingFactories;
 
-    public ControllerFactory() {
-        this.eggPowderFactories = new ArrayList<>();
-        this.milkSepratorFactories = new ArrayList<>();
-        this.spinneryFactories = new ArrayList<>();
-        this.cookieBakeryFactories = new ArrayList<>();
-        this.iceCreamFactories = new ArrayList<>();
-        WeavingFactories = new ArrayList<>();
-    }
+    public ControllerFactory() { }
 
     //Working fac methods
         // first fac :
