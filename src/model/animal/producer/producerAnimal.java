@@ -6,8 +6,10 @@ import view.Timing;
 public  abstract class producerAnimal extends Animal {
     public Timing produce;
     public Timing decreaseLive;
+    public Timing startToWalk;
     public int produceTime;
     boolean isFull;
+
     public producerAnimal(String name, double x, double y, double footStep, int livies, int cost) {
         super(name, x, y, footStep, livies, cost);
     }
@@ -21,6 +23,7 @@ public  abstract class producerAnimal extends Animal {
             return false;
         }
     }
+
     public boolean produce() {
         this.haveEaten();
         if(this.isFull&&this.produce==null){
@@ -29,6 +32,7 @@ public  abstract class producerAnimal extends Animal {
         }
         return false;
     }
+
     public boolean decreaseLive(){
         this.decreaseLive= new Timing();
         return true;
@@ -42,5 +46,7 @@ public  abstract class producerAnimal extends Animal {
         }
         return false;
     }
+
+
 
 }
