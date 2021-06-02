@@ -82,7 +82,6 @@ public class ControllerGoods {
             gadget.well.capacity--;
             grasses.add(new Grass(x,y));
             return 2;
-
     }
 
     public boolean pickUp(double x , double y, ControllerGadget gadget, Logger logger){
