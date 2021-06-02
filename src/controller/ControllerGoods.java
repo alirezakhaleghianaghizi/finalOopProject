@@ -69,8 +69,8 @@ public class ControllerGoods {
         if (factory.spinneryFactories!=null) {
             if(factory.spinneryFactories.x==x&&factory.spinneryFactories.y==y){return 1;}
         }
-        if (factory.WeavingFactories!=null) {
-            if(factory.WeavingFactories.x==x&&factory.WeavingFactories.y==y){return 1;}
+        if (factory.weavingFactories!=null) {
+            if(factory.weavingFactories.x==x&&factory.weavingFactories.y==y){return 1;}
         }
         if(gadget.well.x==x&&gadget.well.y==y){return 0;}
         if(gadget.truck.x==x&&gadget.truck.y==y){return 0;}
