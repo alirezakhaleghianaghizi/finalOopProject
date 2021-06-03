@@ -40,31 +40,15 @@ public class MainController {
 
 
     public void turn(int n) {
-        this.setTimeOfProducing();
         for (int i = 1; i <= n; i++) {
-            timing.goForward();
             movingAllAnimal();
             eatAllanimal();
+            timing.goForward();
+            wellFulling();
+            producing();
+            decreaseLive();
         }
-        wellFulling();
-        producing();
-        decreaseLive();
         showAfterTurn();
-    }
-
-    public void setTimeOfProducing(){
-        for (Chicken chicken : this.animals.chickens) {
-            chicken.produce();
-            chicken.decreaseLive();
-        }
-        for (Bufallo bufallo : this.animals.bufallos) {
-            bufallo.produce();
-            bufallo.decreaseLive();
-        }
-        for (Turkey turkey : this.animals.turkeys) {
-            turkey.produce();
-            turkey.decreaseLive();
-        }
     }
 
     public void showAfterTurn() {
@@ -75,54 +59,29 @@ public class MainController {
         showTask(personsController.getCurrentUser().currentLevel);
     }
 
+    public void showSingleTask(String task,int taskNum,int taskNumber){
+        for (GoodsEnum value : GoodsEnum.values()) {
+            String good = value.toString();
+            if(good.equalsIgnoreCase(task)){
+                System.out.println(taskNum+" : "+task+" : "+returnArrByGoodName(good).size()+"/"+taskNumber);
+            }
+        }
+        for (AnimalEnum value : AnimalEnum.values()) {
+            String animal = value.toString();
+            if(animal.equalsIgnoreCase(task)){
+                System.out.println(taskNum+" : "+task+" : "+returnArrByAnimalName(animal).size()+"/"+taskNumber);
+            }
+        }
+        if(task.equalsIgnoreCase("coin")){
+            System.out.println(taskNum+" : coins : "+personsController.getCurrentUser().totalCoins+"/"+taskNumber);
+        }
+    }
+
     public void showTask(Level level){
-        for (GoodsEnum value : GoodsEnum.values()) {
-            String good = value.toString();
-            if(good.equalsIgnoreCase(level.task1)){
-                System.out.println("1 : "+level.task1+" : "+returnArrByGoodName(good).size()+"/"+level.task1Number);
-            }
-        }
-        for (AnimalEnum value : AnimalEnum.values()) {
-            String animal = value.toString();
-            if(animal.equalsIgnoreCase(level.task1)){
-                System.out.println("1 : "+level.task1+" : "+returnArrByAnimalName(animal).size()+"/"+level.task1Number);
-            }
-        }
-        if(level.task1.equalsIgnoreCase("coin")){
-            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task1Number);
-        }
+        this.showSingleTask(level.task1,1, level.task1Number);
+        this.showSingleTask(level.task2,2, level.task2Number);
+        this.showSingleTask(level.task3,3, level.task3Number);
 
-        for (GoodsEnum value : GoodsEnum.values()) {
-            String good = value.toString();
-            if(good.equalsIgnoreCase(level.task2)){
-                System.out.println("2 : "+level.task2+" : "+returnArrByGoodName(good).size()+"/"+level.task2Number);
-            }
-        }
-        for (AnimalEnum value : AnimalEnum.values()) {
-            String animal = value.toString();
-            if(animal.equalsIgnoreCase(level.task2)){
-                System.out.println("2 : "+level.task2+" : "+returnArrByAnimalName(animal).size()+"/"+level.task2Number);
-            }
-        }
-        if(level.task2.equalsIgnoreCase("coin")){
-            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task2Number);
-        }
-
-        for (GoodsEnum value : GoodsEnum.values()) {
-            String good = value.toString();
-            if(good.equalsIgnoreCase(level.task3)){
-                System.out.println("3 : "+level.task3+" : "+returnArrByGoodName(good).size()+"/"+level.task3Number);
-            }
-        }
-        for (AnimalEnum value : AnimalEnum.values()) {
-            String animal = value.toString();
-            if(animal.equalsIgnoreCase(level.task3)){
-                System.out.println("3 : "+level.task3+" : "+returnArrByAnimalName(animal).size()+"/"+level.task3Number);
-            }
-        }
-        if(level.task3.equalsIgnoreCase("coin")){
-            System.out.println("coins : "+personsController.getCurrentUser().totalCoins+"/"+level.task3Number);
-        }
     }
 
     public void showGood(){
@@ -206,6 +165,7 @@ public class MainController {
             if(chicken.produce!=null){
                 if(chicken.produce.getDate()+chicken.produceTime<=Timing.getCurrentTime()){
                     goods.productGoods.add(new Egg(chicken.x, chicken.y));
+                    chicken.isFull=false;
                     chicken.produce=null;
                 }
             }
@@ -214,6 +174,7 @@ public class MainController {
             if (turkey.produce!=null) {
                 if (turkey.produce.getDate() + turkey.produceTime <= Timing.getCurrentTime()) {
                     goods.productGoods.add(new Feather(turkey.x, turkey.y));
+                    turkey.isFull=false;
                     turkey.produce=null;
                 }
             }
@@ -222,6 +183,7 @@ public class MainController {
             if (bufallo.produce != null) {
                 if (bufallo.produce.getDate() + bufallo.produceTime <= Timing.getCurrentTime()) {
                     goods.productGoods.add(new Milk(bufallo.x, bufallo.y));
+                    bufallo.isFull=false;
                     bufallo.produce = null;
                 }
             }
@@ -232,7 +194,7 @@ public class MainController {
     public boolean movingProducerAnimal(producerAnimal animal) {
         double path;
         double xDest = animal.x, yDest = animal.y;
-        double minPath = 20;
+        double minPath = 36;
         for (Grass grass : goods.grasses) {
             path = Math.abs(animal.x - grass.x) + Math.abs(animal.y - grass.y);
             if (path < minPath) {
@@ -246,6 +208,7 @@ public class MainController {
 
     public boolean goToDest(double xDest , double yDest , Animal animal){
         if (animal.x == xDest && animal.y == yDest) {
+            return false;
         } else if (animal.x == xDest) {
             if (animal.y > yDest) {
                 animal.y--;
@@ -254,7 +217,7 @@ public class MainController {
                 return true;
             }
         } else if (animal.y == yDest) {
-            if (animal.x > yDest) {
+            if (animal.x > xDest) {
                 animal.x--;
             } else {
                 animal.x++;
@@ -262,7 +225,7 @@ public class MainController {
             }
         } else {
             if (Math.abs(animal.x - xDest) > Math.abs(animal.y - yDest)) {
-                if (animal.x > yDest) {
+                if (animal.x > xDest) {
                     animal.x--;
                 } else {
                     animal.x++;
@@ -309,14 +272,17 @@ public class MainController {
         for (Cat cat : animals.cats) {
             movingCatAnimal(cat);
         }
+
         //TODO Dogs , Wilds
     }
         //Eating methods :
     public boolean eat(producerAnimal animal){
         for (Grass grass : goods.grasses) {
-            if(grass.x==animal.x&&grass.y==animal.y){
+            if(grass.x==animal.x&&grass.y==animal.y&&!animal.isFull&&animal.produce==null){
                 goods.grasses.remove(grass);
                 animal.livies=110;
+                animal.isFull=true;
+                animal.produce=new Timing();
                 return true;
             }
         }
@@ -326,12 +292,21 @@ public class MainController {
     public void eatAllanimal(){
         for (Chicken chicken : animals.chickens) {
             eat(chicken);
+            if(chicken.isFull){
+                if(chicken.produce==null) chicken.produce = new Timing();
+            }
         }
         for (Bufallo bufallo : animals.bufallos) {
             eat(bufallo);
+            if(bufallo.isFull){
+                if(bufallo.produce==null) bufallo.produce = new Timing();
+            }
         }
         for (Turkey turkey : animals.turkeys) {
             eat(turkey);
+            if(turkey.isFull){
+                if(turkey.produce==null) turkey.produce = new Timing();
+            }
         }
     }
 
@@ -340,12 +315,9 @@ public class MainController {
         boolean bool;
         ArrayList<Bufallo> index1  = new ArrayList<>();
         for (Bufallo bufallo : animals.bufallos) {
-           if(bufallo.decreaseLive!=null){
-               if(bufallo.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                   bufallo.livies-=10*(Timing.getCurrentTime()-bufallo.decreaseLive.getDate());
+                   bufallo.livies-=10;
+                   bufallo.isFull=false;
                    if(bufallo.isDie()) index1.add(bufallo);
-               }
-           }
         }
         for (Bufallo bufallo : index1) {
             bool=false;
@@ -358,13 +330,10 @@ public class MainController {
         index1.clear();
         ArrayList<Chicken> index  = new ArrayList<>();
         for (Chicken chicken : animals.chickens) {
-            if(chicken.decreaseLive!=null){
-                if(chicken.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                    chicken.livies-=10*(Timing.getCurrentTime()-chicken.decreaseLive.getDate());
+                    chicken.livies-=10;
+                    chicken.isFull=false;
                     if(chicken.isDie())
                         index.add(chicken);
-                }
-            }
         }
         for (Chicken chicken : index) {
             bool =false;
@@ -377,12 +346,9 @@ public class MainController {
         index.clear();
         ArrayList<Turkey> index2 = new ArrayList<>();
         for (Turkey turkey : animals.turkeys) {
-            if(turkey.decreaseLive!=null){
-                if(turkey.decreaseLive.getDate()+1<=Timing.getCurrentTime()){
-                    turkey.livies-=10*(Timing.getCurrentTime()-turkey.decreaseLive.getDate());
+                    turkey.livies-=10;
+                    turkey.isFull=false;
                     if(turkey.isDie()) index2.add(turkey);
-                }
-            }
         }
         for (Turkey turkey : index2) {
             bool=false;

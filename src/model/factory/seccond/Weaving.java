@@ -5,7 +5,7 @@ import model.factory.FactoryMoney;
 
 public class Weaving extends Factory {
     public Weaving( double x, double y) {
-        super(FactoryMoney.WEAVING.toString(), x, y, 7);
+        super(FactoryMoney.WEAVING.getMoney(),FactoryMoney.WEAVING.toString(), x, y, 7);
 
     }
 }

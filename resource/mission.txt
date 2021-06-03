@@ -2,7 +2,7 @@
   "numberOfLevels": 10,
   "levels": [
     {
-      "startCoins": 200,
+      "startCoins": 2000,
       "task1": "CHICKEN",
       "task1Number": 4,
       "task2": "EGG",

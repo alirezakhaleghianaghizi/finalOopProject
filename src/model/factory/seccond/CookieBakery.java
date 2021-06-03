@@ -5,6 +5,6 @@ import model.factory.FactoryMoney;
 
 public class CookieBakery extends Factory {
     public CookieBakery( double x, double y) {
-        super(FactoryMoney.COOKIEBAKERY.toString(), x, y,5);
+        super(FactoryMoney.COOKIEBAKERY.getMoney(),FactoryMoney.COOKIEBAKERY.toString(), x, y,5);
     }
 }
