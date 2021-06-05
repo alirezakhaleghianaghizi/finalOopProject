@@ -202,7 +202,7 @@ public class InputProcessor {
             this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," + factory.name + "is not build");
             return false;
         }
-        int situation=mainController.factories.workFactory(mainController.factories.eggPowderFactories, mainController.gadgets);
+        int situation=mainController.factories.workFactory(factory, mainController.gadgets);
         if(situation==1) {
             System.out.println(factory.name + " working ...");
             this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+factory.name+" started working");

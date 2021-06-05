@@ -38,25 +38,34 @@ public class ControllerFactory {
         if (eggPowder.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.EGG.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(eggPowder.work(1)) return 1;
+                    if(eggPowder.work(1)) {
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.eggInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
-            ArrayList index;
+            ArrayList<Integer> index =new ArrayList<>();
+            ArrayList<Integer> indexOfGood =new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.EGG.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        indexOfGood.add(gadget.warehouse.eggInWareHouse.indexOf(g));
+                        index.add(gadget.warehouse.existence.indexOf(g));
                     }
                 }
             }
             if(a==0) return 0;
-            if(eggPowder.work(a))return 1;
+            if(eggPowder.work(a)){
+                for (int i = 0; i < index.size(); i++) gadget.warehouse.existence.remove(index.get(i));
+                for (int i = 0; i < indexOfGood.size(); i++) gadget.warehouse.eggInWareHouse.remove(indexOfGood.get(i));
+                return 1;
+            }
             return -1;
         }
     }
@@ -65,24 +74,34 @@ public class ControllerFactory {
         if (spinnery.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.FEATHER.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(spinnery.work(1)) return 1;
+                    if(spinnery.work(1)){
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.featherInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
+            ArrayList<Integer>index=new ArrayList<>();
+            ArrayList<Integer> indexOfGood =new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.FEATHER.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        index.add(gadget.warehouse.existence.indexOf(g));
+                        indexOfGood.add(gadget.warehouse.featherInWareHouse.indexOf(g));
                     }
                 }
             }
-            if(a==0) return 0;
-            if(spinnery.work(a)) return 1;
+          if(a==0) return 0;
+            if(spinnery.work(a)){
+                for (int i = 0; i < index.size(); i++) gadget.warehouse.existence.remove(index.get(i));
+                for (int i = 0; i < indexOfGood.size(); i++) gadget.warehouse.existence.remove(indexOfGood.get(i));
+                return 1;
+            }
             return -1;
         }
     }
@@ -91,51 +110,70 @@ public class ControllerFactory {
         if (milkSeprator.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.MILK.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(milkSeprator.work(1)) return 1;
+                    if(milkSeprator.work(1)){
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.milkInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
+            ArrayList<Integer>index=new ArrayList<>();
+            ArrayList<Integer>indexOfGood=new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.MILK.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        index.add(gadget.warehouse.existence.indexOf(g));
+                        indexOfGood.add(gadget.warehouse.milkInWareHouse.indexOf(g));
                     }
                 }
             }
             if(a==0) return 0;
-            if(milkSeprator.work(a)) return 1;
+            if(milkSeprator.work(a)){
+                for (int i = 0; i < index.size(); i++) gadget.warehouse.existence.remove(index.get(i));
+                for (int i1 = 0; i1 < indexOfGood.size(); i1++) gadget.warehouse.milkInWareHouse.remove(indexOfGood.get(i1));
+                return 1;
+            }
             return -1;
         }
     }
 
-        //seccond fac :
     public int workCookieBakery(CookieBakery cookieBakery, ControllerGadget gadget) {
         if (cookieBakery.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.FLOUR.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(cookieBakery.work(1)) return 1;
+                    if(cookieBakery.work(1)) {
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.flourInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
+            ArrayList<Integer> index=new ArrayList<>();
+            ArrayList<Integer> indexOfGood=new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.FLOUR.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        index.add(gadget.warehouse.existence.indexOf(g));
+                        indexOfGood.add(gadget.warehouse.flourInWareHouse.indexOf(g));
                     }
                 }
             }
-            if(a==0) return 0;
-            if(cookieBakery.work(a)) return 1;
+         if(a==0) return 0;
+            if(cookieBakery.work(a)){
+                for (int i = 0; i < index.size(); i++) gadget.warehouse.existence.remove(index.get(i));
+                for (int i1 = 0; i1 < indexOfGood.size(); i1++) gadget.warehouse.flourInWareHouse.remove(indexOfGood.get(i1));
+                return 1;
+            }
             return -1;
         }
     }
@@ -144,24 +182,34 @@ public class ControllerFactory {
         if (weaving.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.SILK.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(weaving.work(1)) return 1;
+                    if(weaving.work(1)){
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.silkInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
+            ArrayList<Integer>index=new ArrayList<>();
+            ArrayList<Integer>indexOfGood=new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.SILK.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        index.add(gadget.warehouse.existence.indexOf(g));
+                        indexOfGood.add(gadget.warehouse.silkInWareHouse.indexOf(g));
                     }
                 }
             }
-            if(a==0) return 0;
-            if(weaving.work(a)) return 1;
+          if(a==0) return 0;
+            if(weaving.work(a)) {
+                for (int i = 0; i < index.size(); i++) gadget.warehouse.existence.remove(index.get(i));
+                for (int i = 0; i < indexOfGood.size(); i++) gadget.warehouse.silkInWareHouse.remove(indexOfGood.get(i));
+                return 1;
+            }
             return -1;
         }
     }
@@ -170,27 +218,36 @@ public class ControllerFactory {
         if (iceCreamFactory.level == 1) {
             for (Goods goods1 : gadget.warehouse.existence) {
                 if (goods1.name.equals(GoodsEnum.SEPARATEDMILK.name())) {
-                    gadget.warehouse.existence.remove(goods1);
-                    if(iceCreamFactory.work(1)) return 1;
+                    if(iceCreamFactory.work(1)){
+                        gadget.warehouse.existence.remove(goods1);
+                        gadget.warehouse.sepratedMilkInWareHouse.remove(goods1);
+                        return 1;
+                    }
                     return -1;
                 }
             }
             return 0;
         }else {
             int a = 0;
+            ArrayList<Integer> index =new ArrayList<>();
+            ArrayList<Integer> indexOfGood =new ArrayList<>();
             while (a <= 2) {
                 for (Goods g : gadget.warehouse.existence) {
                     if (g.name.equals(GoodsEnum.SEPARATEDMILK.name())) {
                         a++;
-                        gadget.warehouse.existence.remove(g);
+                        index.add(gadget.warehouse.existence.indexOf(g));
+                        indexOfGood.add(gadget.warehouse.sepratedMilkInWareHouse.indexOf(g));
                     }
                 }
             }
-            if(a==0) return 0;
-            if(iceCreamFactory.work(a)) return 1;
+           if(a==0) return 0;
+            if(iceCreamFactory.work(a)){
+                for (int i = 0; i < index.size(); i++)gadget.warehouse.existence.remove(index.get(i));
+                for (int i = 0; i < indexOfGood.size(); i++)gadget.warehouse.sepratedMilkInWareHouse.remove(indexOfGood.get(i));
+                return 1;
+            }
             return -1;
         }
     }
-
 
 }
