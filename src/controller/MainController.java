@@ -9,6 +9,10 @@ import model.animal.producer.Bufallo;
 import model.animal.producer.Chicken;
 import model.animal.producer.Turkey;
 import model.animal.producer.producerAnimal;
+import model.animal.wild.Bear;
+import model.animal.wild.Lion;
+import model.animal.wild.Tiger;
+import model.animal.wild.WildAnimals;
 import model.goods.*;
 import model.level.Level;
 import view.Timing;
@@ -259,6 +263,52 @@ public class MainController {
         return goToDest(xDest,yDest,animal);
     }
 
+    public void movingDog(Dog dog){
+        double path;
+        double xDest= dog.x , yDest= dog.y;
+        double minPath=36;
+        for (Lion lion : animals.lions) {
+            path=Math.abs(dog.x- lion.x)+Math.abs(dog.y-lion.y);
+            if(path<minPath){
+                minPath=path;
+                xDest= lion.x;
+                yDest= lion.y;
+            }
+        }
+        if(animals.lions.size()>0) {
+            goToDest(xDest, yDest, dog);
+            dogAndWildDie();
+        }
+        for (Tiger tiger : animals.tigers) {
+            path=Math.abs(dog.x- tiger.x)+Math.abs(dog.y-tiger.y);
+            if(path<minPath){
+                minPath=path;
+                xDest= tiger.x;
+                yDest= tiger.y;
+            }
+        }
+        if(animals.tigers.size()>0) {
+            goToDest(xDest, yDest, dog);
+            dogAndWildDie();
+        }
+        for (Bear bear : animals.bears) {
+            path=Math.abs(dog.x- bear.x)+Math.abs(dog.y-bear.y);
+            if(path<minPath){
+                minPath=path;
+                xDest= bear.x;
+                yDest= bear.y;
+            }
+        }
+        if(animals.bears.size()>0){
+            goToDest(xDest, yDest, dog);
+            dogAndWildDie();
+        }
+        if(animals.lions.size()==0&&animals.tigers.size()==0&&animals.bears.size()==0)
+        dog.randomMoving();
+
+
+    }
+
     public void movingAllAnimal(){
         for (Chicken chicken : animals.chickens) {
             movingProducerAnimal(chicken);
@@ -272,17 +322,30 @@ public class MainController {
         for (Cat cat : animals.cats) {
             movingCatAnimal(cat);
         }
-
-        //TODO Dogs , Wilds
+        for (Dog dog : animals.dogs) {
+            movingDog(dog);
+        }
+        for (Lion lion : animals.lions) {
+            lion.randomMoving();
+        }
+        for (Tiger tiger : animals.tigers) {
+            tiger.randomMoving();
+        }
+        for (Bear bear : animals.bears) {
+            bear.randomMoving();
+        }
+        wildsAttack();
     }
+
         //Eating methods :
     public boolean eat(producerAnimal animal){
         for (Grass grass : goods.grasses) {
             if(grass.x==animal.x&&grass.y==animal.y&&!animal.isFull&&animal.produce==null){
-                goods.grasses.remove(grass);
                 animal.livies=110;
                 animal.isFull=true;
                 animal.produce=new Timing();
+                // removing here creats bug ??!
+                goods.grasses.remove(grass);
                 return true;
             }
         }
@@ -310,7 +373,8 @@ public class MainController {
         }
     }
 
-    
+
+
     public void decreaseLive(){
         boolean bool;
         ArrayList<Bufallo> index1  = new ArrayList<>();
@@ -359,4 +423,163 @@ public class MainController {
         }
         index2.clear();
     }
+
+
+    //Attack refrence in moving
+    public void dogAndWildDie(){
+        ArrayList<Animal> saveKilling = new ArrayList<>();
+        boolean bool ;
+        for (Lion lion : animals.lions) {
+            for (Dog dog : animals.dogs) {
+                if(dog.x== lion.x&&dog.y== lion.y){
+                    saveKilling.add(dog);
+                    saveKilling.add(lion);
+                }
+            }
+            for (Animal animal : saveKilling) {
+                bool=false;
+                for (Dog dog : animals.dogs) {
+                    if(dog==animal)
+                        bool=true;
+                }
+                if(bool)
+                    animals.dogs.remove(animal);
+            }
+        }
+        for (Animal animal : saveKilling) {
+            bool=false;
+            for (Lion lion : animals.lions) {
+                if(lion==animal)
+                    bool=true;
+            }
+            if(bool)
+                animals.lions.remove(animal);
+        }
+        saveKilling.clear();
+
+        for (Tiger tiger : animals.tigers) {
+            for (Dog dog : animals.dogs) {
+                if(dog.x==tiger.x&&dog.y== tiger.y){
+                    saveKilling.add(dog);
+                    saveKilling.add(tiger);
+                }
+            }
+            for (Animal animal : saveKilling) {
+                bool=false;
+                for (Dog dog : animals.dogs) {
+                    if(dog==animal)
+                        bool=true;
+                }
+                if(bool)
+                    animals.dogs.remove(animal);
+            }
+        }
+        for (Animal animal : saveKilling) {
+            bool=false;
+            for (Tiger tiger : animals.tigers) {
+                if(tiger==animal);
+                bool=true;
+            }
+            if(bool)
+                animals.tigers.remove(animal);
+        }
+        saveKilling.clear();
+
+
+        for (Bear bear : animals.bears) {
+            for (Dog dog : animals.dogs) {
+                if(dog.x== bear.x&&dog.y== bear.y){
+                    saveKilling.add(dog);
+                    saveKilling.add(bear);
+                }
+            }
+            for (Animal animal : saveKilling) {
+                bool=false;
+                for (Dog dog : animals.dogs) {
+                    if(dog==animal)
+                        bool=true;
+                }
+                animals.dogs.remove(animal);
+            }
+        }
+        for (Animal animal : saveKilling) {
+            bool=false;
+            for (Bear bear : animals.bears) {
+                if(animal==bear);
+                bool=true;
+            }
+            animals.bears.remove(animal);
+        }
+    }
+
+    public void wildsAttack(){
+        ArrayList<producerAnimal> saveDeath = new ArrayList<>();
+        boolean bool ;
+        for (Lion lion : animals.lions) {
+            for (Chicken chicken : animals.chickens) {
+                if(chicken.x==lion.x&&chicken.y== lion.y)
+                    saveDeath.add(chicken);
+            }
+            for (Turkey turkey : animals.turkeys) {
+                if(turkey.x== lion.x&&turkey.y== lion.y)
+                    saveDeath.add(turkey);
+            }
+            for (Bufallo bufallo : animals.bufallos) {
+                if(bufallo.x== lion.x&&bufallo.y== lion.y)
+                    saveDeath.add(bufallo);
+            }
+        }
+        for (Tiger tiger : animals.tigers) {
+            for (Chicken chicken : animals.chickens) {
+                if(chicken.x==tiger.x&&chicken.y== tiger.y)
+                    saveDeath.add(chicken);
+            }
+            for (Turkey turkey : animals.turkeys) {
+                if(turkey.x== tiger.x&&turkey.y== tiger.y)
+                    saveDeath.add(turkey);
+            }
+            for (Bufallo bufallo : animals.bufallos) {
+                if(bufallo.x== tiger.x&&bufallo.y== tiger.y)
+                    saveDeath.add(bufallo);
+            }
+        }
+        for (Bear bear : animals.bears) {
+            for (Chicken chicken : animals.chickens) {
+                if(chicken.x==bear.x&&chicken.y== bear.y)
+                    saveDeath.add(chicken);
+            }
+            for (Turkey turkey : animals.turkeys) {
+                if(turkey.x== bear.x&&turkey.y== bear.y)
+                    saveDeath.add(turkey);
+            }
+            for (Bufallo bufallo : animals.bufallos) {
+                if(bufallo.x== bear.x&&bufallo.y== bear.y)
+                    saveDeath.add(bufallo);
+            }
+        }
+        for (producerAnimal producerAnimal : saveDeath) {
+            bool=false;
+            for (Chicken chicken : animals.chickens) {
+                if(chicken==producerAnimal)
+                    bool=true;
+            }
+            if(bool)
+                animals.chickens.remove(producerAnimal);
+            bool=false;
+            for (Turkey turkey : animals.turkeys) {
+                if(turkey==producerAnimal)
+                    bool=true;
+            }
+            if(bool)
+                animals.turkeys.remove(producerAnimal);
+            bool=false;
+            for (Bufallo bufallo : animals.bufallos) {
+                if(bufallo==producerAnimal)
+                    bool=true;
+            }
+            if(bool)
+                animals.bufallos.remove(producerAnimal);
+        }
+    }
+
 }

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ControllerAnimal {
+
     ArrayList<Tiger> tigers = new ArrayList<>();
     ArrayList<Bear> bears = new ArrayList<>();
     ArrayList<Lion> lions = new ArrayList<>();
@@ -29,15 +30,6 @@ public class ControllerAnimal {
     ArrayList<Bufallo> bufallos= new ArrayList<>();
     ArrayList<Turkey> turkeys  = new ArrayList<>();
 
-/*
-public boolean eat (Animal animal,ArrayList grass){
-    if(animal.name.equalsIgnoreCase("Dog")||animal.name.equalsIgnoreCase("CAT")
-            ||animal.name.equalsIgnoreCase("TIGER")||animal.name.equalsIgnoreCase("LION")||
-            animal.name.equalsIgnoreCase("BEAR"))
-    return false ;
-    else if(){
-
-}*/
     public int buyAnimal(String name, Person person){
         switch (name){
             case "chicken" :
@@ -168,8 +160,36 @@ public boolean eat (Animal animal,ArrayList grass){
                 System.out.println(cat.name + " [" + cat.x + "," + cat.y + "]");
             }
         }
+    }
 
+    public Animal findMostHungry(){
+        //TODO
+        Animal animal ;
+        if(chickens.size()>0) {
+             animal = chickens.get(0);
+        }else if(turkeys.size()>0){
+            animal = turkeys.get(0);
+        }else {
+            animal = bufallos.get(0);
+        }
+
+        for (Chicken chicken : chickens) {
+            if(chicken.livies<animal.livies)
+                animal=chicken;
+        }
+        for (Turkey turkey : turkeys) {
+            if(turkey.livies<animal.livies)
+                animal=turkey;
+        }
+        for (Bufallo bufallo : bufallos) {
+            if(bufallo.livies<animal.livies)
+                animal=bufallo;
+        }
+
+
+        return animal;
 
     }
+
 }
 

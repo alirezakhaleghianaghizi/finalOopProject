@@ -27,7 +27,7 @@ public class Animal extends Model {
         this.cost=cost;
     }
 
-    public void moving (Animal animal){
+    public void randomMoving (){
         startMoving = new Timing();
         Random random = new Random();
         int randSituation = random.nextInt(4);

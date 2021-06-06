@@ -6,21 +6,4 @@ public  abstract class WildAnimal extends Animal {
     public WildAnimal(String name, double x, double y, double footStep, int livies, int cost) {
         super(name, x, y, footStep, livies, cost);
     }
-
-    public void die(){
-
-    }
-
-    public void attack (){
-
-    }
-
-    public void arrest(){
-
-    }
-    public boolean isCatch(){
-return false;
-    }
-
-
 }

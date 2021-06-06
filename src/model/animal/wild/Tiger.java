@@ -12,8 +12,4 @@ public class Tiger extends WildAnimal implements WildAnimals {
         this.cage=0;
     }
 
-    @Override
-    public void die() {
-
-    }
 }
