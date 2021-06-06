@@ -8,7 +8,7 @@ public  abstract class producerAnimal extends Animal {
     public Timing decreaseLive;
     public Timing startToWalk;
     public int produceTime;
-    boolean isFull;
+    public boolean isFull;
 
     public producerAnimal(String name, double x, double y, double footStep, int livies, int cost) {
         super(name, x, y, footStep, livies, cost);
@@ -16,10 +16,10 @@ public  abstract class producerAnimal extends Animal {
 
     public boolean haveEaten() {
         if(this.livies>=80){
-            isFull = true;
+            this.isFull = true;
             return true;
         }else {
-            isFull=false;
+            this.isFull=false;
             return false;
         }
     }

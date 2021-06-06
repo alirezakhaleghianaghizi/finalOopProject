@@ -2,6 +2,14 @@ package view;
 
 import controller.MainController;
 import menus.Color;
+import model.factory.Factory;
+import model.factory.FactoryMoney;
+import model.factory.first.EggPowder;
+import model.factory.first.MilkSeprator;
+import model.factory.first.Spinnery;
+import model.factory.seccond.CookieBakery;
+import model.factory.seccond.IceCreamFactory;
+import model.factory.seccond.Weaving;
 import model.goods.Goods;
 
 import java.util.Date;
@@ -52,9 +60,65 @@ public class InputProcessor {
     }
 
 
-    public boolean build(String workShopName){
+    public boolean build(String workShopName) {
+        switch (workShopName.toUpperCase()) {
+            case "EGGPOWDER":
+                if (this.situationOfOpeningWorkShop(mainController.factories.eggPowderFactories,FactoryMoney.EGGPOWDER)==1) {
+                    this.mainController.factories.eggPowderFactories=new EggPowder(0,1);
+                    return true;
+                }
+                return false;
+            case "COOKIEFACTORY":
+                if (this.situationOfOpeningWorkShop(mainController.factories.cookieBakeryFactories ,FactoryMoney.COOKIEBAKERY)== 1) {
+                    mainController.factories.cookieBakeryFactories = new CookieBakery(0, 3);
+                    return true;
+                }
+                return false;
+            case "MILKSEPRATOR":
+                if (this.situationOfOpeningWorkShop(mainController.factories.milkSepratorFactories,FactoryMoney.MILKSEPERATOR) ==1) {
+                    mainController.factories.milkSepratorFactories = new MilkSeprator(0, 5);
+                     return true;
+                }
+                return false;
+            case "ICECRAEMFACTORY":
+                if ( this.situationOfOpeningWorkShop(mainController.factories.iceCreamFactories,FactoryMoney.ICECREAMFACTORY)== 1) {
+                    mainController.factories.iceCreamFactories = new IceCreamFactory(7, 1);
+                    return true;
+                }
+                return false;
+            case "SPINNERY":
+                if (this.situationOfOpeningWorkShop(mainController.factories.spinneryFactories,FactoryMoney.SPINNERY)==1) {
+                    mainController.factories.spinneryFactories = new Spinnery(7, 3);
+                    return true;
+                }
+                return false;
+            case "WEAVING":
+                if (this.situationOfOpeningWorkShop(mainController.factories.weavingFactories,FactoryMoney.WEAVING)==1) {
+                    mainController.factories.weavingFactories = new Weaving(7, 5);
+                    return true;
+                }
+                return false;
+        }
+                this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + ",THERE IS NO WORKSHOP WITH NAME " + workShopName);
+                System.err.println("THERE IS NO WORKSHOP WITH NAME " + workShopName);
+                return false;
+    }
 
-        return false;
+    public int situationOfOpeningWorkShop(Factory factory, FactoryMoney factoryMoney){
+        if(factory!=null){
+            System.err.println(factoryMoney.toString() +" already has been built  ...");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," +factoryMoney.toString() + "  has been built");
+            return -1;
+        }
+        if(this.mainController.personsController.getCurrentUser().totalCoins<factoryMoney.getMoney()){
+            System.err.println(factoryMoney.toString() + " cant open related to low money  ...");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," + factoryMoney.toString() + " cant open related to low money");
+            return 0;
+        }
+        System.out.println(factoryMoney.toString() + " factory built");
+        this.mainController.personsController.getCurrentUser().totalCoins-=factoryMoney.getMoney();
+        this.mainController.logger.commands.add("INFO," + this.mainController.logger.lastChange.toString() + "," + factoryMoney.toString() + " built");
+        return 1;
     }
 
     public boolean processBuy(String animalName){
@@ -132,44 +196,39 @@ public class InputProcessor {
         }
     }
 
+    public boolean workSituation(Factory factory){
+        if (mainController.factories.eggPowderFactories == null) {
+            System.err.println(factory.name + " is not build yet");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," + factory.name + "is not build");
+            return false;
+        }
+        int situation=mainController.factories.workFactory(factory, mainController.gadgets);
+        if(situation==1) {
+            System.out.println(factory.name + " working ...");
+            this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+factory.name+" started working");
+            return true;
+        }
+        else if(situation==-1) {
+            System.err.println(factory.name + " is already working ...");
+            this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+","+factory.name+" is already working");
+            return false;
+        }
+        else if(situation==0){
+            System.err.println("there is no enough good to work ...");
+            this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",not enough good");
+            return false;
+
+        }
+        return false;
+    }
     public boolean work(String workShopName){
-        switch (workShopName){
-            case "EggPowder":
-               if(mainController.factories.workEggPowder(mainController.factories.eggPowderFactories, mainController.gadgets)) {
-                   System.out.println(workShopName + " working ...");
-                   this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                   return true;
-               }
-            case "CookieFactory":
-                if(mainController.factories.workCookieBakery(mainController.factories.cookieBakeryFactories, mainController.gadgets)){
-                    System.out.println(workShopName+" working ...");
-                    this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                    return true;
-                }
-            case "MilkSeprator":
-                if(mainController.factories.workMilkSeprator(mainController.factories.milkSepratorFactories, mainController.gadgets)){
-                    System.out.println(workShopName+" working ...");
-                    this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                    return true;
-                }
-            case "IceCreamFactory":
-               if(mainController.factories.workIceCreamFactory(mainController.factories.iceCreamFactories, mainController.gadgets)){
-                   System.out.println(workShopName+" working ...");
-                   this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                   return true;
-               }
-            case "Spinnery":
-                if(mainController.factories.workSpinnery(mainController.factories.spinneryFactories, mainController.gadgets)){
-                    System.out.println(workShopName+" working ...");
-                    this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                    return true;
-                }
-            case "Weaving":
-                if(mainController.factories.workWeaving(mainController.factories.WeavingFactories, mainController.gadgets)){
-                    System.out.println(workShopName+" working ...");
-                    this.mainController.logger.commands.add("INFO,"+this.mainController.logger.lastChange.toString()+","+workShopName+" started working");
-                    return true;
-                }
+        switch (workShopName.toUpperCase()){
+            case "EGGPOWDER": return workSituation(mainController.factories.eggPowderFactories);
+            case "COOKIEFACTORY":return workSituation(mainController.factories.cookieBakeryFactories);
+            case "MILKSEPRATOR":return workSituation(mainController.factories.milkSepratorFactories);
+            case "ICECRAEMFACTORY":return workSituation(mainController.factories.iceCreamFactories);
+            case "SPINNERY":return workSituation(mainController.factories.spinneryFactories);
+            case "WEAVING":return workSituation(mainController.factories.weavingFactories);
         }
         this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",THERE IS NO WORKSHOP WITH NAME "+workShopName);
         System.err.println("THERE IS NO WORKSHOP WITH NAME "+workShopName);

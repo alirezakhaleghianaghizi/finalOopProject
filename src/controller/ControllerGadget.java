@@ -15,9 +15,9 @@ public class ControllerGadget {
     ArrayList<Goods> truckgoods;
 
     public ControllerGadget() {
-        this.truck = new Truck(0, 0);
-        this.well = new Well(0, 0);
-        this.warehouse = new Warehouse(0, 0);
+        this.truck = new Truck(7,7 );
+        this.well = new Well(0,3);
+        this.warehouse = new Warehouse(7,3 );
         this.truckgoods = new ArrayList<>();
     }
 

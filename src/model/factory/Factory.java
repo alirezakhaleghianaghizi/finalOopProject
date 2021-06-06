@@ -9,10 +9,11 @@ public abstract class Factory extends Model {
     public int level;
     public boolean isWorking;
     int numberOfGoodsCatch;
-    public Factory(String name, double x, double y,int timeOfProducingGood) {
+    public int coin;
+    public Factory(int coin,String name, double x, double y,int timeOfProducingGood) {
         super(name, x, y);
         this.timeOfProducingGood=timeOfProducingGood;
-        int level=1;
+        this.level=1;
         this.isWorking=false;
         this.numberOfGoodsCatch=0;
     }
