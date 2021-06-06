@@ -8,7 +8,7 @@ public abstract class Factory extends Model {
     public Timing dateOfGettingWork;
     public int level;
     public boolean isWorking;
-    int numberOfGoodsCatch;
+    public int numberOfGoodsCatch;
     public int coin;
     public Factory(int coin,String name, double x, double y,int timeOfProducingGood) {
         super(name, x, y);
@@ -37,8 +37,12 @@ public abstract class Factory extends Model {
     }
 
     public boolean isItFinished(){
+        int timeWorking=this.timeOfProducingGood/this.level*this.numberOfGoodsCatch;
+        if(this.level==2&&this.timeOfProducingGood%2==1&&this.numberOfGoodsCatch==1){
+            timeWorking=(this.timeOfProducingGood+1)/this.level*this.numberOfGoodsCatch;
+        }
         if(!this.isWorking)return false;
-        else if(this.dateOfGettingWork.getDate()+this.timeOfProducingGood/this.level*this.numberOfGoodsCatch<Timing.getCurrentTime()) return false;
+        else if(this.dateOfGettingWork.getDate()+timeWorking<Timing.getCurrentTime()) return false;
         return this.emptyingTheFactory();
     }
     

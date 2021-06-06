@@ -12,7 +12,7 @@ import model.animal.producer.producerAnimal;
 import model.animal.wild.Bear;
 import model.animal.wild.Lion;
 import model.animal.wild.Tiger;
-import model.animal.wild.WildAnimals;
+import model.factory.Factory;
 import model.goods.*;
 import model.level.Level;
 import view.Timing;
@@ -51,6 +51,7 @@ public class MainController {
             wellFulling();
             producing();
             decreaseLive();
+            productingGoodWorkshop();
         }
         showAfterTurn();
     }
@@ -61,6 +62,27 @@ public class MainController {
         goods.showGrass();
         animals.showAnimal();
         showTask(personsController.getCurrentUser().currentLevel);
+    }
+
+    public void productingGoodWorkshop(){
+        if(this.factories.eggPowderFactories!=null)this.singleWorkShopEndedSituation(this.factories.eggPowderFactories,new Flour(this.factories.eggPowderFactories.x,this.factories.eggPowderFactories.y),new Flour(this.factories.eggPowderFactories.x,this.factories.eggPowderFactories.y));
+        if(this.factories.weavingFactories!=null)this.singleWorkShopEndedSituation(this.factories.weavingFactories,new Cloth(this.factories.weavingFactories.x,this.factories.weavingFactories.y),new Cloth(this.factories.weavingFactories.x,this.factories.weavingFactories.y));
+        if(this.factories.spinneryFactories!=null)this.singleWorkShopEndedSituation(this.factories.spinneryFactories,new Silk(this.factories.spinneryFactories.x,this.factories.spinneryFactories.y),new Silk(this.factories.spinneryFactories.x,this.factories.spinneryFactories.y));
+        if(this.factories.iceCreamFactories!=null)this.singleWorkShopEndedSituation(this.factories.iceCreamFactories,new IceCream(this.factories.iceCreamFactories.x,this.factories.iceCreamFactories.y),new Flour(this.factories.iceCreamFactories.x,this.factories.iceCreamFactories.y));
+        if(this.factories.milkSepratorFactories!=null)this.singleWorkShopEndedSituation(this.factories.milkSepratorFactories,new SepratedMilk(this.factories.milkSepratorFactories.x,this.factories.milkSepratorFactories.y),new SepratedMilk(this.factories.milkSepratorFactories.x,this.factories.milkSepratorFactories.y));
+        if(this.factories.cookieBakeryFactories!=null)this.singleWorkShopEndedSituation(this.factories.cookieBakeryFactories,new Cookie(this.factories.cookieBakeryFactories.x,this.factories.cookieBakeryFactories.y),new Cookie(this.factories.cookieBakeryFactories.x,this.factories.cookieBakeryFactories.y));
+    }
+    public void singleWorkShopEndedSituation(Factory factory,Goods goods1,Goods goods2){
+        int capacityAlraedyAddedToFactory=factory.numberOfGoodsCatch;
+        if(factory.isItFinished()){
+            if(capacityAlraedyAddedToFactory==1){
+                this.goods.productGoods.add(goods1);
+            }
+            if(capacityAlraedyAddedToFactory==2){
+                this.goods.productGoods.add(goods1);
+                this.goods.productGoods.add(goods2);
+            }
+        }
     }
 
     public void showSingleTask(String task,int taskNum,int taskNumber){
