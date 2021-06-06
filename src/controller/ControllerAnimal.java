@@ -15,6 +15,8 @@ import model.animal.wild.Tiger;
 import model.goods.BearDoll;
 import model.goods.LionDoll;
 import model.goods.TigerDoll;
+import model.level.Level;
+import view.Timing;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -188,6 +190,11 @@ public class ControllerAnimal {
 
 
         return animal;
+
+    }
+
+    public void wildsCome(Level level){
+
 
     }
 
