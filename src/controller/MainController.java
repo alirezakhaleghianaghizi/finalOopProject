@@ -30,6 +30,7 @@ public class MainController {
     public PersonsController personsController;
     Timing timing;
     public Logger logger ;
+    public boolean isTasksCompleted;
 
     public MainController() {
         this.goods = new ControllerGoods();
@@ -38,24 +39,62 @@ public class MainController {
         this.allLevels = new AllLevels();
         this.gadgets = new ControllerGadget();
         this.personsController = new PersonsController();
-        timing = new Timing();
+        this.timing = new Timing();
         this.logger=new Logger();
+        this.isTasksCompleted=false;
     }
 
 
     public void turn(int n) {
         for (int i = 1; i <= n; i++) {
-            movingAllAnimal();
-            eatAllanimal();
-            timing.goForward();
-            wellFulling();
-            producing();
-            decreaseLive();
-            productingGoodWorkshop();
+            this.movingAllAnimal();
+            this.eatAllanimal();
+            this.timing.goForward();
+            this.wellFulling();
+            this.producing();
+            this.decreaseLive();
+            this.productingGoodWorkshop();
+            if(this.isTasksCompleted()) break;
         }
-        showAfterTurn();
+        this.showAfterTurn();
     }
 
+    public void completeTheLevel(){
+        personsController.CurrentUser.personCoinEachLevel.put(this.personsController.CurrentUser.totalCoins,this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel));
+        if(this.personsController.CurrentUser.currentLevel.maxTime>=Timing.getCurrentTime()) this.personsController.CurrentUser.coins=this.personsController.CurrentUser.totalCoins+this.personsController.CurrentUser.currentLevel.presentCoin;
+        else this.personsController.CurrentUser.coins=this.personsController.CurrentUser.totalCoins;
+        this.personsController.CurrentUser.totalCoins=0;
+        personsController.CurrentUser.completedLevel.put(this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel),this.personsController.CurrentUser.currentLevel);
+        if(this.personsController.CurrentUser.level==this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel))this.personsController.CurrentUser.level++;
+        this.logger.commands.add("ALARM,"+this.logger.lastChange.toString()+",COMPLETED LEVEL "+this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel)+" .");
+    }
+
+    public boolean isTasksCompleted(){
+        if(!this.isSingleTaskCompleted(this.personsController.CurrentUser.currentLevel.task1,this.personsController.CurrentUser.currentLevel.task1Number)) return false;
+        if(!this.isSingleTaskCompleted(this.personsController.CurrentUser.currentLevel.task2,this.personsController.CurrentUser.currentLevel.task2Number)) return false;
+        if(!this.isSingleTaskCompleted(this.personsController.CurrentUser.currentLevel.task3,this.personsController.CurrentUser.currentLevel.task3Number)) return false;
+        this.isTasksCompleted=true;
+        return true;
+    }
+
+    public boolean isSingleTaskCompleted(String task,int taskNumber){
+        for (GoodsEnum value : GoodsEnum.values()) {
+            String good = value.toString();
+            if(good.equalsIgnoreCase(task)){
+                if(this.returnArrByGoodName(good).size()<taskNumber)return false;
+            }
+        }
+        for (AnimalEnum value : AnimalEnum.values()) {
+            String animal = value.toString();
+            if(animal.equalsIgnoreCase(task)){
+                if(this.returnArrByAnimalName(animal).size()<taskNumber) return false;
+            }
+        }
+        if(task.equalsIgnoreCase("coin")){
+                if(this.personsController.getCurrentUser().totalCoins<taskNumber)return false;
+        }
+        return true;
+    }
     public void showAfterTurn() {
         this.showGood();
         System.out.println("The time passed :" + timing.getCurrentTime());
