@@ -2,11 +2,137 @@
   "CurrentUser": {
     "userName": "vahid",
     "password": "4545",
-    "level": 0,
-    "completedLevel": {},
-    "personCoinEachLevel": {},
-    "coins": 0,
-    "totalCoins": 0
+    "level": 1,
+    "completedLevel": {
+      "0": {
+        "startCoins": 2000,
+        "task1": "CHICKEN",
+        "task1Number": 4,
+        "task2": "EGG",
+        "task2Number": 10,
+        "task3": "COIN",
+        "task3Number": 500,
+        "TimeOfTigerComes": {
+          "180": {
+            "cautch": 4,
+            "cage": 0,
+            "footStep": 2.0,
+            "livies": 100,
+            "cost": 500,
+            "timeMovingPeriode": 0,
+            "name": "TIGER",
+            "x": 3.0,
+            "y": 3.0
+          }
+        },
+        "TimeOfLionComes": {
+          "120": {
+            "cautch": 3,
+            "cage": 0,
+            "footStep": 1.0,
+            "livies": 100,
+            "cost": 300,
+            "timeMovingPeriode": 0,
+            "name": "LION",
+            "x": 3.0,
+            "y": 3.0
+          }
+        },
+        "TimeOfBearComes": {
+          "60": {
+            "cautch": 4,
+            "cage": 0,
+            "footStep": 1.0,
+            "livies": 100,
+            "cost": 400,
+            "timeMovingPeriode": 0,
+            "name": "BEAR",
+            "x": 3.0,
+            "y": 3.0
+          }
+        },
+        "maxTime": 360,
+        "presentCoin": 100
+      }
+    },
+    "personCoinEachLevel": {
+      "4800": 0,
+      "5900": 0
+    },
+    "currentLevel": {
+      "startCoins": 400,
+      "task1": "CHICKEN",
+      "task1Number": 10,
+      "task2": "COOKIE",
+      "task2Number": 5,
+      "task3": "FLOUR",
+      "task3Number": 5,
+      "TimeOfTigerComes": {
+        "50": {
+          "cautch": 4,
+          "cage": 0,
+          "footStep": 2.0,
+          "livies": 100,
+          "cost": 500,
+          "timeMovingPeriode": 0,
+          "name": "TIGER",
+          "x": 3.0,
+          "y": 3.0
+        },
+        "180": {
+          "cautch": 4,
+          "cage": 0,
+          "footStep": 2.0,
+          "livies": 100,
+          "cost": 500,
+          "timeMovingPeriode": 0,
+          "name": "TIGER",
+          "x": 3.0,
+          "y": 3.0
+        }
+      },
+      "TimeOfLionComes": {
+        "120": {
+          "cautch": 3,
+          "cage": 0,
+          "footStep": 1.0,
+          "livies": 100,
+          "cost": 300,
+          "timeMovingPeriode": 0,
+          "name": "LION",
+          "x": 3.0,
+          "y": 3.0
+        }
+      },
+      "TimeOfBearComes": {
+        "40": {
+          "cautch": 4,
+          "cage": 0,
+          "footStep": 1.0,
+          "livies": 100,
+          "cost": 400,
+          "timeMovingPeriode": 0,
+          "name": "BEAR",
+          "x": 3.0,
+          "y": 3.0
+        },
+        "60": {
+          "cautch": 4,
+          "cage": 0,
+          "footStep": 1.0,
+          "livies": 100,
+          "cost": 400,
+          "timeMovingPeriode": 0,
+          "name": "BEAR",
+          "x": 3.0,
+          "y": 3.0
+        }
+      },
+      "maxTime": 500,
+      "presentCoin": 300
+    },
+    "coins": 6000,
+    "totalCoins": 6400
   },
   "isAnyOneInTheGame": true,
   "userNamePersonMap": {
