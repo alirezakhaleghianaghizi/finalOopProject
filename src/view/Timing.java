@@ -12,5 +12,9 @@ public class Timing {
 
     public int getDate(){ return this.date; }
 
+    public static void setCurrentTime(int currentTime) {
+        Timing.currentTime = currentTime;
+    }
+
     public static int getCurrentTime() { return currentTime; }
 }

@@ -1,6 +1,8 @@
 package menus;
 
+import controller.MainController;
 import view.InputProcessor;
+import view.Timing;
 
 import java.util.Date;
 
@@ -51,7 +53,11 @@ public class Start extends Menu{
         System.out.println(this.manager.allLevels.numberOfLevels);
         this.manager.personsController.getCurrentUser().totalCoins=this.manager.personsController.CurrentUser.coins+this.manager.personsController.getCurrentUser().currentLevel.startCoins;
         this.manager.logger=this.logger;
+        Timing.setCurrentTime(0);
         this.inputProcessor.run(scanner);
+        this.manager.personsController.reloadUsers.jasonWriter(this.manager.personsController);
+        this.manager=new MainController();
+        this.manager.personsController=this.manager.personsController.reloadUsers.readFile(this.manager.personsController);
     }
 
     @Override

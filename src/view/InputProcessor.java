@@ -19,46 +19,55 @@ import java.util.regex.Matcher;
 public class InputProcessor {
     MainController mainController;
     String input;
-
+    Matcher matcher;
     public InputProcessor( MainController mainController) {
         this.mainController = mainController;
         this.input = "";
     }
 
     public void run(Scanner scanner){
-        Matcher matcher;
         System.out.print(Color.BLUE_BOLD);
         System.out.println("Enter your command ");
         System.out.print(Color.RESET);
-        while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")){
+        while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")&&!this.mainController.isTasksCompleted){
             this.mainController.logger.lastChange=new Date();
-            if((matcher=InputAlgorithms.BUY.inputMatcher(input)).find()) this.processBuy(matcher.group(1));
-            else if((matcher=InputAlgorithms.PICKUP.inputMatcher(input)).find()) this.processPickUp(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
-            else if(InputAlgorithms.WELL.inputMatcher(input).find()) this.well();
-            else if((matcher=InputAlgorithms.PLANT.inputMatcher(input)).find()) this.plant(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
-            else if((matcher=InputAlgorithms.BUILD.inputMatcher(input)).find()) this.build(matcher.group(1));
-            else if((matcher=InputAlgorithms.WORK.inputMatcher(input)).find()) this.work(matcher.group(1));
-            else if((matcher=InputAlgorithms.CAGE.inputMatcher(input)).find()) this.cage(Double.parseDouble(matcher.group(1)),Double.parseDouble(matcher.group(2)));
-            else if((matcher=InputAlgorithms.TURN.inputMatcher(input)).find()) this.turn(Integer.parseInt(matcher.group(1)));
-            else if((matcher=InputAlgorithms.TRUCKLOAD.inputMatcher(input)).find()) this.truckLoad(matcher.group(1));
-            else if((matcher=InputAlgorithms.TRUCKUNLOAD.inputMatcher(input)).find())this.processTruckUnload(matcher.group(1));
-            else if(InputAlgorithms.TRUCKGO.inputMatcher(input).find())this.truckGo();
-            else if((matcher=InputAlgorithms.INQUIRY.inputMatcher(input)).find())this.inquiry();
+            if((this.matcher=InputAlgorithms.BUY.inputMatcher(this.input)).find()) this.processBuy(this.matcher.group(1));
+            else if((this.matcher=InputAlgorithms.PICKUP.inputMatcher(this.input)).find()) this.processPickUp(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));
+            else if(InputAlgorithms.WELL.inputMatcher(this.input).find()) this.well();
+            else if((this.matcher=InputAlgorithms.PLANT.inputMatcher(this.input)).find()) this.plant(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));
+            else if((this.matcher=InputAlgorithms.BUILD.inputMatcher(this.input)).find()) this.build(this.matcher.group(1));
+            else if((this.matcher=InputAlgorithms.WORK.inputMatcher(this.input)).find()) this.work(this.matcher.group(1));
+            else if((this.matcher=InputAlgorithms.CAGE.inputMatcher(this.input)).find()) this.cage(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));
+            else if((this.matcher=InputAlgorithms.TURN.inputMatcher(this.input)).find()) this.turn(Integer.parseInt(this.matcher.group(1)));
+            else if((this.matcher=InputAlgorithms.TRUCKLOAD.inputMatcher(this.input)).find()) this.truckLoad(this.matcher.group(1));
+            else if((this.matcher=InputAlgorithms.TRUCKUNLOAD.inputMatcher(this.input)).find())this.processTruckUnload(this.matcher.group(1));
+            else if(InputAlgorithms.TRUCKGO.inputMatcher(this.input).find())this.truckGo();
+            else if(InputAlgorithms.INQUIRY.inputMatcher(this.input).find())this.inquiry();
             else {
                 System.err.println("invalid input");
                 this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",INVALID INPUT COMMAND.");
             }
+            this.mainController.isTasksCompleted();
             System.out.print(Color.BLUE_BOLD);
-            System.out.println("Enter your command ");
+            if(!this.mainController.isTasksCompleted)System.out.println("Enter your command ");
             System.out.print(Color.RESET);
-            this.mainController.logger.jasonWriter(mainController.logger);
+            this.mainController.logger.jasonWriter(this.mainController.logger);
         }
 
         this.mainController.logger.lastChange=new Date();
-        this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",EXIT THE GAME.");
+        if(!this.mainController.isTasksCompleted)this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",EXIT THE GAME.");
+        else if(this.mainController.isTasksCompleted) {
+            this.completeLevel();
+            System.out.println( "CONGRATULATION !!!!!\n" +
+                    "YOU COMPLETED THE LEVEL");
+
+        }
         this.mainController.logger.jasonWriter(mainController.logger);
     }
 
+    public void completeLevel(){
+        this.mainController.completeTheLevel();
+    }
 
     public boolean build(String workShopName) {
         switch (workShopName.toUpperCase()) {
