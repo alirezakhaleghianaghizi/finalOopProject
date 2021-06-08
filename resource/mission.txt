@@ -4,9 +4,9 @@
     {
       "startCoins": 2000,
       "task1": "CHICKEN",
-      "task1Number": 4,
+      "task1Number": 1,
       "task2": "EGG",
-      "task2Number": 10,
+      "task2Number": 1,
       "task3": "COIN",
       "task3Number": 500,
       "TimeOfTigerComes": {

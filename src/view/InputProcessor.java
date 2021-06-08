@@ -25,11 +25,14 @@ public class InputProcessor {
         this.input = "";
     }
 
-    public void run(Scanner scanner){
+    public void run(Scanner scanner,int level){
         System.out.print(Color.BLUE_BOLD);
         System.out.println("Enter your command ");
         System.out.print(Color.RESET);
-        while(!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")&&!this.mainController.isTasksCompleted){
+        this.mainController.personsController.getCurrentUser().currentLevel=this.mainController.allLevels.levels.get(level-1);
+        this.mainController.personsController.getCurrentUser().totalCoins=this.mainController.personsController.CurrentUser.coins+this.mainController.personsController.getCurrentUser().currentLevel.startCoins;
+        this.mainController.isTasksCompleted=false;
+        while(!this.mainController.isTasksCompleted&&!(this.input=scanner.nextLine()).equalsIgnoreCase("exit")){
             this.mainController.logger.lastChange=new Date();
             if((this.matcher=InputAlgorithms.BUY.inputMatcher(this.input)).find()) this.processBuy(this.matcher.group(1));
             else if((this.matcher=InputAlgorithms.PICKUP.inputMatcher(this.input)).find()) this.processPickUp(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));

@@ -60,11 +60,13 @@ public class MainController {
     }
 
     public void completeTheLevel(){
-        personsController.CurrentUser.personCoinEachLevel.put(this.personsController.CurrentUser.totalCoins,this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel));
-        if(this.personsController.CurrentUser.currentLevel.maxTime>=Timing.getCurrentTime()) this.personsController.CurrentUser.coins=this.personsController.CurrentUser.totalCoins+this.personsController.CurrentUser.currentLevel.presentCoin;
+        this.goods=new ControllerGoods();
+        this.factories=new ControllerFactory();
+        this.animals=new ControllerAnimal();
+        this.gadgets=new ControllerGadget();
+       if(this.personsController.CurrentUser.currentLevel.maxTime>=Timing.getCurrentTime()) this.personsController.CurrentUser.coins=this.personsController.CurrentUser.totalCoins+this.personsController.CurrentUser.currentLevel.presentCoin;
         else this.personsController.CurrentUser.coins=this.personsController.CurrentUser.totalCoins;
         this.personsController.CurrentUser.totalCoins=0;
-        personsController.CurrentUser.completedLevel.put(this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel),this.personsController.CurrentUser.currentLevel);
         if(this.personsController.CurrentUser.level==this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel))this.personsController.CurrentUser.level++;
         this.logger.commands.add("ALARM,"+this.logger.lastChange.toString()+",COMPLETED LEVEL "+this.allLevels.levels.indexOf(this.personsController.CurrentUser.currentLevel)+" .");
     }
@@ -96,6 +98,7 @@ public class MainController {
         return true;
     }
     public void showAfterTurn() {
+        System.out.println("YOU HAVE "+this.personsController.CurrentUser.totalCoins+" coins.");
         this.showGood();
         System.out.println("The time passed :" + timing.getCurrentTime());
         goods.showGrass();

@@ -1,0 +1,21 @@
+{
+  "dateStartOperatingLogger": "Jun 8, 2021, 1:27:57 PM",
+  "userName": "aa",
+  "lastChange": "Jun 8, 2021, 1:29:20 PM",
+  "commands": [
+    "ERROR,Tue Jun 08 13:28:08 IRDT 2021,LEVEL NOT OPENED. ",
+    "INFO,Tue Jun 08 13:28:09 IRDT 2021,STARTED THE GAME. ",
+    "INFO,Tue Jun 08 13:28:14 IRDT 2021,BUY chicken .",
+    "INFO,Tue Jun 08 13:28:24 IRDT 2021,PICKUP EGG TO WAREHOUSE.",
+    "ALARM,Tue Jun 08 13:28:24 IRDT 2021,COMPLETED LEVEL 0 .",
+    "INFO,Tue Jun 08 13:28:29 IRDT 2021,STARTED THE GAME. ",
+    "INFO ,Tue Jun 08 13:28:33 IRDT 2021, inquiry command",
+    "ERROR,Tue Jun 08 13:28:45 IRDT 2021,EXIT THE GAME.",
+    "ERROR,Tue Jun 08 13:28:54 IRDT 2021,LEVEL NOT OPENED. ",
+    "INFO,Tue Jun 08 13:28:55 IRDT 2021,STARTED THE GAME. ",
+    "INFO ,Tue Jun 08 13:28:58 IRDT 2021, inquiry command",
+    "ERROR,Tue Jun 08 13:29:07 IRDT 2021,EXIT THE GAME.",
+    "INFO,Tue Jun 08 13:29:14 IRDT 2021,STARTED THE GAME. ",
+    "INFO ,Tue Jun 08 13:29:20 IRDT 2021, inquiry command"
+  ]
+}
