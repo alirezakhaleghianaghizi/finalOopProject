@@ -77,8 +77,8 @@
       "maxTime": 500,
       "presentCoin": 300
     },
-    "coins": 2000,
-    "totalCoins": 2400
+    "coins": 4000,
+    "totalCoins": 4400
   },
   "isAnyOneInTheGame": true,
   "userNamePersonMap": {
@@ -160,8 +160,8 @@
         "maxTime": 500,
         "presentCoin": 300
       },
-      "coins": 2000,
-      "totalCoins": 2400
+      "coins": 4000,
+      "totalCoins": 4400
     }
   },
   "reloadUsers": {}
