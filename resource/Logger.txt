@@ -1,21 +1,16 @@
 {
-  "dateStartOperatingLogger": "Jun 8, 2021, 1:27:57 PM",
+  "dateStartOperatingLogger": "Jun 14, 2021, 11:34:47 PM",
   "userName": "aa",
-  "lastChange": "Jun 8, 2021, 1:29:20 PM",
+  "lastChange": "Jun 14, 2021, 11:36:12 PM",
   "commands": [
-    "ERROR,Tue Jun 08 13:28:08 IRDT 2021,LEVEL NOT OPENED. ",
-    "INFO,Tue Jun 08 13:28:09 IRDT 2021,STARTED THE GAME. ",
-    "INFO,Tue Jun 08 13:28:14 IRDT 2021,BUY chicken .",
-    "INFO,Tue Jun 08 13:28:24 IRDT 2021,PICKUP EGG TO WAREHOUSE.",
-    "ALARM,Tue Jun 08 13:28:24 IRDT 2021,COMPLETED LEVEL 0 .",
-    "INFO,Tue Jun 08 13:28:29 IRDT 2021,STARTED THE GAME. ",
-    "INFO ,Tue Jun 08 13:28:33 IRDT 2021, inquiry command",
-    "ERROR,Tue Jun 08 13:28:45 IRDT 2021,EXIT THE GAME.",
-    "ERROR,Tue Jun 08 13:28:54 IRDT 2021,LEVEL NOT OPENED. ",
-    "INFO,Tue Jun 08 13:28:55 IRDT 2021,STARTED THE GAME. ",
-    "INFO ,Tue Jun 08 13:28:58 IRDT 2021, inquiry command",
-    "ERROR,Tue Jun 08 13:29:07 IRDT 2021,EXIT THE GAME.",
-    "INFO,Tue Jun 08 13:29:14 IRDT 2021,STARTED THE GAME. ",
-    "INFO ,Tue Jun 08 13:29:20 IRDT 2021, inquiry command"
+    "INFO,Mon Jun 14 23:34:50 IRDT 2021,STARTED THE GAME. ",
+    "ERROR,Mon Jun 14 23:35:07 IRDT 2021,INVALID INPUT COMMAND.",
+    "ERROR,Mon Jun 14 23:35:11 IRDT 2021,INVALID INPUT COMMAND.",
+    "ERROR,Mon Jun 14 23:35:24 IRDT 2021, factory is not build",
+    "INFO,Mon Jun 14 23:35:33 IRDT 2021,EGGPOWDER built",
+    "INFO,Mon Jun 14 23:35:47 IRDT 2021,EGGPOWDER UPGRADED",
+    "ERROR,Mon Jun 14 23:35:57 IRDT 2021,EGGPOWDERis in max level",
+    "ERROR,Mon Jun 14 23:35:59 IRDT 2021,EGGPOWDERis in max level",
+    "ERROR,Mon Jun 14 23:36:12 IRDT 2021, factory is not build"
   ]
 }
