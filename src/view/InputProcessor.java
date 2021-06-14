@@ -39,6 +39,7 @@ public class InputProcessor {
             else if(InputAlgorithms.WELL.inputMatcher(this.input).find()) this.well();
             else if((this.matcher=InputAlgorithms.PLANT.inputMatcher(this.input)).find()) this.plant(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));
             else if((this.matcher=InputAlgorithms.BUILD.inputMatcher(this.input)).find()) this.build(this.matcher.group(1));
+            else if((this.matcher=InputAlgorithms.UPGRAID.inputMatcher(this.input)).find()) this.upgraid(this.matcher.group(1));
             else if((this.matcher=InputAlgorithms.WORK.inputMatcher(this.input)).find()) this.work(this.matcher.group(1));
             else if((this.matcher=InputAlgorithms.CAGE.inputMatcher(this.input)).find()) this.cage(Double.parseDouble(this.matcher.group(1)),Double.parseDouble(this.matcher.group(2)));
             else if((this.matcher=InputAlgorithms.TURN.inputMatcher(this.input)).find()) this.turn(Integer.parseInt(this.matcher.group(1)));
@@ -209,9 +210,9 @@ public class InputProcessor {
     }
 
     public boolean workSituation(Factory factory){
-        if (mainController.factories.eggPowderFactories == null) {
-            System.err.println(factory.name + " is not build yet");
-            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," + factory.name + "is not build");
+        if (factory == null) {
+            System.err.println("factory  is not build yet");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + ", factory is not build");
             return false;
         }
         int situation=mainController.factories.workFactory(factory, mainController.gadgets);
@@ -246,7 +247,36 @@ public class InputProcessor {
         System.err.println("THERE IS NO WORKSHOP WITH NAME "+workShopName);
         return false;
     }
-
+    public boolean upgraid(String workShopName){
+        switch (workShopName.toUpperCase()){
+            case "EGGPOWDER": return upgraidSituation(mainController.factories.eggPowderFactories);
+            case "COOKIEFACTORY":return upgraidSituation(mainController.factories.cookieBakeryFactories);
+            case "MILKSEPRATOR":return upgraidSituation(mainController.factories.milkSepratorFactories);
+            case "ICECRAEMFACTORY":return upgraidSituation(mainController.factories.iceCreamFactories);
+            case "SPINNERY":return upgraidSituation(mainController.factories.spinneryFactories);
+            case "WEAVING":return upgraidSituation(mainController.factories.weavingFactories);
+        }
+        this.mainController.logger.commands.add("ERROR,"+this.mainController.logger.lastChange.toString()+",THERE IS NO WORKSHOP WITH NAME "+workShopName);
+        System.err.println("THERE IS NO WORKSHOP WITH NAME "+workShopName);
+        return false;
+    }
+    public boolean upgraidSituation(Factory factory){
+        if (factory == null) {
+            System.err.println( "factory is not build yet");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + ", factory is not build");
+            return false;
+        }
+        if (factory.level==1){
+            factory.level++;
+            System.out.println(factory.name + " upgraded");
+            this.mainController.logger.commands.add("INFO," + this.mainController.logger.lastChange.toString() + "," + factory.name + " UPGRADED");
+        }
+        else {
+            System.err.println(factory.name + " is in max level");
+            this.mainController.logger.commands.add("ERROR," + this.mainController.logger.lastChange.toString() + "," + factory.name + "is in max level");
+        }
+        return true;
+    }
     //TODO for tomorrow
 
     public boolean cage(double x,double y){

@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public enum InputAlgorithms {
     BUY("^(?i)\\s*buy\\s+(\\w+)\\s*$"),
     BUILD("^(?i)\\s*build\\s+(\\w+)\\s*$"),
+    UPGRAID("^(?i)\\s*UPGRAID\\s+(\\w+)\\s*$"),
     PICKUP("^(?i)\\s*pickup\\s+(\\d+\\.\\d+|\\d+)\\s+(\\d+\\.\\d+|\\d+)\\s*$"),
     WELL("^(?i)\\s*well\\s*$"),
     PLANT("^(?i)\\s*plant\\s+(\\d+\\.\\d+|\\d+)\\s+(\\d+\\.\\d+|\\d+)\\s*$"),
