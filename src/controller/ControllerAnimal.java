@@ -20,6 +20,7 @@ import view.Timing;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ControllerAnimal {
 
@@ -78,6 +79,13 @@ public class ControllerAnimal {
         for (Tiger tiger : tigers) {
             if(tiger.x==x&&tiger.y==y){
              tiger.cage+=1;
+                HashMap<Integer ,Integer> cageSet = new HashMap<>();
+                cageSet.put(1,Timing.getCurrentTime());
+             if(tiger.cage!=1) {
+                 cageSet= MainController.cageTimeSet.get(tiger);
+                 cageSet.put(tiger.cage, Timing.getCurrentTime());
+             }
+                MainController.cageTimeSet.put(tiger,cageSet);
              logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the tiger");
              if(tiger.cage==4){
                  goods.productGoods.add(new TigerDoll(x,y));
@@ -92,6 +100,13 @@ public class ControllerAnimal {
         for (Lion lion : lions) {
             if(lion.x==x&&lion.y==y){
                 lion.cage+=1;
+                HashMap<Integer ,Integer> cageSet = new HashMap<>();
+                cageSet.put(1,Timing.getCurrentTime());
+                if(lion.cage!=1) {
+                    cageSet= MainController.cageTimeSet.get(lion);
+                    cageSet.put(lion.cage, Timing.getCurrentTime());
+                }
+                MainController.cageTimeSet.put(lion,cageSet);
                 logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the lion");
                 if(lion.cage==3){
                     goods.productGoods.add(new LionDoll(x,y));
@@ -106,6 +121,13 @@ public class ControllerAnimal {
         for (Bear bear : bears) {
             if(bear.x==x&&bear.y==y){
                 bear.cage+=1;
+                HashMap<Integer ,Integer> cageSet = new HashMap<>();
+                cageSet.put(1,Timing.getCurrentTime());
+                if(bear.cage!=1) {
+                    cageSet= MainController.cageTimeSet.get(bear);
+                    cageSet.put(bear.cage, Timing.getCurrentTime());
+                }
+                MainController.cageTimeSet.put(bear,cageSet);
                 logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the bear");
                 if(bear.cage==3){
                     goods.productGoods.add(new BearDoll(x,y));
@@ -187,16 +209,7 @@ public class ControllerAnimal {
             if(bufallo.livies<animal.livies)
                 animal=bufallo;
         }
-
-
         return animal;
-
     }
-
-    public void wildsCome(Level level){
-
-
-    }
-
 }
 

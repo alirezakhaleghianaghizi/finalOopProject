@@ -1,11 +1,11 @@
 {
-  "dateStartOperatingLogger": "Jun 15, 2021, 10:34:43 AM",
+  "dateStartOperatingLogger": "Jun 15, 2021, 11:09:28 AM",
   "userName": "aa",
-  "lastChange": "Jun 15, 2021, 10:36:13 AM",
+  "lastChange": "Jun 15, 2021, 11:10:43 AM",
   "commands": [
-    "INFO,Tue Jun 15 10:35:17 IRDT 2021,STARTED THE GAME. ",
-    "ERROR,Tue Jun 15 10:35:17 IRDT 2021,INVALID INPUT COMMAND.",
-    "INFO,Tue Jun 15 10:35:35 IRDT 2021,BUY chicken .",
-    "ERROR ,Tue Jun 15 10:36:13 IRDT 2021,NO GOODS TO PICKUP."
+    "INFO,Tue Jun 15 11:09:42 IRDT 2021,STARTED THE GAME. ",
+    "INFO ,Tue Jun 15 11:10:08 IRDT 2021, caged the bear",
+    "INFO ,Tue Jun 15 11:10:12 IRDT 2021, inquiry command",
+    "ERROR,Tue Jun 15 11:10:40 IRDT 2021,INVALID INPUT COMMAND."
   ]
 }

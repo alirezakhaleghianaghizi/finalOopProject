@@ -12,12 +12,14 @@ import model.animal.producer.producerAnimal;
 import model.animal.wild.Bear;
 import model.animal.wild.Lion;
 import model.animal.wild.Tiger;
+import model.animal.wild.WildAnimal;
 import model.factory.Factory;
 import model.goods.*;
 import model.level.Level;
 import view.Timing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class MainController {
@@ -31,6 +33,7 @@ public class MainController {
     Timing timing;
     public Logger logger ;
     public boolean isTasksCompleted;
+    public static HashMap<WildAnimal, HashMap<Integer, Integer>> cageTimeSet;
 
     public MainController() {
         this.goods = new ControllerGoods();
@@ -42,6 +45,7 @@ public class MainController {
         this.timing = new Timing();
         this.logger=new Logger();
         this.isTasksCompleted=false;
+        cageTimeSet= new HashMap<>();
     }
 
 
@@ -693,6 +697,37 @@ public class MainController {
                 i--;
             }
         }
+        for (Lion lion : animals.lions) {
+            if (cageTimeSet.get(lion)!=null) {
+                HashMap<Integer, Integer> cageSet = cageTimeSet.get(lion);
+                if(cageSet.get(lion.cage)!=null&&lion.cage>0)
+                if(cageSet.get(lion.cage)+2<Timing.getCurrentTime()){
+                    cageSet.remove(lion.cage);
+                    lion.cage--;
+                }
+            }
+        }
+        for (Tiger tiger : animals.tigers) {
+            if (cageTimeSet.get(tiger)!=null) {
+                HashMap<Integer, Integer> cageSet = cageTimeSet.get(tiger);
+                if(cageSet.get(tiger.cage)!=null&&tiger.cage>0)
+                if(cageSet.get(tiger.cage)+2<Timing.getCurrentTime()){
+                    cageSet.remove(tiger.cage);
+                    tiger.cage--;
+                }
+            }
+        }
+        for (Bear bear : animals.bears) {
+            if (cageTimeSet.get(bear)!=null) {
+                HashMap<Integer, Integer> cageSet = cageTimeSet.get(bear);
+                if(cageSet.get(bear.cage)!=null&&bear.cage>0)
+                if(cageSet.get(bear.cage)+2<Timing.getCurrentTime()){
+                    cageSet.remove(bear.cage);
+                    bear.cage--;
+                }
+            }
+        }
     }
+
 
 }
