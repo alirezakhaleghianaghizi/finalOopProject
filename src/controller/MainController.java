@@ -452,14 +452,15 @@ public class MainController {
                 }
             }
         int min=Integer.MAX_VALUE;
-        int index=0;
+        int index=-1;
         for (producerAnimal hungry : hungries) {
             if(hungry.livies<min){
                 min= hungry.livies;
                 index=hungries.indexOf(hungry);
             }
         }
-        if(hungries!=null)return hungries.get(index);
+        if(hungries!=null&& index!=-1)
+            return hungries.get(index);
         return null;
     }
 
