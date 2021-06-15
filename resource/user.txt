@@ -6,25 +6,14 @@
     "completedLevel": {},
     "personCoinEachLevel": {},
     "currentLevel": {
-      "startCoins": 400,
+      "startCoins": 2000,
       "task1": "CHICKEN",
-      "task1Number": 10,
-      "task2": "COOKIE",
-      "task2Number": 5,
-      "task3": "FLOUR",
-      "task3Number": 5,
+      "task1Number": 1,
+      "task2": "EGG",
+      "task2Number": 1,
+      "task3": "COIN",
+      "task3Number": 500,
       "TimeOfTigerComes": {
-        "50": {
-          "cautch": 4,
-          "cage": 0,
-          "footStep": 2.0,
-          "livies": 100,
-          "cost": 500,
-          "timeMovingPeriode": 0,
-          "name": "TIGER",
-          "x": 3.0,
-          "y": 3.0
-        },
         "180": {
           "cautch": 4,
           "cage": 0,
@@ -51,17 +40,6 @@
         }
       },
       "TimeOfBearComes": {
-        "40": {
-          "cautch": 4,
-          "cage": 0,
-          "footStep": 1.0,
-          "livies": 100,
-          "cost": 400,
-          "timeMovingPeriode": 0,
-          "name": "BEAR",
-          "x": 3.0,
-          "y": 3.0
-        },
         "60": {
           "cautch": 4,
           "cage": 0,
@@ -74,11 +52,11 @@
           "y": 3.0
         }
       },
-      "maxTime": 500,
-      "presentCoin": 300
+      "maxTime": 360,
+      "presentCoin": 100
     },
-    "coins": 4000,
-    "totalCoins": 4400
+    "coins": 5900,
+    "totalCoins": 0
   },
   "isAnyOneInTheGame": true,
   "userNamePersonMap": {
@@ -89,25 +67,14 @@
       "completedLevel": {},
       "personCoinEachLevel": {},
       "currentLevel": {
-        "startCoins": 400,
+        "startCoins": 2000,
         "task1": "CHICKEN",
-        "task1Number": 10,
-        "task2": "COOKIE",
-        "task2Number": 5,
-        "task3": "FLOUR",
-        "task3Number": 5,
+        "task1Number": 1,
+        "task2": "EGG",
+        "task2Number": 1,
+        "task3": "COIN",
+        "task3Number": 500,
         "TimeOfTigerComes": {
-          "50": {
-            "cautch": 4,
-            "cage": 0,
-            "footStep": 2.0,
-            "livies": 100,
-            "cost": 500,
-            "timeMovingPeriode": 0,
-            "name": "TIGER",
-            "x": 3.0,
-            "y": 3.0
-          },
           "180": {
             "cautch": 4,
             "cage": 0,
@@ -134,17 +101,6 @@
           }
         },
         "TimeOfBearComes": {
-          "40": {
-            "cautch": 4,
-            "cage": 0,
-            "footStep": 1.0,
-            "livies": 100,
-            "cost": 400,
-            "timeMovingPeriode": 0,
-            "name": "BEAR",
-            "x": 3.0,
-            "y": 3.0
-          },
           "60": {
             "cautch": 4,
             "cage": 0,
@@ -157,11 +113,11 @@
             "y": 3.0
           }
         },
-        "maxTime": 500,
-        "presentCoin": 300
+        "maxTime": 360,
+        "presentCoin": 100
       },
-      "coins": 4000,
-      "totalCoins": 4400
+      "coins": 5900,
+      "totalCoins": 0
     }
   },
   "reloadUsers": {}
