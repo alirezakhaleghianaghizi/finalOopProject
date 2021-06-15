@@ -423,27 +423,45 @@ public class MainController {
     }
 
     public void eatAllanimal(){
-        for (Chicken chicken : animals.chickens) {
-            eat(chicken);
-            if(chicken.isFull){
-                if(chicken.produce==null) chicken.produce = new Timing();
-            }
-        }
-        for (Bufallo bufallo : animals.bufallos) {
-            eat(bufallo);
-            if(bufallo.isFull){
-                if(bufallo.produce==null) bufallo.produce = new Timing();
-            }
-        }
-        for (Turkey turkey : animals.turkeys) {
-            eat(turkey);
-            if(turkey.isFull){
-                if(turkey.produce==null) turkey.produce = new Timing();
+        for (int i = 0; i < this.goods.grasses.size(); i++) {
+            producerAnimal producer;
+            if(( producer=   this.findMostHungry(this.goods.grasses.get(i)))!=null){
+                if(eat(producer)) i--;
+                if(producer.isFull){
+                    if(producer.produce==null) producer.produce = new Timing();
+                }
             }
         }
     }
 
-
+    public  producerAnimal findMostHungry(Grass grass){
+        ArrayList<producerAnimal> hungries = new ArrayList<>();
+            for (Chicken chicken : animals.chickens) {
+                if(grass.x== chicken.x&&grass.y== chicken.y){
+                    hungries.add(chicken);
+                }
+            }
+            for (Turkey turkey : animals.turkeys) {
+                if(grass.x== turkey.x&&grass.y==turkey.y){
+                    hungries.add(turkey);
+                }
+            }
+            for (Bufallo bufallo : animals.bufallos) {
+                if(grass.x== bufallo.x&&grass.y== bufallo.y){
+                    hungries.add(bufallo);
+                }
+            }
+        int min=Integer.MAX_VALUE;
+        int index=0;
+        for (producerAnimal hungry : hungries) {
+            if(hungry.livies<min){
+                min= hungry.livies;
+                index=hungries.indexOf(hungry);
+            }
+        }
+        if(hungries!=null)return hungries.get(index);
+        return null;
+    }
 
     public void decreaseLive(){
         boolean bool;

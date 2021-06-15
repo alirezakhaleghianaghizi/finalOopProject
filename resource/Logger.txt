@@ -1,11 +1,14 @@
 {
-  "dateStartOperatingLogger": "Jun 15, 2021, 11:09:28 AM",
+  "dateStartOperatingLogger": "Jun 15, 2021, 12:09:23 PM",
   "userName": "aa",
-  "lastChange": "Jun 15, 2021, 11:10:43 AM",
+  "lastChange": "Jun 15, 2021, 12:10:36 PM",
   "commands": [
-    "INFO,Tue Jun 15 11:09:42 IRDT 2021,STARTED THE GAME. ",
-    "INFO ,Tue Jun 15 11:10:08 IRDT 2021, caged the bear",
-    "INFO ,Tue Jun 15 11:10:12 IRDT 2021, inquiry command",
-    "ERROR,Tue Jun 15 11:10:40 IRDT 2021,INVALID INPUT COMMAND."
+    "INFO,Tue Jun 15 12:09:30 IRDT 2021,STARTED THE GAME. ",
+    "INFO,Tue Jun 15 12:09:38 IRDT 2021,BUY bufallo .",
+    "ERROR,Tue Jun 15 12:09:42 IRDT 2021,INVALID INPUT COMMAND.",
+    "INFO,Tue Jun 15 12:10:03 IRDT 2021,plant in x : 3.0 ,y : 3.0.",
+    "ERROR,Tue Jun 15 12:10:13 IRDT 2021,INVALID INPUT COMMAND.",
+    "INFO,Tue Jun 15 12:10:29 IRDT 2021,plant in x : 3.0 ,y : 4.0.",
+    "ERROR,Tue Jun 15 12:10:32 IRDT 2021,INVALID INPUT COMMAND."
   ]
 }
