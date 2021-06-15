@@ -47,6 +47,8 @@ public class MainController {
 
     public void turn(int n) {
         for (int i = 1; i <= n; i++) {
+            this.expire();
+            this.wildComing();
             this.movingAllAnimal();
             this.eatAllanimal();
             this.timing.goForward();
@@ -577,6 +579,7 @@ public class MainController {
     }
 
     public void wildsAttack(){
+        //Attack Animals :
         ArrayList<producerAnimal> saveDeath = new ArrayList<>();
         boolean bool ;
         for (Lion lion : animals.lions) {
@@ -644,9 +647,52 @@ public class MainController {
             if(bool)
                 animals.bufallos.remove(producerAnimal);
         }
+        //Attack Goods :
+        for (int i = 0; i < goods.productGoods.size(); i++) {
+            for (Lion lion : animals.lions) {
+                if(goods.productGoods.get(i).x== lion.x&&goods.productGoods.get(i).y==lion.y){
+                    goods.productGoods.remove(i);
+                    i--;
+                }
+            }
+        }
+        for (int i = 0; i < goods.productGoods.size(); i++) {
+            for (Tiger tiger : animals.tigers) {
+                if(goods.productGoods.get(i).x== tiger.x&&goods.productGoods.get(i).y==tiger.y){
+                    goods.productGoods.remove(i);
+                    i--;
+                }
+            }
+        }
+        for (int i = 0; i < goods.productGoods.size(); i++) {
+            for (Bear bear : animals.bears) {
+                if(goods.productGoods.get(i).x== bear.x&&goods.productGoods.get(i).y==bear.y){
+                    goods.productGoods.remove(i);
+                    i--;
+                }
+            }
+        }
     }
 
+    public void wildComing(){
+        if(this.personsController.getCurrentUser().currentLevel.TimeOfBearComes.get(Timing.getCurrentTime())!=null){
+            animals.bears.add(new Bear());
+        }
+        if(this.personsController.getCurrentUser().currentLevel.TimeOfTigerComes.get(Timing.getCurrentTime())!=null){
+            animals.tigers.add(new Tiger());
+        }
+        if(this.personsController.getCurrentUser().currentLevel.TimeOfLionComes.get(Timing.getCurrentTime())!=null){
+            animals.lions.add(new Lion());
+        }
+    }
 
-
+    public void expire(){
+        for (int i = 0; i < goods.productGoods.size(); i++) {
+            if(goods.productGoods.get(i).timeOfRemaining+goods.productGoods.get(i).dateOfCreated.getDate()<=Timing.getCurrentTime()){
+                goods.productGoods.remove(i);
+                i--;
+            }
+        }
+    }
 
 }

@@ -80,7 +80,7 @@ public class ControllerAnimal {
              tiger.cage+=1;
              logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the tiger");
              if(tiger.cage==4){
-                 goods.tigerDolls.add(new TigerDoll(x,y));
+                 goods.productGoods.add(new TigerDoll(x,y));
                  tigers.remove(tiger);
                  logger.lastChange=new Date();
                  logger.commands.add("INFO ,"+logger.lastChange.toString()+",tiger caged and send to the warehouse");
@@ -94,8 +94,8 @@ public class ControllerAnimal {
                 lion.cage+=1;
                 logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the lion");
                 if(lion.cage==3){
-                    goods.lionDolls.add(new LionDoll(x,y));
-                    tigers.remove(lion);
+                    goods.productGoods.add(new LionDoll(x,y));
+                    lions.remove(lion);
                     logger.lastChange=new Date();
                     logger.commands.add("INFO ,"+logger.lastChange.toString()+",lion caged and send to the warehouse");
                     return 1;
@@ -108,8 +108,8 @@ public class ControllerAnimal {
                 bear.cage+=1;
                 logger.commands.add("INFO ,"+logger.lastChange.toString()+", caged the bear");
                 if(bear.cage==3){
-                    goods.bearDolls.add(new BearDoll(x,y));
-                    tigers.remove(bear);
+                    goods.productGoods.add(new BearDoll(x,y));
+                    bears.remove(bear);
                     logger.lastChange=new Date();
                     logger.commands.add("INFO ,"+logger.lastChange.toString()+",bear caged and send to the warehouse");
                     return 1;

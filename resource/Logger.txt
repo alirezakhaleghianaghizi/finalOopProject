@@ -1,16 +1,11 @@
 {
-  "dateStartOperatingLogger": "Jun 14, 2021, 11:34:47 PM",
+  "dateStartOperatingLogger": "Jun 15, 2021, 10:34:43 AM",
   "userName": "aa",
-  "lastChange": "Jun 14, 2021, 11:36:12 PM",
+  "lastChange": "Jun 15, 2021, 10:36:13 AM",
   "commands": [
-    "INFO,Mon Jun 14 23:34:50 IRDT 2021,STARTED THE GAME. ",
-    "ERROR,Mon Jun 14 23:35:07 IRDT 2021,INVALID INPUT COMMAND.",
-    "ERROR,Mon Jun 14 23:35:11 IRDT 2021,INVALID INPUT COMMAND.",
-    "ERROR,Mon Jun 14 23:35:24 IRDT 2021, factory is not build",
-    "INFO,Mon Jun 14 23:35:33 IRDT 2021,EGGPOWDER built",
-    "INFO,Mon Jun 14 23:35:47 IRDT 2021,EGGPOWDER UPGRADED",
-    "ERROR,Mon Jun 14 23:35:57 IRDT 2021,EGGPOWDERis in max level",
-    "ERROR,Mon Jun 14 23:35:59 IRDT 2021,EGGPOWDERis in max level",
-    "ERROR,Mon Jun 14 23:36:12 IRDT 2021, factory is not build"
+    "INFO,Tue Jun 15 10:35:17 IRDT 2021,STARTED THE GAME. ",
+    "ERROR,Tue Jun 15 10:35:17 IRDT 2021,INVALID INPUT COMMAND.",
+    "INFO,Tue Jun 15 10:35:35 IRDT 2021,BUY chicken .",
+    "ERROR ,Tue Jun 15 10:36:13 IRDT 2021,NO GOODS TO PICKUP."
   ]
 }

@@ -292,6 +292,7 @@ public class InputProcessor {
             return true;
         }
         else if(situation==0){
+
             System.out.println("wild animal caged ");
             return true;
         }
